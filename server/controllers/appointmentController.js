@@ -28,7 +28,7 @@ exports.createAppointment = async (req, res) => {
     // Notify doctor of new appointment request
     await createNotification(
       doctorId,
-      'new_record',
+      'appointment_requested',
       'New Appointment Request',
       `${req.user.name} requested an appointment for ${new Date(requestedDate).toLocaleDateString('en-IN')} at ${timeSlot}`,
       null,
@@ -110,6 +110,9 @@ exports.getAppointmentById = async (req, res) => {
   try {
     const appointment = await Appointment.findById(req.params.id);
     if (!appointment) return res.status(404).json({ message: 'Appointment not found' });
+    // Verify user is party to this appointment
+    const isParty = appointment.patientId.toString() === req.user._id.toString() || appointment.doctorId.toString() === req.user._id.toString();
+    if (!isParty) return res.status(403).json({ message: 'Unauthorized' });
     res.json(appointment);
   } catch (err) {
     res.status(500).json({ message: err.message });

@@ -379,3 +379,91 @@ function showToast(message, type) {
 document.getElementById('patientModal').addEventListener('click', (e) => {
   if (e.target === e.currentTarget) closeModal('patientModal');
 });
+
+// ===== NOTIFICATIONS =====
+let notifInterval = null;
+
+function toggleNotifPanel() {
+  const panel = document.getElementById('notifPanel');
+  panel.classList.toggle('hidden');
+  if (!panel.classList.contains('hidden')) {
+    loadNotifications();
+  }
+}
+
+async function loadNotifications() {
+  try {
+    const notifications = await api.get('/notifications');
+    const list = document.getElementById('notifList');
+
+    if (!notifications || notifications.length === 0) {
+      list.innerHTML = '<div class="notif-list-empty"><i class="fas fa-bell-slash"></i> No notifications</div>';
+      return;
+    }
+
+    list.innerHTML = notifications.map(n => `
+      <div class="notif-item ${n.read ? '' : 'unread'}" onclick="markNotifRead('${n._id}')">
+        <div class="notif-icon">
+          <i class="fas ${n.type.includes('appointment') ? 'fa-calendar' : 'fa-clipboard'}"></i>
+        </div>
+        <div class="notif-content">
+          <div class="notif-title">${n.title}</div>
+          <div class="notif-message">${n.message}</div>
+          <div class="notif-time">${new Date(n.createdAt).toLocaleDateString()} ${new Date(n.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+        </div>
+      </div>
+    `).join('');
+  } catch (err) {
+    console.error('Error loading notifications:', err.message);
+  }
+}
+
+async function loadUnreadCount() {
+  try {
+    const data = await api.get('/notifications/unread');
+    const badge = document.getElementById('notifBadge');
+    if (data.unread > 0) {
+      badge.textContent = data.unread;
+      badge.classList.remove('hidden');
+    } else {
+      badge.classList.add('hidden');
+    }
+  } catch (err) {
+    console.error('Error loading unread count:', err.message);
+  }
+}
+
+async function markNotifRead(notifId) {
+  try {
+    await api.patch(`/notifications/${notifId}/read`, {});
+    loadNotifications();
+    loadUnreadCount();
+  } catch (err) {
+    console.error('Error marking notification as read:', err.message);
+  }
+}
+
+async function markAllRead() {
+  try {
+    await api.patch('/notifications/read/all', {});
+    loadNotifications();
+    loadUnreadCount();
+  } catch (err) {
+    console.error('Error marking all as read:', err.message);
+  }
+}
+
+// Close notif panel on click outside
+document.addEventListener('click', (e) => {
+  const panel = document.getElementById('notifPanel');
+  const btn = document.querySelector('.notif-btn');
+  if (panel && !panel.contains(e.target) && !btn.contains(e.target)) {
+    panel.classList.add('hidden');
+  }
+});
+
+// Start notification polling on page load
+document.addEventListener('DOMContentLoaded', () => {
+  loadUnreadCount();
+  notifInterval = setInterval(loadUnreadCount, 30000); // Poll every 30 seconds
+});

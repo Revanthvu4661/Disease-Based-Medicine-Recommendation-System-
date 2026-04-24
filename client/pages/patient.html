@@ -24,6 +24,19 @@
   </div>
   <div class="nav-right">
     <span class="nav-user" id="navUserName"></span>
+    <div class="notif-wrapper">
+      <button class="notif-btn" onclick="toggleNotifPanel()" title="Notifications">
+        <i class="fas fa-bell"></i>
+        <span class="badge hidden" id="notifBadge">0</span>
+      </button>
+      <div class="notif-panel hidden" id="notifPanel">
+        <div class="notif-header">
+          <span>Notifications</span>
+          <button class="notif-close-btn" onclick="markAllRead()">Mark all read</button>
+        </div>
+        <div id="notifList" class="notif-list"></div>
+      </div>
+    </div>
     <button class="theme-toggle-sm" onclick="toggleTheme()" title="Toggle theme">
       <i class="fas fa-moon" id="themeIcon"></i>
     </button>
