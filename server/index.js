@@ -18,6 +18,8 @@ mongoose.set('bufferCommands', false);
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/records', require('./routes/records'));
 app.use('/api/medical', require('./routes/medical'));
+app.use('/api/notifications', require('./routes/notifications'));
+app.use('/api/appointments', require('./routes/appointments'));
 
 // Serve client for all non-API routes
 app.get('*', (req, res) => {

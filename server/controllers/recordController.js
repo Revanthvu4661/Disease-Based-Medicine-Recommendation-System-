@@ -1,4 +1,5 @@
 const Record = require('../models/Record');
+const { createNotification } = require('./notificationController');
 
 // Patient: Create a new medical record
 exports.createRecord = async (req, res) => {
@@ -96,6 +97,15 @@ exports.reviewRecord = async (req, res) => {
       { reviewed: true, reviewedBy: req.user._id, reviewedAt: new Date(), notes: req.body.notes },
       { new: true }
     );
+    if (record) {
+      await createNotification(
+        record.patientId,
+        'record_reviewed',
+        'Your Record Reviewed',
+        `Your medical record for ${record.disease} has been reviewed by ${req.user.name}`,
+        record._id
+      );
+    }
     res.json(record);
   } catch (err) {
     res.status(500).json({ message: err.message });
