@@ -3,13 +3,19 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const helmet = require('helmet');
+const morgan = require('morgan');
 const { generalLimiter, authLimiter } = require('./middleware/rateLimiter');
+const { initializeEmailService } = require('./services/emailService');
+const { setupSwagger } = require('./swagger');
 require('dotenv').config();
 
 const app = express();
 
 // Security middleware
 app.use(helmet());
+
+// Logging
+app.use(morgan('combined'));
 
 // Rate limiting
 app.use('/api/', generalLimiter);
@@ -20,6 +26,9 @@ app.use('/api/auth/register', authLimiter);
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client')));
+
+// Swagger documentation
+setupSwagger(app);
 
 // Fail fast if DB is disconnected (prevents "it worked" but nothing in MongoDB)
 mongoose.set('bufferCommands', false);
@@ -42,6 +51,7 @@ const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/MediCare')
   .then(() => {
     console.log('✅ MongoDB Connected');
+    initializeEmailService();
     const server = app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
     server.on('error', (err) => {
       if (err && err.code === 'EADDRINUSE') {

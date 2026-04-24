@@ -467,3 +467,30 @@ document.addEventListener('DOMContentLoaded', () => {
   loadUnreadCount();
   notifInterval = setInterval(loadUnreadCount, 30000); // Poll every 30 seconds
 });
+
+// ===== CSV EXPORT =====
+function exportRecordsCSV() {
+  if (!allRecords || allRecords.length === 0) {
+    showToast('No records to export', 'error');
+    return;
+  }
+
+  const headers = ['Record ID', 'Patient Name', 'Disease', 'Severity', 'Symptoms', 'Date', 'Reviewed'];
+  const rows = allRecords.map(r => [
+    r._id,
+    r.patientName,
+    r.disease,
+    r.severity,
+    (r.symptoms || []).join('; '),
+    new Date(r.date).toLocaleDateString(),
+    r.reviewed ? 'Yes' : 'No'
+  ]);
+
+  const csv = [headers, ...rows].map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `medical_records_${new Date().toISOString().split('T')[0]}.csv`;
+  link.click();
+  showToast('CSV exported successfully', 'success');
+}

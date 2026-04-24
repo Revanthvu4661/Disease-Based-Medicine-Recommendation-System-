@@ -1,4 +1,5 @@
 const medicalData = require('../data/medicalDataset.json');
+const drugInteractions = require('../data/drugInteractions.json');
 
 // Score relevance: name match > keyword match > symptom match
 function scoreMatch(disease, query) {
@@ -103,6 +104,36 @@ exports.getSymptoms = async (req, res) => {
     });
     const symptoms = Array.from(symptomsSet).sort();
     res.json({ symptoms });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Check drug interactions
+exports.checkInteractions = async (req, res) => {
+  try {
+    const { drugs } = req.query;
+    if (!drugs) return res.json({ interactions: [] });
+
+    const drugList = drugs.split(',').map(d => d.trim());
+    const found = [];
+
+    for (const interaction of drugInteractions) {
+      const interactionDrugs = interaction.drugs.map(d => d.toLowerCase());
+      const matchingDrugs = drugList.filter(d =>
+        interactionDrugs.some(id => d.toLowerCase().includes(id) || id.includes(d.toLowerCase()))
+      );
+
+      if (matchingDrugs.length >= 2) {
+        found.push({
+          drugs: matchingDrugs,
+          severity: interaction.severity,
+          effect: interaction.effect
+        });
+      }
+    }
+
+    res.json({ interactions: found });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

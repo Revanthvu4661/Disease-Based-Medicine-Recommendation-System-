@@ -1,5 +1,7 @@
 const Record = require('../models/Record');
+const User = require('../models/User');
 const { createNotification } = require('./notificationController');
+const { sendRecordReviewedEmail } = require('../services/emailService');
 
 // Patient: Create a new medical record
 exports.createRecord = async (req, res) => {
@@ -105,6 +107,8 @@ exports.reviewRecord = async (req, res) => {
         `Your medical record for ${record.disease} has been reviewed by ${req.user.name}`,
         record._id
       );
+      // Send email notification
+      await sendRecordReviewedEmail(record.patientEmail, record.patientName, req.user.name, record.disease);
     }
     res.json(record);
   } catch (err) {

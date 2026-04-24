@@ -1,6 +1,7 @@
 const Appointment = require('../models/Appointment');
 const User = require('../models/User');
 const { createNotification } = require('./notificationController');
+const { sendAppointmentRequestEmail, sendAppointmentStatusEmail } = require('../services/emailService');
 
 exports.createAppointment = async (req, res) => {
   try {
@@ -34,6 +35,8 @@ exports.createAppointment = async (req, res) => {
       null,
       appointment._id
     );
+    // Send email to doctor
+    await sendAppointmentRequestEmail(doctor.email, doctor.name, req.user.name, new Date(requestedDate).toLocaleDateString('en-IN'), timeSlot);
 
     res.status(201).json(appointment);
   } catch (err) {
@@ -88,6 +91,7 @@ exports.updateAppointmentStatus = async (req, res) => {
 
     // Notify the other party
     const notifyUserId = req.user.role === 'doctor' ? appointment.patientId : appointment.doctorId;
+    const notifyUserEmail = req.user.role === 'doctor' ? appointment.patientEmail : (await User.findById(appointment.doctorId)).email;
     const notifyUserName = req.user.role === 'doctor' ? appointment.patientName : appointment.doctorName;
 
     const statusTitle = status.charAt(0).toUpperCase() + status.slice(1);
@@ -99,6 +103,9 @@ exports.updateAppointmentStatus = async (req, res) => {
       null,
       appointment._id
     );
+    // Send email to the other party
+    const dateStr = new Date(appointment.requestedDate).toLocaleDateString('en-IN');
+    await sendAppointmentStatusEmail(notifyUserEmail, notifyUserName, status, req.user.role === 'doctor' ? req.user.name : appointment.doctorName, `${dateStr} at ${appointment.timeSlot}`);
 
     res.json(appointment);
   } catch (err) {
