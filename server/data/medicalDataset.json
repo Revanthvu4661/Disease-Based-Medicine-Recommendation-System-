@@ -378,5 +378,595 @@
     "whenToSeeDoctor": "Level below 20 ng/mL on blood test, bone fractures with minimal trauma, chronic conditions (kidney/liver disease), malabsorption disorders, children with rickets signs.",
     "emergencyAlert": false,
     "dietAdvice": "Vitamin D-rich foods: fatty fish (salmon, sardines), egg yolks, fortified milk, mushrooms (sun-exposed). Most people need supplements to reach optimal levels."
+  },
+  {
+    "disease": "Pneumonia",
+    "keywords": ["pneumonia", "chest infection", "lung infection", "shortness of breath", "fever cough", "productive cough"],
+    "symptoms": ["cough with phlegm", "high fever", "chest pain on breathing", "shortness of breath", "chills", "fatigue", "confusion (in elderly)", "lips or fingernails turning blue"],
+    "description": "An infection that fills the air sacs in the lungs with fluid or pus, caused by bacteria, virus, or fungus. Can be life-threatening if severe or left untreated.",
+    "severity": "moderate",
+    "precautions": ["Complete full course of antibiotics even if better", "Rest and stay well hydrated", "Avoid smoking and secondhand smoke", "Get flu and pneumococcal vaccines", "Cover mouth when coughing", "Monitor oxygen levels if available", "Avoid strenuous activity during recovery"],
+    "medicines": [
+      { "name": "Amoxicillin-Clavulanate", "type": "Antibiotic", "adultDose": "875/125mg twice daily", "childDose": "25-45 mg/kg twice daily", "mgPerKg": 22, "frequency": "Twice daily", "duration": "7-10 days" },
+      { "name": "Azithromycin", "type": "Antibiotic (for atypical organisms)", "adultDose": "500mg once daily", "childDose": "10-20 mg/kg once daily", "mgPerKg": 15, "frequency": "Once daily", "duration": "5 days" },
+      { "name": "Paracetamol", "type": "Antipyretic/Analgesic", "adultDose": "500-1000mg every 6 hours", "childDose": "10-15 mg/kg every 6 hours", "mgPerKg": 12.5, "frequency": "Every 6 hours", "duration": "7-10 days" }
+    ],
+    "whenToSeeDoctor": "Shortness of breath at rest, SpO2 below 94%, confusion, high fever, chest pain, symptoms worsening despite antibiotics, signs of sepsis.",
+    "emergencyAlert": true,
+    "dietAdvice": "High-protein foods for recovery, warm soups and broths, vitamin C-rich fruits, avoid cold foods. Honey is beneficial for cough suppression."
+  },
+  {
+    "disease": "Bronchitis",
+    "keywords": ["bronchitis", "acute bronchitis", "chest cough", "productive cough", "chronic cough", "bronchitis cough"],
+    "symptoms": ["persistent cough for 3+ weeks", "mucus production (clear, white, yellowish, or bloody)", "fatigue", "mild fever", "shortness of breath", "chest discomfort"],
+    "description": "Inflammation of the airways in the lungs due to viral infection (acute) or chronic irritation. Acute bronchitis usually follows cold or flu.",
+    "severity": "mild",
+    "precautions": ["Stay hydrated with warm fluids", "Use humidifier to moisten air", "Avoid smoke and air pollutants", "Quit smoking if applicable", "Get flu vaccine annually", "Cover cough and wash hands regularly"],
+    "medicines": [
+      { "name": "Guaifenesin (Mucinex)", "type": "Expectorant", "adultDose": "200-400mg every 4 hours", "childDose": "100-200mg every 4-6 hours (6+ yrs)", "mgPerKg": null, "frequency": "Every 4 hours", "duration": "As needed" },
+      { "name": "Dextromethorphan (Cough Syrup)", "type": "Antitussive (if cough is dry)", "adultDose": "10-20mg every 4 hours", "childDose": "5-10mg every 6-8 hours", "mgPerKg": 0.5, "frequency": "Every 4-6 hours", "duration": "As needed" },
+      { "name": "Paracetamol", "type": "Antipyretic", "adultDose": "500-1000mg every 6 hours", "childDose": "10-15 mg/kg every 6 hours", "mgPerKg": 12.5, "frequency": "Every 6 hours as needed", "duration": "3-5 days" }
+    ],
+    "whenToSeeDoctor": "Cough lasting more than 3 weeks, coughing up blood, shortness of breath, chest pain, signs of pneumonia, high fever lasting over 1 week.",
+    "emergencyAlert": false,
+    "dietAdvice": "Warm broths, honey and ginger tea, citrus fruits for vitamin C, avoid cold foods and carbonated beverages."
+  },
+  {
+    "disease": "Meningitis",
+    "keywords": ["meningitis", "stiff neck", "neck pain", "fever headache", "meningococcal", "high fever stiff neck"],
+    "symptoms": ["high fever (39-40°C)", "severe stiff neck", "severe headache", "sensitivity to light", "nausea and vomiting", "confusion", "rash (especially meningococcal)", "seizures in severe cases"],
+    "description": "A serious infection causing inflammation of the membranes around the brain and spinal cord. A medical emergency requiring immediate hospitalization.",
+    "severity": "severe",
+    "precautions": ["Seek emergency medical attention immediately", "Get meningococcal vaccine (recommended for teenagers and young adults)", "Practice good hygiene (especially important during outbreaks)", "Avoid close contact with infected individuals", "Do not delay treatment — early antibiotics are crucial"],
+    "medicines": [
+      { "name": "Ceftriaxone (IV)", "type": "Antibiotic (first-line, given IV in hospital)", "adultDose": "1-2g every 12 hours IV", "childDose": "50-80 mg/kg every 8-12 hours IV", "mgPerKg": 75, "frequency": "Every 12 hours", "duration": "10-14 days" },
+      { "name": "Vancomycin (IV)", "type": "Antibiotic (if penicillin allergy or resistant organisms)", "adultDose": "15-20 mg/kg IV every 8-12 hours", "childDose": "15-20 mg/kg IV every 6-8 hours", "mgPerKg": 15, "frequency": "Every 8 hours", "duration": "10-14 days" }
+    ],
+    "whenToSeeDoctor": "CALL EMERGENCY IMMEDIATELY for severe headache with fever and stiff neck. This is a medical emergency.",
+    "emergencyAlert": true,
+    "dietAdvice": "Nutritional support is provided through IV in hospital; normal diet resuming gradually once patient stabilizes. Stay hydrated once able to eat."
+  },
+  {
+    "disease": "Hepatitis B",
+    "keywords": ["hepatitis B", "HBV", "liver inflammation", "jaundice", "yellow skin", "liver disease"],
+    "symptoms": ["fever", "fatigue", "abdominal pain", "jaundice (yellow skin/eyes)", "dark urine", "pale stools", "nausea and vomiting", "joint pain"],
+    "description": "A viral infection affecting the liver, transmitted through blood and body fluids. Can be acute or chronic. Preventable by vaccination.",
+    "severity": "moderate",
+    "precautions": ["Get hepatitis B vaccine (3-dose series)", "Avoid sharing needles, razors, toothbrushes", "Practice safe sex (use protection)", "Avoid contact with blood if you have cuts", "Seek immediate testing if exposed", "Pregnant women should be tested and vaccinated"],
+    "medicines": [
+      { "name": "Lamivudine (3TC)", "type": "Antiviral (for chronic infection)", "adultDose": "300mg once daily", "childDose": "3-6 mg/kg once daily", "mgPerKg": 5, "frequency": "Once daily", "duration": "Long-term (months to years)" },
+      { "name": "Entecavir", "type": "Antiviral (for chronic infection)", "adultDose": "0.5mg once daily", "childDose": "Based on weight", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term" },
+      { "name": "Paracetamol", "type": "Antipyretic (safe in liver disease)", "adultDose": "500-1000mg every 6 hours (max 3g/day in liver disease)", "childDose": "10-15 mg/kg every 6 hours", "mgPerKg": 12.5, "frequency": "Every 6 hours", "duration": "As needed" }
+    ],
+    "whenToSeeDoctor": "Suspected exposure to hepatitis B, jaundice, dark urine, abdominal swelling, signs of liver failure, pregnant women with HBV.",
+    "emergencyAlert": false,
+    "dietAdvice": "Adequate protein (not excessive), low salt diet, avoid alcohol completely. Balanced nutrition to support liver function. Regular monitoring of liver enzymes essential."
+  },
+  {
+    "disease": "Cervical Spondylitis",
+    "keywords": ["cervical spondylitis", "neck arthritis", "cervical arthritis", "neck pain", "stiff neck", "cervical spondylosis"],
+    "symptoms": ["neck pain and stiffness", "pain radiating to shoulders and arms", "numbness and tingling in arms/hands", "weakness in arms", "headache", "limited neck movement", "muscle tension"],
+    "description": "Degenerative joint disease of the cervical spine (neck) causing wear and tear of cartilage and bone. Common with age and poor posture.",
+    "severity": "mild",
+    "precautions": ["Maintain proper posture while sitting and working", "Take frequent breaks from computer", "Sleep with supportive pillow", "Gentle neck exercises daily", "Avoid heavy lifting and sudden jerky movements", "Maintain healthy weight", "Physical therapy is beneficial"],
+    "medicines": [
+      { "name": "Ibuprofen", "type": "NSAID", "adultDose": "400-600mg every 8 hours with food", "childDose": "5-10 mg/kg every 8 hours", "mgPerKg": 7.5, "frequency": "3 times daily with food", "duration": "5-7 days" },
+      { "name": "Muscle Relaxant Spray (Moov, Iodex)", "type": "Topical muscle relaxant", "adultDose": "Apply locally 2-3 times daily", "childDose": "Same as adult", "mgPerKg": null, "frequency": "2-3 times daily", "duration": "As needed" },
+      { "name": "Pregabalin (for nerve pain)", "type": "Neuropathic pain medication", "adultDose": "150-600mg daily in divided doses", "childDose": "Not recommended under 18", "mgPerKg": null, "frequency": "Twice or thrice daily", "duration": "Long-term as prescribed" }
+    ],
+    "whenToSeeDoctor": "Severe pain, numbness affecting daily activities, signs of myelopathy (weak legs, difficulty walking), progressive neurological symptoms.",
+    "emergencyAlert": false,
+    "dietAdvice": "Anti-inflammatory foods: fatty fish, turmeric, ginger, berries. Calcium and vitamin D for bone health. Avoid processed and inflammatory foods."
+  },
+  {
+    "disease": "Prostate Enlargement (BPH)",
+    "keywords": ["BPH", "benign prostatic hyperplasia", "prostate enlargement", "urinary retention", "frequent urination", "weak urine stream"],
+    "symptoms": ["frequent urination (especially at night)", "weak urine stream", "difficulty starting urination", "inability to empty bladder completely", "feeling of incompleteness after urination", "urgency to urinate"],
+    "description": "A non-cancerous enlargement of the prostate gland common in older men, causing urinary symptoms. Does not increase cancer risk but affects quality of life.",
+    "severity": "mild",
+    "precautions": ["Limit fluid intake especially evening", "Avoid caffeine and alcohol", "Empty bladder completely when possible", "Kegel exercises to strengthen pelvic muscles", "Regular check-ups for prostate health", "Do not suppress urge to urinate"],
+    "medicines": [
+      { "name": "Tamsulosin (Flomax)", "type": "Alpha-blocker", "adultDose": "0.4mg once daily after breakfast", "childDose": "Not applicable", "mgPerKg": null, "frequency": "Once daily after breakfast", "duration": "Long-term" },
+      { "name": "Finasteride (Proscar)", "type": "5-alpha reductase inhibitor (for larger glands)", "adultDose": "5mg once daily", "childDose": "Not applicable", "mgPerKg": null, "frequency": "Once daily", "duration": "Minimum 6 months needed to see effect" },
+      { "name": "Tolterodine", "type": "Antispasmodic (for overactive bladder symptoms)", "adultDose": "2mg twice daily", "childDose": "Not recommended", "mgPerKg": null, "frequency": "Twice daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "Unable to pass urine, painful urination, blood in urine, signs of infection, PSA test abnormalities, symptoms severely affecting quality of life.",
+    "emergencyAlert": false,
+    "dietAdvice": "Reduce caffeine and alcohol intake. Saw palmetto supplement may help. Adequate hydration during day, reduce fluids in evening. Zinc and lycopene-rich foods beneficial."
+  },
+  {
+    "disease": "Epilepsy",
+    "keywords": ["epilepsy", "seizure", "seizure disorder", "convulsions", "epileptic seizure", "recurrent seizures"],
+    "symptoms": ["recurrent unprovoked seizures", "loss of consciousness", "convulsions", "muscle stiffness", "abnormal sensations", "sudden fear or anxiety", "temporary confusion"],
+    "description": "A neurological disorder characterized by recurrent seizures. Can vary in severity from brief absences to prolonged convulsions. Highly treatable with medications.",
+    "severity": "moderate",
+    "precautions": ["Take medications consistently as prescribed", "Avoid seizure triggers (sleep deprivation, stress, alcohol)", "Do not drive until cleared by doctor", "Wear medical alert bracelet", "Inform close contacts about seizure management", "Regular blood tests to monitor medication levels", "Avoid bright flickering lights"],
+    "medicines": [
+      { "name": "Valproic Acid (Depakote)", "type": "Anticonvulsant (first-line)", "adultDose": "250-500mg twice daily (titrate up)", "childDose": "10-15 mg/kg/day in divided doses", "mgPerKg": 12.5, "frequency": "Twice daily with food", "duration": "Long-term" },
+      { "name": "Levetiracetam (Keppra)", "type": "Anticonvulsant (newer generation)", "adultDose": "500-1000mg twice daily", "childDose": "10-20 mg/kg twice daily", "mgPerKg": 15, "frequency": "Twice daily", "duration": "Long-term" },
+      { "name": "Lamotrigine (Lamictal)", "type": "Anticonvulsant", "adultDose": "25-100mg twice daily (slow titration required)", "childDose": "0.3-1 mg/kg/day initial", "mgPerKg": 0.5, "frequency": "Twice daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "Status epilepticus (seizure lasting over 5 minutes), increased seizure frequency, medication side effects, difficulty controlling seizures despite medication.",
+    "emergencyAlert": false,
+    "dietAdvice": "Avoid excessive alcohol, maintain regular sleep, consider ketogenic diet for drug-resistant cases, adequate hydration. Vitamin D supplementation often beneficial."
+  },
+  {
+    "disease": "Acne (Severe)",
+    "keywords": ["acne", "pimples", "severe acne", "acne vulgaris", "severe acne cystic", "oily skin"],
+    "symptoms": ["comedones (blackheads and whiteheads)", "papules and pustules", "nodules and cysts", "oily skin", "redness and inflammation", "scarring in severe cases"],
+    "description": "A chronic skin condition where pores become clogged with dead skin and sebum, allowing bacteria to multiply. Can range from mild to severe with significant scarring.",
+    "severity": "mild",
+    "precautions": ["Wash face with gentle cleanser twice daily", "Avoid touching and squeezing pimples", "Use non-comedogenic products", "Reduce stress", "Limit dairy and high-glycemic foods", "Get regular sleep", "Protect skin from sun (some medications increase sensitivity)"],
+    "medicines": [
+      { "name": "Benzoyl Peroxide", "type": "Topical antibacterial", "adultDose": "Apply 2.5-10% twice daily to affected areas", "childDose": "Same as adult", "mgPerKg": null, "frequency": "Twice daily", "duration": "Long-term maintenance" },
+      { "name": "Tretinoin (Retin-A)", "type": "Topical retinoid", "adultDose": "Start 0.025% 3x/week, increase gradually", "childDose": "Use with caution in teens", "mgPerKg": null, "frequency": "Usually nightly after titration", "duration": "Long-term, wait 3 months to assess" },
+      { "name": "Isotretinoin (Accutane)", "type": "Systemic retinoid (for severe acne only)", "adultDose": "0.5-1mg/kg/day for 16-20 weeks", "childDose": "Not recommended under 12", "mgPerKg": 0.75, "frequency": "Once daily with food", "duration": "16-20 weeks (highly potent, requires monitoring)" }
+    ],
+    "whenToSeeDoctor": "Severe nodular/cystic acne, signs of infection, significant scarring, acne not responding to OTC treatments, female with hormonal acne.",
+    "emergencyAlert": false,
+    "dietAdvice": "Reduce dairy, refined sugars, and high-glycemic foods. Increase fruits, vegetables, and water intake. Avoid oily foods. Omega-3 fatty acids beneficial."
+  },
+  {
+    "disease": "Allergic Rhinitis",
+    "keywords": ["allergic rhinitis", "hay fever", "allergies", "itchy nose", "nasal congestion", "seasonal allergies"],
+    "symptoms": ["nasal congestion and runny nose", "sneezing", "itching in nose, throat, eyes", "watery eyes", "postnasal drip", "headache", "fatigue"],
+    "description": "An allergic inflammation of the nasal membranes triggered by pollen, dust, or other allergens. Common seasonal disease affecting millions during spring and fall.",
+    "severity": "mild",
+    "precautions": ["Identify and avoid allergen triggers", "Keep windows closed during high pollen season", "Use air purifiers at home", "Shower and change clothes after being outdoors", "Wash bedding weekly in hot water", "Use saline nasal rinse daily", "Consider allergy testing"],
+    "medicines": [
+      { "name": "Cetirizine (Zyrtec)", "type": "Antihistamine (non-drowsy)", "adultDose": "10mg once daily", "childDose": "5mg once daily (6-12 yrs)", "mgPerKg": 0.25, "frequency": "Once daily", "duration": "During allergy season" },
+      { "name": "Fluticasone Nasal Spray", "type": "Corticosteroid nasal spray", "adultDose": "2 sprays per nostril once daily", "childDose": "1 spray per nostril once daily (6+ yrs)", "mgPerKg": null, "frequency": "Once daily", "duration": "During allergy season or long-term if chronic" },
+      { "name": "Montelukast", "type": "Leukotriene inhibitor", "adultDose": "10mg once daily at evening", "childDose": "4-5mg once daily (6-14 yrs)", "mgPerKg": null, "frequency": "Once daily in evening", "duration": "During allergy season" }
+    ],
+    "whenToSeeDoctor": "Symptoms not controlled with medications, signs of infection (yellow/green nasal discharge), symptoms affecting sleep and daily activities, suspicion of asthma.",
+    "emergencyAlert": false,
+    "dietAdvice": "Avoid foods that cross-react with pollens (apples, nuts in birch pollen allergy). Local honey may provide some relief. Increase vitamin C intake."
+  },
+  {
+    "disease": "Migraine with Aura",
+    "keywords": ["migraine aura", "migraine with aura", "vision changes", "migraine visual", "zigzag lines migraine"],
+    "symptoms": ["visual aura (flashing lights, zigzag lines)", "numbness in lips/tongue", "weakness in limbs", "severe one-sided headache following aura", "nausea and vomiting", "sensitivity to light and sound", "tingling sensations"],
+    "description": "A severe form of migraine preceded by sensory warnings (aura) like visual disturbances, typically lasting 20-60 minutes before headache onset.",
+    "severity": "moderate",
+    "precautions": ["Identify aura as warning sign to take medication early", "Rest in dark, quiet room immediately upon aura onset", "Avoid known triggers (hormones, foods, stress, weather changes)", "Regular sleep and meal schedule critical", "Stress management and relaxation techniques", "Consider preventive medication if frequent"],
+    "medicines": [
+      { "name": "Sumatriptan (Imigran)", "type": "Triptan (take at aura onset)", "adultDose": "50-100mg at aura start (before headache)", "childDose": "Not recommended under 12", "mgPerKg": null, "frequency": "At aura onset, may repeat after 2 hours", "duration": "As needed" },
+      { "name": "Propranolol", "type": "Beta blocker (preventive)", "adultDose": "80-240mg daily in divided doses", "childDose": "Not recommended for children", "mgPerKg": null, "frequency": "Daily", "duration": "Long-term prevention" },
+      { "name": "Topiramate", "type": "Anticonvulsant (preventive)", "adultDose": "25-100mg daily in divided doses", "childDose": "1-3 mg/kg/day", "mgPerKg": 2, "frequency": "Twice daily (evening dosing recommended)", "duration": "Long-term prevention" }
+    ],
+    "whenToSeeDoctor": "New aura pattern or characteristics changing, aura lasting more than 1 hour, weakness on one side of body, vision loss in one eye, suspected stroke symptoms.",
+    "emergencyAlert": false,
+    "dietAdvice": "Avoid trigger foods like aged cheese, red wine, chocolate, processed meats. Maintain stable blood sugar with regular meals. Stay well hydrated."
+  },
+  {
+    "disease": "Acute Myocardial Infarction (Heart Attack)",
+    "keywords": ["heart attack", "MI", "chest pain", "myocardial infarction", "cardiac emergency", "angina"],
+    "symptoms": ["severe chest pain or pressure", "pain radiating to arms, jaw, or neck", "shortness of breath", "nausea and vomiting", "dizziness", "cold sweats", "anxiety"],
+    "description": "A life-threatening condition where blood flow to heart muscle is blocked, causing tissue death. A medical emergency requiring immediate hospitalization.",
+    "severity": "severe",
+    "precautions": ["CALL EMERGENCY IMMEDIATELY if chest pain occurs", "Know your risk factors (age, smoking, family history)", "Regular cardiac check-ups if high risk", "Take prescribed cardiac medications faithfully", "Maintain healthy lifestyle with exercise and diet", "Manage stress and blood pressure"],
+    "medicines": [
+      { "name": "Aspirin", "type": "Antiplatelet", "adultDose": "300-500mg loading dose, then 75-100mg daily", "childDose": "Not applicable in acute setting", "mgPerKg": null, "frequency": "Daily after acute phase", "duration": "Long-term post-MI" },
+      { "name": "Clopidogrel (Plavix)", "type": "Antiplatelet", "adultDose": "600mg loading, then 75mg daily", "childDose": "Not recommended", "mgPerKg": null, "frequency": "Once daily", "duration": "12 months post-MI" },
+      { "name": "Atorvastatin", "type": "Statin (cholesterol-lowering)", "adultDose": "40-80mg once daily", "childDose": "Not recommended", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "CALL EMERGENCY if chest pain, shortness of breath, severe symptoms develop. Always seek immediate medical care.",
+    "emergencyAlert": true,
+    "dietAdvice": "Heart-healthy diet: fruits, vegetables, whole grains, lean proteins. Avoid saturated fats, trans fats, and high sodium foods."
+  },
+  {
+    "disease": "Stroke (Cerebrovascular Accident)",
+    "keywords": ["stroke", "CVA", "brain attack", "paralysis", "facial drooping", "speech difficulty", "sudden weakness"],
+    "symptoms": ["sudden weakness or numbness on one side", "facial drooping", "speech difficulty or slurring", "vision loss in one or both eyes", "severe headache", "loss of balance", "confusion"],
+    "description": "A blockage or rupture of blood vessels in the brain, causing sudden neurological deficits. A medical emergency where time is critical for treatment.",
+    "severity": "severe",
+    "precautions": ["Remember FAST: Face drooping, Arm weakness, Speech difficulty, Time to call emergency", "Control blood pressure and diabetes", "Avoid smoking and excessive alcohol", "Regular exercise and healthy diet", "Take medications for prevention if at risk", "Know your risk factors"],
+    "medicines": [
+      { "name": "Alteplase (tPA)", "type": "Thrombolytic (clot-busting, must be given within 4.5 hours)", "adultDose": "0.9 mg/kg IV (max 90mg)", "childDose": "Not recommended", "mgPerKg": 0.9, "frequency": "Single IV infusion in emergency", "duration": "Emergency treatment only" },
+      { "name": "Aspirin", "type": "Antiplatelet", "adultDose": "300mg acute, then 75-100mg daily", "childDose": "Not applicable", "mgPerKg": null, "frequency": "Once daily post-stroke", "duration": "Long-term" },
+      { "name": "Atorvastatin", "type": "Statin", "adultDose": "40-80mg once daily", "childDose": "Not recommended", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "CALL EMERGENCY IMMEDIATELY if FAST symptoms occur. Immediate hospital care is critical for best outcomes.",
+    "emergencyAlert": true,
+    "dietAdvice": "Mediterranean diet recommended: olive oil, fish, vegetables, nuts. Limit sodium, saturated fats. Adequate fluids and fiber."
+  },
+  {
+    "disease": "Osteoporosis",
+    "keywords": ["osteoporosis", "weak bones", "bone loss", "fragile bones", "fracture risk", "low bone density"],
+    "symptoms": ["usually no symptoms in early stages", "stooped posture", "loss of height over time", "spontaneous fractures", "chronic back pain", "bone pain"],
+    "description": "A condition where bones become fragile and more susceptible to fractures due to low bone mineral density. More common in older adults and postmenopausal women.",
+    "severity": "mild",
+    "precautions": ["Regular bone density screening (DEXA scan)", "Adequate calcium and vitamin D intake", "Weight-bearing exercise daily", "Quit smoking and limit alcohol", "Fall prevention strategies", "Proper nutrition and hormone management"],
+    "medicines": [
+      { "name": "Alendronate (Fosamx)", "type": "Bisphosphonate (first-line)", "adultDose": "70mg once weekly or 10mg daily", "childDose": "Not recommended", "mgPerKg": null, "frequency": "Once weekly on empty stomach, upright 30 min", "duration": "Long-term (reassess every 2-3 years)" },
+      { "name": "Calcium Carbonate + D3", "type": "Supplement", "adultDose": "500-1200mg calcium + 800-1000 IU D3 daily", "childDose": "500-1300mg calcium daily", "mgPerKg": null, "frequency": "With meals", "duration": "Long-term" },
+      { "name": "Hormone Replacement Therapy (HRT)", "type": "Estrogen + Progestin (postmenopausal women)", "adultDose": "Individualized dosing", "childDose": "Not applicable", "mgPerKg": null, "frequency": "Daily", "duration": "As prescribed, usually 5-10 years" }
+    ],
+    "whenToSeeDoctor": "Unexpected fractures, severe back pain, height loss, DEXA scan showing low density, menopausal symptoms with bone concerns.",
+    "emergencyAlert": false,
+    "dietAdvice": "Calcium-rich: dairy, leafy greens, tofu. Vitamin D: fatty fish, egg yolks, fortified milk. Adequate protein. Limit caffeine and salt."
+  },
+  {
+    "disease": "Chronic Obstructive Pulmonary Disease (COPD)",
+    "keywords": ["COPD", "emphysema", "chronic bronchitis", "breathing difficulty", "cough", "shortness of breath", "smoking lung disease"],
+    "symptoms": ["shortness of breath", "chronic cough", "sputum production", "wheezing", "chest tightness", "fatigue", "frequent respiratory infections"],
+    "description": "A progressive lung disease characterized by airflow limitation, usually caused by smoking. Includes emphysema and chronic bronchitis.",
+    "severity": "moderate",
+    "precautions": ["Quit smoking immediately", "Avoid air pollution and occupational exposures", "Get flu and pneumonia vaccines annually", "Pulmonary rehabilitation", "Use inhalers correctly", "Avoid respiratory infections"],
+    "medicines": [
+      { "name": "Salbutamol (Albuterol) Inhaler", "type": "Short-acting bronchodilator (rescue)", "adultDose": "100-200mcg (1-2 puffs) as needed", "childDose": "100mcg as needed", "mgPerKg": null, "frequency": "As needed", "duration": "Ongoing as needed" },
+      { "name": "Tiotropium (Spiriva)", "type": "Long-acting bronchodilator (maintenance)", "adultDose": "18mcg inhalation once daily", "childDose": "Not recommended under 6", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term" },
+      { "name": "Fluticasone/Salmeterol Inhaler", "type": "Corticosteroid/long-acting bronchodilator combination", "adultDose": "2 puffs twice daily", "childDose": "1 puff twice daily (6+ yrs)", "mgPerKg": null, "frequency": "Twice daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "Increased shortness of breath, worsening cough, fever, change in sputum color, chest pain, signs of exacerbation.",
+    "emergencyAlert": false,
+    "dietAdvice": "High-protein foods for muscle maintenance, small frequent meals, adequate hydration. Antioxidant-rich foods. Avoid gas-producing foods."
+  },
+  {
+    "disease": "Peptic Ulcer Disease",
+    "keywords": ["peptic ulcer", "stomach ulcer", "duodenal ulcer", "H. pylori", "ulcer pain", "epigastric pain"],
+    "symptoms": ["burning stomach pain", "nausea", "loss of appetite", "weight loss", "vomiting (sometimes bloody)", "black/tarry stools", "bloating"],
+    "description": "Open sores that develop on the lining of the stomach, small intestine, or esophagus. Usually caused by H. pylori infection or NSAIDs.",
+    "severity": "mild",
+    "precautions": ["Avoid NSAIDs if possible", "Test and treat H. pylori infection", "Avoid spicy foods and alcohol", "Manage stress", "Quit smoking", "Regular follow-up endoscopy if necessary"],
+    "medicines": [
+      { "name": "Omeprazole", "type": "Proton Pump Inhibitor", "adultDose": "20-40mg once daily for 4-8 weeks", "childDose": "1 mg/kg once daily", "mgPerKg": 1, "frequency": "Once daily before breakfast", "duration": "4-8 weeks" },
+      { "name": "Amoxicillin (for H. pylori)", "type": "Antibiotic", "adultDose": "1000mg twice daily", "childDose": "25-45 mg/kg twice daily", "mgPerKg": 25, "frequency": "Twice daily", "duration": "10-14 days (part of triple therapy)" },
+      { "name": "Clarithromycin (for H. pylori)", "type": "Antibiotic", "adultDose": "500mg twice daily", "childDose": "7.5 mg/kg twice daily", "mgPerKg": 7.5, "frequency": "Twice daily", "duration": "10-14 days (part of triple therapy)" }
+    ],
+    "whenToSeeDoctor": "Severe vomiting, black/bloody stools, signs of perforation (severe pain), persistent symptoms despite medication.",
+    "emergencyAlert": false,
+    "dietAdvice": "Avoid spicy, oily, acidic foods. Eat small, frequent meals. Milk and yogurt soothe stomach. Avoid caffeine, alcohol, chocolate."
+  },
+  {
+    "disease": "Cholecystitis (Gallbladder Inflammation)",
+    "keywords": ["cholecystitis", "gallbladder infection", "gallstones", "biliary colic", "RUQ pain", "gallbladder pain"],
+    "symptoms": ["severe pain in right upper abdomen", "pain between shoulder blades", "pain under right shoulder", "nausea and vomiting", "fever", "tenderness in upper abdomen"],
+    "description": "Inflammation of the gallbladder, often caused by gallstones blocking the bile duct. Can be acute or chronic.",
+    "severity": "moderate",
+    "precautions": ["Healthy diet low in fat and cholesterol", "Maintain healthy weight", "Regular exercise", "Adequate fiber intake", "Avoid rapid weight loss", "Early treatment to prevent complications"],
+    "medicines": [
+      { "name": "Ursodeoxycholic Acid (Ursodiol)", "type": "Bile acid (for dissolving stones)", "adultDose": "8-10 mg/kg/day in 2-3 divided doses", "childDose": "20 mg/kg/day", "mgPerKg": 9, "frequency": "2-3 times daily with food", "duration": "6-24 months" },
+      { "name": "Cefotaxime (if infected)", "type": "Antibiotic", "adultDose": "1-2g every 6-8 hours IV", "childDose": "50 mg/kg every 6-8 hours IV", "mgPerKg": 50, "frequency": "Every 6-8 hours", "duration": "7-10 days" },
+      { "name": "Paracetamol", "type": "Analgesic", "adultDose": "500-1000mg every 6 hours", "childDose": "10-15 mg/kg every 6 hours", "mgPerKg": 12.5, "frequency": "Every 6 hours as needed", "duration": "Until pain resolves" }
+    ],
+    "whenToSeeDoctor": "Severe pain, fever, signs of pancreatitis, jaundice, symptoms lasting more than several hours, recurrent episodes.",
+    "emergencyAlert": false,
+    "dietAdvice": "Low-fat diet, avoid fried foods, increase fiber gradually. Small frequent meals. Avoid dairy, fatty meats, eggs. Plenty of vegetables and whole grains."
+  },
+  {
+    "disease": "Inflammatory Bowel Disease (Crohn's Disease)",
+    "keywords": ["Crohn's disease", "IBD", "inflammatory bowel disease", "chronic diarrhea", "abdominal pain", "bloody stool"],
+    "symptoms": ["chronic diarrhea", "abdominal pain and cramping", "bloody or mucus in stool", "weight loss", "fever", "fatigue", "reduced appetite"],
+    "description": "A chronic inflammatory disorder of the gastrointestinal tract that can affect any part from mouth to anus. Requires long-term management.",
+    "severity": "moderate",
+    "precautions": ["Identify and avoid food triggers", "Maintain regular exercise", "Stress management", "Take medications consistently", "Regular gastroenterology follow-ups", "Nutritional support and supplementation"],
+    "medicines": [
+      { "name": "Mesalamine (5-ASA)", "type": "Anti-inflammatory", "adultDose": "800-1200mg 2-3 times daily", "childDose": "40-50 mg/kg/day in divided doses", "mgPerKg": 45, "frequency": "2-3 times daily", "duration": "Long-term maintenance" },
+      { "name": "Azathioprine (Imuran)", "type": "Immunosuppressant", "adultDose": "1-2 mg/kg/day", "childDose": "1-2 mg/kg/day", "mgPerKg": 1.5, "frequency": "Once daily", "duration": "Long-term" },
+      { "name": "Infliximab (Remicade)", "type": "TNF inhibitor (biologic)", "adultDose": "5 mg/kg IV induction, then maintenance", "childDose": "5 mg/kg IV", "mgPerKg": 5, "frequency": "Induction: weeks 0, 2, 6; then every 8 weeks", "duration": "Long-term ongoing" }
+    ],
+    "whenToSeeDoctor": "Severe diarrhea with blood, signs of dehydration, severe abdominal pain, fever, weight loss, symptoms not responding to treatment.",
+    "emergencyAlert": false,
+    "dietAdvice": "Avoid high-fiber during flares, low-FODMAP diet, adequate protein, avoid trigger foods (varies per person). Stay hydrated. Nutritional supplements often needed."
+  },
+  {
+    "disease": "Celiac Disease",
+    "keywords": ["celiac disease", "celiac sprue", "gluten sensitivity", "gluten intolerance", "malabsorption", "intestinal damage"],
+    "symptoms": ["chronic diarrhea", "abdominal bloating and pain", "weight loss", "fatigue", "anemia", "dermatitis herpetiformis (skin rash)", "depression"],
+    "description": "An autoimmune disorder triggered by gluten consumption, causing intestinal inflammation and malabsorption. Managed by strict gluten-free diet.",
+    "severity": "mild",
+    "precautions": ["Strict gluten-free diet (no wheat, barley, rye)", "Avoid cross-contamination", "Read food labels carefully", "Take vitamin supplements (iron, B12, D)", "Regular gastroenterology and dietitian follow-up", "Screen family members"],
+    "medicines": [
+      { "name": "Iron Supplement", "type": "For anemia correction", "adultDose": "325mg ferrous sulfate once daily", "childDose": "3-6 mg/kg/day elemental iron", "mgPerKg": 4, "frequency": "Once daily with vitamin C", "duration": "6-12 months until Hb normalizes" },
+      { "name": "Vitamin B12", "type": "For B12 deficiency", "adultDose": "1000mcg IM monthly", "childDose": "500-1000mcg IM monthly", "mgPerKg": null, "frequency": "Monthly injections or daily supplements", "duration": "Long-term" },
+      { "name": "Calcium Carbonate + D3", "type": "For bone health", "adultDose": "500mg calcium + 200 IU D3 twice daily", "childDose": "250mg calcium + 200 IU D3 daily", "mgPerKg": null, "frequency": "Twice daily with food", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "Persistent symptoms despite gluten-free diet, continued weight loss, severe anemia, signs of osteoporosis, dermatitis worsening.",
+    "emergencyAlert": false,
+    "dietAdvice": "Completely gluten-free diet is the only treatment. Focus on naturally gluten-free foods: fruits, vegetables, meat, fish, rice, potatoes, corn."
+  },
+  {
+    "disease": "Lactose Intolerance",
+    "keywords": ["lactose intolerance", "dairy intolerance", "milk allergy", "lactase deficiency", "digestive intolerance"],
+    "symptoms": ["abdominal pain and cramping", "bloating", "diarrhea", "flatulence", "nausea", "symptoms 30 minutes to 2 hours after dairy"],
+    "description": "Inability to digest lactose (milk sugar) due to deficiency of lactase enzyme. Common in adults, especially non-European populations.",
+    "severity": "mild",
+    "precautions": ["Identify lactose-containing foods", "Use lactase enzyme supplements", "Choose lactose-free products", "Include non-dairy calcium sources", "Gradual exposure may improve tolerance", "Check medication labels (some contain lactose)"],
+    "medicines": [
+      { "name": "Lactase Enzyme Supplement", "type": "Enzyme replacement", "adultDose": "1-3 capsules with meals containing dairy", "childDose": "1-2 capsules with meals", "mgPerKg": null, "frequency": "With dairy-containing meals", "duration": "As needed" },
+      { "name": "Calcium Citrate", "type": "Calcium supplement (lactose-free)", "adultDose": "500-1200mg daily in divided doses", "childDose": "500-1300mg daily", "mgPerKg": null, "frequency": "Twice daily with meals", "duration": "Long-term" },
+      { "name": "Probiotic Supplements", "type": "Gut health support", "adultDose": "10-50 billion CFU daily", "childDose": "5-10 billion CFU daily", "mgPerKg": null, "frequency": "Once daily", "duration": "Daily ongoing" }
+    ],
+    "whenToSeeDoctor": "Severe symptoms affecting quality of life, unexplained weight loss, signs of malnutrition, to rule out other causes of GI symptoms.",
+    "emergencyAlert": false,
+    "dietAdvice": "Avoid milk, cream, ice cream, soft cheeses. Choose lactose-free milk, hard cheeses, yogurt with active cultures. Non-dairy sources: leafy greens, fortified plant milks."
+  },
+  {
+    "disease": "Anxiety Disorder",
+    "keywords": ["anxiety disorder", "generalized anxiety", "panic attack", "excessive worry", "anxiety", "nervousness"],
+    "symptoms": ["excessive worry about everyday matters", "restlessness", "difficulty concentrating", "muscle tension", "sleep disturbance", "irritability", "panic attacks", "heart palpitations"],
+    "description": "A mental health disorder characterized by persistent, excessive worry that interferes with daily functioning. Highly treatable with therapy and/or medication.",
+    "severity": "mild",
+    "precautions": ["Cognitive behavioral therapy (CBT)", "Regular exercise and yoga", "Meditation and mindfulness", "Limit caffeine and alcohol", "Maintain regular sleep schedule", "Stress management techniques", "Social support network"],
+    "medicines": [
+      { "name": "Sertraline (Zoloft)", "type": "SSRI (selective serotonin reuptake inhibitor)", "adultDose": "50mg once daily, increase to 100-200mg", "childDose": "Not recommended under 6", "mgPerKg": null, "frequency": "Once daily", "duration": "8-12 weeks to assess, then long-term" },
+      { "name": "Alprazolam (Xanax)", "type": "Benzodiazepine (short-term only)", "adultDose": "0.25-0.5mg 3 times daily", "childDose": "Not recommended under 18", "mgPerKg": null, "frequency": "Up to 3 times daily as needed", "duration": "Short-term only (2-4 weeks)" },
+      { "name": "Buspirone", "type": "Anxiolytic (non-benzodiazepine)", "adultDose": "15-30mg daily in divided doses", "childDose": "Not recommended under 18", "mgPerKg": null, "frequency": "Twice daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "Anxiety interfering with daily activities, panic attacks, suicidal thoughts, symptoms lasting more than 6 months, difficulty with work/relationships.",
+    "emergencyAlert": false,
+    "dietAdvice": "Avoid caffeine, alcohol, and sugary foods. Omega-3 rich foods (fish), whole grains, vegetables. Limit processed foods. Stay hydrated."
+  },
+  {
+    "disease": "Depression",
+    "keywords": ["depression", "major depression", "depressive disorder", "sadness", "low mood", "hopelessness"],
+    "symptoms": ["persistent sad or empty mood", "loss of interest in activities", "sleep changes", "appetite changes", "fatigue", "difficulty concentrating", "feelings of worthlessness", "suicidal thoughts"],
+    "description": "A serious mental health condition characterized by persistent depression lasting 2+ weeks affecting daily functioning. Highly treatable with counseling and/or medication.",
+    "severity": "moderate",
+    "precautions": ["Seek professional mental health care immediately", "Regular psychotherapy/counseling", "Exercise daily (30 minutes)", "Maintain social connections", "Sleep hygiene", "Avoid alcohol and drugs", "Crisis line: 988 if suicidal"],
+    "medicines": [
+      { "name": "Sertraline (Zoloft)", "type": "SSRI", "adultDose": "50mg once daily, increase gradually to 100-200mg", "childDose": "Not recommended under 6", "mgPerKg": null, "frequency": "Once daily", "duration": "Minimum 4-6 weeks to assess, then continue" },
+      { "name": "Escitalopram (Lexapro)", "type": "SSRI", "adultDose": "10-20mg once daily", "childDose": "Not recommended under 12", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term as prescribed" },
+      { "name": "Bupropion (Wellbutrin)", "type": "NDRI (different mechanism)", "adultDose": "300mg daily in divided doses", "childDose": "Not recommended under 18", "mgPerKg": null, "frequency": "Once daily (sustained release) or twice daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "Suicidal thoughts, severe depression affecting functioning, inability to care for self, substance use, symptoms not improving with medication.",
+    "emergencyAlert": false,
+    "dietAdvice": "Omega-3 rich foods, vitamin D sources, complex carbohydrates, lean proteins. Avoid excess sugar. Regular meals maintain blood sugar. Plenty of water."
+  },
+  {
+    "disease": "Bipolar Disorder",
+    "keywords": ["bipolar disorder", "bipolar", "manic depression", "mood swings", "mania", "depression bipolar"],
+    "symptoms": ["manic episodes: high energy, decreased sleep, racing thoughts, impulsive behavior", "depressive episodes: sadness, fatigue, worthlessness", "mood changes often rapid", "racing speech", "grandiose ideas"],
+    "description": "A serious mental health condition with alternating manic (elevated) and depressive episodes. Requires ongoing treatment and monitoring.",
+    "severity": "moderate",
+    "precautions": ["Medication adherence is critical", "Regular psychiatric and therapy follow-ups", "Sleep regularity essential", "Avoid alcohol and recreational drugs", "Stress management", "Identify early warning signs of episodes", "Strong social support"],
+    "medicines": [
+      { "name": "Lithium Carbonate", "type": "Mood stabilizer (gold standard)", "adultDose": "900-1200mg daily in 2-3 divided doses", "childDose": "15-30 mg/kg/day", "mgPerKg": 20, "frequency": "2-3 times daily with food", "duration": "Long-term (requires regular lithium level monitoring)" },
+      { "name": "Valproic Acid (Depakote)", "type": "Mood stabilizer/anticonvulsant", "adultDose": "250-500mg 2-3 times daily", "childDose": "10-15 mg/kg/day", "mgPerKg": 12.5, "frequency": "2-3 times daily with food", "duration": "Long-term" },
+      { "name": "Olanzapine (Zyprexa)", "type": "Atypical antipsychotic", "adultDose": "5-20mg once daily", "childDose": "2.5-20mg daily", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term as prescribed" }
+    ],
+    "whenToSeeDoctor": "Signs of manic or depressive episode, suicidal/homicidal thoughts, medication side effects, inability to manage symptoms, substance use.",
+    "emergencyAlert": false,
+    "dietAdvice": "Regular meals for blood sugar stability, adequate sleep support, avoid alcohol and caffeine. Omega-3 fatty acids beneficial. Consistent routine important."
+  },
+  {
+    "disease": "Obsessive-Compulsive Disorder (OCD)",
+    "keywords": ["OCD", "obsessive compulsive disorder", "obsessions", "compulsions", "intrusive thoughts", "repetitive behaviors"],
+    "symptoms": ["recurrent obsessive thoughts", "unwanted thoughts causing anxiety", "repetitive behaviors (compulsions) done to relieve anxiety", "time spent on compulsions affecting daily life", "recognition that thoughts/behaviors are irrational"],
+    "description": "A mental health condition with obsessive thoughts and compulsive behaviors that interfere with daily life. Responds well to specific therapies.",
+    "severity": "mild",
+    "precautions": ["Cognitive behavioral therapy (particularly ERP — Exposure and Response Prevention)", "Support groups", "Avoid enabling rituals", "Stress management", "Regular medication adherence", "Family education about condition"],
+    "medicines": [
+      { "name": "Fluoxetine (Prozac)", "type": "SSRI (higher doses often needed)", "adultDose": "40-80mg daily", "childDose": "10-20mg daily (6+ yrs)", "mgPerKg": null, "frequency": "Once daily", "duration": "8-12 weeks minimum to assess" },
+      { "name": "Sertraline (Zoloft)", "type": "SSRI", "adultDose": "50-200mg once daily", "childDose": "25-50mg daily (6+ yrs)", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term" },
+      { "name": "Paroxetine (Paxil)", "type": "SSRI", "adultDose": "40-60mg once daily", "childDose": "10-20mg daily (7+ yrs)", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "Compulsions consuming 1+ hour daily, severe anxiety or distress, inability to resist compulsions, interference with work/school/relationships.",
+    "emergencyAlert": false,
+    "dietAdvice": "Adequate nutrition for brain health, omega-3 foods, B vitamins, antioxidants. Avoid excess caffeine. Regular meal times stabilize mood."
+  },
+  {
+    "disease": "Post-Traumatic Stress Disorder (PTSD)",
+    "keywords": ["PTSD", "post-traumatic stress", "trauma", "nightmares", "flashbacks", "intrusive memories"],
+    "symptoms": ["intrusive memories/flashbacks of trauma", "nightmares", "avoidance of trauma reminders", "hypervigilance", "exaggerated startle response", "emotional numbness", "concentration difficulty"],
+    "description": "A mental health condition developing after exposure to traumatic events like accidents, assault, or war. Highly treatable with appropriate therapy.",
+    "severity": "moderate",
+    "precautions": ["Trauma-focused psychotherapy (PE, CPT, EMDR)", "Support groups", "Avoid self-medication with substances", "Develop safety plan", "Sleep hygiene", "Physical exercise", "Social connections"],
+    "medicines": [
+      { "name": "Sertraline (Zoloft)", "type": "SSRI (FDA approved for PTSD)", "adultDose": "50-200mg once daily", "childDose": "Not recommended under 6", "mgPerKg": null, "frequency": "Once daily", "duration": "12+ weeks to assess full benefit" },
+      { "name": "Paroxetine (Paxil)", "type": "SSRI (FDA approved for PTSD)", "adultDose": "20-60mg once daily", "childDose": "Not recommended under 18", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term" },
+      { "name": "Prazosin", "type": "Alpha blocker (for nightmares)", "adultDose": "2-15mg at bedtime", "childDose": "0.5-1 mg/kg at bedtime", "mgPerKg": 0.75, "frequency": "Once daily at bedtime", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "Intrusive trauma memories, nightmares affecting sleep, suicidal thoughts, substance abuse as coping mechanism, severe anxiety.",
+    "emergencyAlert": false,
+    "dietAdvice": "Regular meals stabilize mood, omega-3 rich foods support brain health, complex carbohydrates help serotonin, limit caffeine and alcohol."
+  },
+  {
+    "disease": "Attention-Deficit/Hyperactivity Disorder (ADHD)",
+    "keywords": ["ADHD", "attention deficit", "hyperactivity", "difficulty concentrating", "impulsive behavior", "fidgeting"],
+    "symptoms": ["difficulty sustaining attention", "hyperactivity or restlessness", "impulsive behavior", "difficulty organizing tasks", "forgetfulness", "losing things frequently", "difficulty waiting turns"],
+    "description": "A neurodevelopmental disorder characterized by inattention, hyperactivity, and impulsivity. Highly treatable with medication and behavioral strategies.",
+    "severity": "mild",
+    "precautions": ["Consistent sleep schedule", "Regular exercise", "Structured environment", "Behavioral therapy", "School/work accommodations", "Behavioral strategies and rewards", "Regular follow-ups"],
+    "medicines": [
+      { "name": "Methylphenidate (Ritalin/Concerta)", "type": "Stimulant (short/long-acting)", "adultDose": "20-60mg daily in divided doses", "childDose": "5-20mg daily", "mgPerKg": null, "frequency": "Once daily (extended release) or twice daily", "duration": "Long-term as needed" },
+      { "name": "Amphetamine (Adderall)", "type": "Stimulant", "adultDose": "5-40mg daily in divided doses", "childDose": "2.5-20mg daily", "mgPerKg": null, "frequency": "1-2 times daily", "duration": "Long-term as needed" },
+      { "name": "Atomoxetine (Strattera)", "type": "Non-stimulant", "adultDose": "40-80mg once daily", "childDose": "0.5-1.2 mg/kg once daily", "mgPerKg": 1, "frequency": "Once daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "Symptoms affecting school or work, behavioral concerns, medication side effects, growth concerns in children, comorbid anxiety or mood disorders.",
+    "emergencyAlert": false,
+    "dietAdvice": "Adequate protein at breakfast, whole grains, omega-3 foods, limit sugar and artificial additives. Regular meal timing. Plenty of water."
+  },
+  {
+    "disease": "Autism Spectrum Disorder",
+    "keywords": ["autism", "ASD", "autism spectrum", "developmental delay", "social difficulty", "repetitive behavior"],
+    "symptoms": ["difficulty with social communication", "limited eye contact", "restricted interests", "repetitive behaviors", "sensory sensitivities", "developmental delays", "difficulty with transitions"],
+    "description": "A neurodevelopmental condition with varying presentations affecting social communication and behavior. Not curable but highly manageable with early intervention.",
+    "severity": "mild",
+    "precautions": ["Early intervention services for children", "Speech and occupational therapy", "Behavioral therapy (ABA)", "School accommodations and IEP", "Visual supports and structured routines", "Sensory-friendly environments"],
+    "medicines": [
+      { "name": "Risperidone (for behavioral symptoms)", "type": "Atypical antipsychotic", "adultDose": "2-6mg daily in divided doses", "childDose": "0.5-3mg daily", "mgPerKg": null, "frequency": "Once or twice daily", "duration": "As needed for behavioral symptoms" },
+      { "name": "Methylphenidate (for hyperactivity/inattention)", "type": "Stimulant", "adultDose": "20-60mg daily", "childDose": "5-20mg daily", "mgPerKg": null, "frequency": "1-2 times daily", "duration": "Long-term as needed" }
+    ],
+    "whenToSeeDoctor": "Behavioral escalation, medication side effects, difficulty with school/work, safety concerns, mental health comorbidities.",
+    "emergencyAlert": false,
+    "dietAdvice": "Nutritious whole foods, identify food sensitivities, adequate protein and healthy fats. Avoid excess sugar. Multivitamin supplementation often helpful."
+  },
+  {
+    "disease": "Schizophrenia",
+    "keywords": ["schizophrenia", "psychosis", "hallucinations", "delusions", "disorganized thinking", "paranoia"],
+    "symptoms": ["hallucinations (usually auditory)", "delusions", "disorganized speech", "disorganized or catatonic behavior", "negative symptoms (flat affect, lack of motivation)", "cognitive difficulties"],
+    "description": "A serious mental health condition with psychotic symptoms. Requires long-term medication management and supportive services.",
+    "severity": "moderate",
+    "precautions": ["Strict medication adherence essential", "Regular psychiatric monitoring", "Family psychoeducation", "Psychosocial rehabilitation", "Avoid substance use", "Crisis planning", "Supported employment"],
+    "medicines": [
+      { "name": "Olanzapine (Zyprexa)", "type": "Atypical antipsychotic (first-line)", "adultDose": "10-20mg once daily", "childDose": "2.5-10mg daily", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term (years)" },
+      { "name": "Risperidone (Risperdal)", "type": "Atypical antipsychotic", "adultDose": "4-6mg daily in divided doses", "childDose": "1-6mg daily", "mgPerKg": null, "frequency": "1-2 times daily", "duration": "Long-term" },
+      { "name": "Haloperidol (Haldol)", "type": "Typical antipsychotic", "adultDose": "5-20mg daily in divided doses", "childDose": "0.05-0.15 mg/kg/day", "mgPerKg": 0.1, "frequency": "2-3 times daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "Psychotic symptoms, medication non-adherence, worsening hallucinations/delusions, suicidal/homicidal thoughts, side effect management.",
+    "emergencyAlert": false,
+    "dietAdvice": "Adequate nutrition for medication metabolism, regular meals, limit caffeine (can worsen symptoms), omega-3 foods, avoid alcohol completely."
+  },
+  {
+    "disease": "Parkinson's Disease",
+    "keywords": ["Parkinson's disease", "tremor", "rigidity", "bradykinesia", "movement disorder", "parkinsonism"],
+    "symptoms": ["tremor at rest", "rigidity (stiffness)", "bradykinesia (slow movement)", "postural instability", "shuffling gait", "mask-like face", "difficulty with fine motor tasks"],
+    "description": "A progressive neurodegenerative disorder affecting movement control due to dopamine deficiency. Symptoms worsen gradually over time.",
+    "severity": "moderate",
+    "precautions": ["Physical and occupational therapy", "Regular exercise (especially balance training)", "Speech therapy if needed", "Fall prevention", "Medication management", "Regular neurologist follow-ups", "Assistive devices as needed"],
+    "medicines": [
+      { "name": "Levodopa/Carbidopa", "type": "Dopamine replacement (gold standard)", "adultDose": "300-1000mg levodopa daily in divided doses", "childDose": "Not applicable", "mgPerKg": null, "frequency": "2-4 times daily with meals", "duration": "Long-term" },
+      { "name": "Pramipexole (Mirapex)", "type": "Dopamine agonist", "adultDose": "1.5-4.5mg daily in divided doses", "childDose": "Not applicable", "mgPerKg": null, "frequency": "3 times daily", "duration": "Long-term" },
+      { "name": "Selegiline (Eldepryl)", "type": "MAO-B inhibitor", "adultDose": "5-10mg daily", "childDose": "Not applicable", "mgPerKg": null, "frequency": "Once or twice daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "Worsening motor symptoms, medication wearing off, dyskinesia (involuntary movements), non-motor symptoms (mood, cognition), fall risk assessment.",
+    "emergencyAlert": false,
+    "dietAdvice": "Adequate protein (take with levodopa), high-fiber diet for constipation, regular meals, stay hydrated. Vitamin D and calcium for bone health."
+  },
+  {
+    "disease": "Alzheimer's Disease",
+    "keywords": ["Alzheimer's disease", "dementia", "memory loss", "cognitive decline", "neurodegenerative", "Alzheimer"],
+    "symptoms": ["progressive memory loss", "confusion", "disorientation", "difficulty with familiar tasks", "language problems", "behavioral changes", "difficulty with abstract thinking"],
+    "description": "A progressive neurodegenerative disease causing dementia, characterized by amyloid and tau protein accumulation in the brain.",
+    "severity": "moderate",
+    "precautions": ["Cognitive engagement and mental stimulation", "Physical exercise", "Healthy diet (Mediterranean diet beneficial)", "Social engagement", "Sleep management", "Safety measures at home", "Regular neurological monitoring"],
+    "medicines": [
+      { "name": "Donepezil (Aricept)", "type": "Cholinesterase inhibitor", "adultDose": "5-10mg once daily", "childDose": "Not applicable", "mgPerKg": null, "frequency": "Once daily at bedtime", "duration": "Long-term as tolerated" },
+      { "name": "Memantine (Namenda)", "type": "NMDA antagonist", "adultDose": "5-20mg daily in divided doses", "childDose": "Not applicable", "mgPerKg": null, "frequency": "Twice daily", "duration": "Long-term" },
+      { "name": "Lecanemab (Leqembi)", "type": "Monoclonal antibody (amyloid-lowering)", "adultDose": "10mg/kg IV infusion biweekly", "childDose": "Not applicable", "mgPerKg": 10, "frequency": "Every 2 weeks", "duration": "Long-term ongoing" }
+    ],
+    "whenToSeeDoctor": "Memory problems affecting daily life, behavioral changes, caregiver concerns, medication effectiveness assessment, safety evaluation.",
+    "emergencyAlert": false,
+    "dietAdvice": "Mediterranean diet with emphasis on vegetables, fish, nuts, olive oil. Adequate vitamin D and B vitamins. Limit processed foods and sugar."
+  },
+  {
+    "disease": "Multiple Sclerosis (MS)",
+    "keywords": ["multiple sclerosis", "MS", "autoimmune neurological", "vision problems", "numbness", "fatigue MS"],
+    "symptoms": ["fatigue", "numbness or tingling", "vision problems", "muscle weakness", "difficulty walking", "cognitive issues", "mood changes"],
+    "description": "An autoimmune disease affecting the central nervous system, with unpredictable attacks causing inflammation and demyelination.",
+    "severity": "moderate",
+    "precautions": ["Disease-modifying therapy", "Physical and occupational therapy", "Regular neuroimaging", "Stress management", "Adequate sleep", "Avoid triggers (heat, infections)", "Support groups"],
+    "medicines": [
+      { "name": "Interferon Beta-1a (Avonex)", "type": "Disease-modifying therapy (DMT)", "adultDose": "30mcg IM once weekly", "childDose": "Not recommended under 18", "mgPerKg": null, "frequency": "Once weekly IM injection", "duration": "Long-term ongoing" },
+      { "name": "Glatiramer Acetate (Copaxone)", "type": "DMT", "adultDose": "20mg SC daily or 40mg 3x/week", "childDose": "Not recommended under 18", "mgPerKg": null, "frequency": "Daily or 3 times weekly SC", "duration": "Long-term ongoing" },
+      { "name": "Natalizumab (Tysabri)", "type": "Monoclonal antibody (DMT)", "adultDose": "300mg IV monthly", "childDose": "Not recommended under 18", "mgPerKg": null, "frequency": "Once monthly IV", "duration": "Long-term ongoing" }
+    ],
+    "whenToSeeDoctor": "New neurological symptoms, vision changes, balance problems, cognitive decline, medication side effects, infection signs.",
+    "emergencyAlert": false,
+    "dietAdvice": "Anti-inflammatory diet, omega-3 fatty acids, vitamin D supplementation critical, adequate vitamin B12, calcium for bone health."
+  },
+  {
+    "disease": "Lupus (Systemic Lupus Erythematosus)",
+    "keywords": ["lupus", "SLE", "systemic lupus erythematosus", "butterfly rash", "autoimmune", "joint pain lupus"],
+    "symptoms": ["malar rash (butterfly-shaped)", "photosensitivity", "joint pain and swelling", "fatigue", "chest pain", "kidney involvement", "oral ulcers", "hair loss"],
+    "description": "An autoimmune disease affecting multiple organ systems. More common in women, with variable severity and manifestations.",
+    "severity": "moderate",
+    "precautions": ["Sun protection (SPF 50+ daily)", "Regular medical monitoring", "Avoid triggers (stress, infections, UV exposure)", "Regular blood work", "Kidney function monitoring", "Medication adherence", "Pregnancy planning with doctor"],
+    "medicines": [
+      { "name": "Hydroxychloroquine (Plaquenil)", "type": "DMARD (first-line)", "adultDose": "200-400mg once daily", "childDose": "3-5 mg/kg once daily", "mgPerKg": 4, "frequency": "Once daily with food", "duration": "Long-term" },
+      { "name": "Prednisone", "type": "Corticosteroid", "adultDose": "7.5-15mg once daily", "childDose": "0.5-1 mg/kg once daily", "mgPerKg": 0.75, "frequency": "Once daily in morning", "duration": "Taper gradually or maintain at low dose" },
+      { "name": "Mycophenolate Mofetil (CellCept)", "type": "Immunosuppressant", "adultDose": "1000-3000mg daily in divided doses", "childDose": "600-1200mg daily in divided doses", "mgPerKg": 15, "frequency": "Twice daily", "duration": "Long-term for active disease" }
+    ],
+    "whenToSeeDoctor": "New rash or photosensitivity, joint swelling/pain, chest pain, kidney symptoms (blood/protein in urine), constitutional symptoms worsening.",
+    "emergencyAlert": false,
+    "dietAdvice": "Anti-inflammatory diet, omega-3 rich foods, avoid alfalfa sprouts (can flare disease), adequate vitamin D, antioxidant foods, limit sun-exposed foods."
+  },
+  {
+    "disease": "Fibromyalgia",
+    "keywords": ["fibromyalgia", "chronic pain", "widespread pain", "fibromyalgia syndrome", "tender points"],
+    "symptoms": ["widespread musculoskeletal pain", "fatigue", "sleep disturbance", "cognitive difficulties", "stiffness", "headaches", "mood changes"],
+    "description": "A chronic pain syndrome characterized by widespread musculoskeletal pain and fatigue. Diagnosis requires ruling out other conditions.",
+    "severity": "mild",
+    "precautions": ["Regular gentle exercise", "Sleep hygiene", "Stress management", "Cognitive behavioral therapy", "Avoid triggers", "Pacing activities", "Support groups"],
+    "medicines": [
+      { "name": "Pregabalin (Lyrica)", "type": "Neuropathic pain medication", "adultDose": "150-600mg daily in divided doses", "childDose": "Not recommended under 18", "mgPerKg": null, "frequency": "2-3 times daily", "duration": "Long-term" },
+      { "name": "Duloxetine (Cymbalta)", "type": "SNRI (serotonin-norepinephrine reuptake inhibitor)", "adultDose": "30-60mg once daily", "childDose": "Not recommended under 18", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term" },
+      { "name": "Cyclobenzaprine", "type": "Muscle relaxant", "adultDose": "5-10mg at bedtime", "childDose": "Not recommended under 15", "mgPerKg": null, "frequency": "Once daily at bedtime", "duration": "Long-term as needed" }
+    ],
+    "whenToSeeDoctor": "Severe pain affecting daily activities, depression or anxiety, sleep disorders, need for diagnostic confirmation, medication adjustments.",
+    "emergencyAlert": false,
+    "dietAdvice": "Anti-inflammatory foods, adequate protein, complex carbohydrates, omega-3 fatty acids. Avoid trigger foods, stay hydrated, limit caffeine."
+  },
+  {
+    "disease": "Systemic Sclerosis (Scleroderma)",
+    "keywords": ["scleroderma", "systemic sclerosis", "skin hardening", "skin tightness", "Raynaud", "diffuse scleroderma"],
+    "symptoms": ["skin thickening and hardening", "Raynaud's phenomenon", "joint stiffness", "GI symptoms", "pulmonary symptoms", "kidney involvement", "fatigue"],
+    "description": "An autoimmune connective tissue disease causing excessive collagen deposition in skin and organs. Limited and diffuse forms exist.",
+    "severity": "moderate",
+    "precautions": ["Regular specialist monitoring", "Temperature regulation", "Avoid cold exposure", "Raynaud's prevention", "Physical and occupational therapy", "Regular pulmonary function testing", "Maintain nutrition"],
+    "medicines": [
+      { "name": "Bosentan (Tracleer)", "type": "Endothelin receptor antagonist (for pulmonary hypertension)", "adultDose": "62.5mg twice daily initially", "childDose": "Not recommended under 12", "mgPerKg": null, "frequency": "Twice daily", "duration": "Long-term" },
+      { "name": "Sildenafil (Viagra)", "type": "Phosphodiesterase inhibitor (for pulmonary hypertension/Raynaud's)", "adultDose": "20-60mg 2-3 times daily", "childDose": "Not recommended", "mgPerKg": null, "frequency": "2-3 times daily", "duration": "Long-term" },
+      { "name": "Nifedipine (slow-release)", "type": "Calcium channel blocker (for Raynaud's)", "adultDose": "30-90mg once daily", "childDose": "Not recommended under 18", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "New or worsening skin changes, shortness of breath, kidney involvement (protein/blood in urine), severe Raynaud's episodes.",
+    "emergencyAlert": false,
+    "dietAdvice": "Soft foods if swallowing difficult, adequate protein and calories, anti-inflammatory foods, avoid foods that trigger reflux, stay hydrated."
+  },
+  {
+    "disease": "Hashimoto's Thyroiditis",
+    "keywords": ["Hashimoto's thyroiditis", "autoimmune thyroiditis", "chronic thyroiditis", "thyroid antibodies", "autoimmune thyroid"],
+    "symptoms": ["fatigue", "weight gain", "cold intolerance", "dry skin", "constipation", "slow heart rate", "depression", "hair thinning"],
+    "description": "An autoimmune thyroid disease where antibodies attack thyroid tissue, causing gradual thyroid failure. Most common cause of hypothyroidism.",
+    "severity": "mild",
+    "precautions": ["Regular TSH monitoring", "Consistent thyroid medication timing", "Check for other autoimmune conditions", "Avoid excess iodine", "Selenium supplementation", "Gluten-free diet (if celiac/sensitive)", "Stress management"],
+    "medicines": [
+      { "name": "Levothyroxine (Synthroid)", "type": "Thyroid hormone replacement", "adultDose": "25-200mcg once daily", "childDose": "10-15 mcg/kg once daily", "mgPerKg": null, "frequency": "Once daily on empty stomach", "duration": "Life-long" },
+      { "name": "Selenium Supplement", "type": "Micronutrient", "adultDose": "200mcg daily", "childDose": "100-200mcg daily", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term" },
+      { "name": "Iron Supplement", "type": "For iron deficiency (if present)", "adultDose": "325mg ferrous sulfate daily", "childDose": "3-6 mg/kg/day elemental iron", "mgPerKg": 4, "frequency": "Once daily with vitamin C", "duration": "Until levels normalize" }
+    ],
+    "whenToSeeDoctor": "TSH changes, persistent fatigue despite medication, other autoimmune conditions developing, pregnancy, medication non-response.",
+    "emergencyAlert": false,
+    "dietAdvice": "Adequate iodine (iodized salt, seafood), selenium-rich foods (Brazil nuts), minimize goitrogens, gluten-free if celiac present, antioxidant foods."
+  },
+  {
+    "disease": "Graves' Disease",
+    "keywords": ["Graves disease", "hyperthyroidism", "thyroid eye disease", "exophthalmos", "thyroid antibodies"],
+    "symptoms": ["excessive sweating", "heat intolerance", "weight loss despite hunger", "palpitations", "tremor", "anxiety", "eye bulging", "goiter"],
+    "description": "An autoimmune thyroid disease causing thyroid overactivity due to stimulating antibodies. Most common cause of hyperthyroidism.",
+    "severity": "mild",
+    "precautions": ["Avoid iodine supplements", "Stress management", "Regular TSH monitoring", "Eye care if exophthalmos", "Beta blocker use as needed", "Regular endocrinology follow-ups", "Avoid triggers"],
+    "medicines": [
+      { "name": "Propylthiouracil (PTU)", "type": "Antithyroid (inhibits T4 and T3 synthesis)", "adultDose": "100-300mg 3 times daily", "childDose": "1-5 mg/kg/day in divided doses", "mgPerKg": 3, "frequency": "3 times daily", "duration": "6-24 months or until remission" },
+      { "name": "Methimazole", "type": "Antithyroid", "adultDose": "10-40mg once daily", "childDose": "0.5-1 mg/kg once daily", "mgPerKg": 0.75, "frequency": "Once daily", "duration": "6-24 months" },
+      { "name": "Propranolol", "type": "Beta blocker (symptom relief)", "adultDose": "40-80mg 2-4 times daily", "childDose": "1 mg/kg/day in divided doses", "mgPerKg": 1, "frequency": "2-4 times daily", "duration": "Until euthyroid, then taper" }
+    ],
+    "whenToSeeDoctor": "New cardiac symptoms, worsening eye symptoms, signs of thyroid storm, agranulocytosis symptoms (sore throat, fever), medication allergies.",
+    "emergencyAlert": false,
+    "dietAdvice": "Avoid iodine-rich foods initially (seafood, seaweed, iodized salt), increase calories to prevent weight loss, anti-inflammatory foods, adequate protein."
+  },
+  {
+    "disease": "Metabolic Syndrome",
+    "keywords": ["metabolic syndrome", "insulin resistance", "central obesity", "abdominal fat", "high triglycerides", "hypertension"],
+    "symptoms": ["abdominal obesity", "elevated blood pressure", "elevated fasting glucose", "elevated triglycerides", "reduced HDL cholesterol", "no specific symptoms often"],
+    "description": "A cluster of conditions (abdominal obesity, hypertension, elevated glucose, dyslipidemia) increasing cardiovascular disease and diabetes risk.",
+    "severity": "mild",
+    "precautions": ["Weight loss (5-10% initial target)", "Regular physical activity", "Dietary changes to whole foods", "Stress management", "Sleep improvement", "Smoking cessation", "Regular monitoring"],
+    "medicines": [
+      { "name": "Metformin", "type": "Antidiabetic (improves insulin sensitivity)", "adultDose": "500-2000mg daily in divided doses", "childDose": "500-1000mg once daily (10+ yrs)", "mgPerKg": 10, "frequency": "With meals", "duration": "Long-term" },
+      { "name": "Atorvastatin", "type": "Statin (for dyslipidemia)", "adultDose": "10-40mg once daily", "childDose": "Not recommended under 10", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term" },
+      { "name": "Lisinopril", "type": "ACE inhibitor (for hypertension)", "adultDose": "10-40mg once daily", "childDose": "0.1-0.6 mg/kg once daily", "mgPerKg": 0.3, "frequency": "Once daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "New diagnosis of metabolic syndrome, progression of components, cardiovascular symptoms, diabetes development, medication adjustments.",
+    "emergencyAlert": false,
+    "dietAdvice": "DASH diet, reduce refined carbohydrates and added sugars, increase whole grains and vegetables, limit saturated fats, adequate fiber, control portions."
+  },
+  {
+    "disease": "Renal Failure (Chronic Kidney Disease)",
+    "keywords": ["chronic kidney disease", "CKD", "renal failure", "kidney disease", "declining kidney function", "proteinuria"],
+    "symptoms": ["fatigue", "weakness", "reduced appetite", "swelling in legs/feet", "shortness of breath", "difficulty sleeping", "itching", "high blood pressure"],
+    "description": "Gradual loss of kidney function over months to years. Caused by diabetes, hypertension, or other diseases. Requires careful management.",
+    "severity": "moderate",
+    "precautions": ["Strict BP control", "Diabetic control if diabetic", "Regular kidney function monitoring", "Medication adjustment based on GFR", "Restrict salt and potassium", "Fluid restriction as kidney function declines", "Avoid NSAIDs"],
+    "medicines": [
+      { "name": "ACE Inhibitor (Lisinopril)", "type": "For hypertension and kidney protection", "adultDose": "10-40mg once daily", "childDose": "0.1-0.6 mg/kg once daily", "mgPerKg": 0.3, "frequency": "Once daily", "duration": "Long-term" },
+      { "name": "Phosphate Binder (Calcium Acetate)", "type": "For hyperphosphatemia", "adultDose": "2-4 tablets with meals", "childDose": "1-2 tablets with meals", "mgPerKg": null, "frequency": "With meals", "duration": "Long-term once on dialysis" },
+      { "name": "Erythropoietin (EPO)", "type": "For anemia", "adultDose": "50-100 units/kg 2-3 times weekly", "childDose": "50 units/kg 2-3 times weekly", "mgPerKg": 75, "frequency": "SC or IV", "duration": "Long-term as needed" }
+    ],
+    "whenToSeeDoctor": "Elevated creatinine, reduced GFR, proteinuria, hypertension, electrolyte abnormalities, need for dialysis planning, transplant evaluation.",
+    "emergencyAlert": false,
+    "dietAdvice": "Restrict sodium (2g/day), potassium (if advanced), phosphorus (if advanced), protein (based on stage), adequate calories. Follow renal dietitian advice."
   }
 ]
