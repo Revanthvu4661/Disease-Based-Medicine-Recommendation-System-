@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patient Dashboard — MediRec</title>
+  <meta name="description" content="Your personal health dashboard — search diseases, chat with AI doctor, view history and export reports."/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/patient.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="dashboard-page">
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-brand">
+    <i class="fas fa-heartbeat pulse-icon"></i>
+    <span>MediRec</span>
+  </div>
+  <div class="nav-center">
+    <span class="nav-title">Patient Dashboard</span>
+  </div>
+  <div class="nav-right">
+    <span class="nav-user" id="navUserName"></span>
+    <button class="theme-toggle-sm" onclick="toggleTheme()" title="Toggle theme">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+    <button class="btn-logout" onclick="logout()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+  </div>
+</nav>
+
+<!-- Main Layout -->
+<div class="dashboard-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-menu">
+      <a href="#dashboard" class="sidebar-link active" data-section="dashboard" onclick="showSection('dashboard', this)">
+        <i class="fas fa-home"></i> <span>Health Summary</span>
+      </a>
+      <a href="#search" class="sidebar-link" data-section="search" onclick="showSection('search', this)">
+        <i class="fas fa-search-plus"></i> <span>Search Disease</span>
+      </a>
+      <a href="#chat" class="sidebar-link" data-section="chat" onclick="showSection('chat', this)">
+        <i class="fas fa-robot"></i> <span>AI Doctor Chat</span>
+        <span class="badge-new">AI</span>
+      </a>
+      <a href="#history" class="sidebar-link" data-section="history" onclick="showSection('history', this)">
+        <i class="fas fa-history"></i> <span>My History</span>
+      </a>
+      <a href="#calculator" class="sidebar-link" data-section="calculator" onclick="showSection('calculator', this)">
+        <i class="fas fa-calculator"></i> <span>Dosage Calculator</span>
+      </a>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-disclaimer">
+        <i class="fas fa-info-circle"></i>
+        <small>For informational purposes only</small>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Content -->
+  <main class="main-content">
+
+    <!-- ===== HEALTH SUMMARY ===== -->
+    <section id="section-dashboard" class="content-section">
+      <div class="section-header">
+        <div>
+          <h2><i class="fas fa-home"></i> Health Summary</h2>
+          <p>Your personal health overview at a glance</p>
+        </div>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="summary-stats">
+        <div class="summary-card card-blue">
+          <div class="summary-icon"><i class="fas fa-file-medical"></i></div>
+          <div class="summary-info">
+            <span class="summary-num" id="sumTotal">—</span>
+            <span class="summary-label">Total Records</span>
+          </div>
+        </div>
+        <div class="summary-card card-amber">
+          <div class="summary-icon"><i class="fas fa-clock"></i></div>
+          <div class="summary-info">
+            <span class="summary-num" id="sumPending">—</span>
+            <span class="summary-label">Pending Review</span>
+          </div>
+        </div>
+        <div class="summary-card card-green">
+          <div class="summary-icon"><i class="fas fa-check-circle"></i></div>
+          <div class="summary-info">
+            <span class="summary-num" id="sumReviewed">—</span>
+            <span class="summary-label">Doctor Reviewed</span>
+          </div>
+        </div>
+        <div class="summary-card card-red">
+          <div class="summary-icon"><i class="fas fa-exclamation-circle"></i></div>
+          <div class="summary-info">
+            <span class="summary-num" id="sumSevere">—</span>
+            <span class="summary-label">Severe Cases</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary Panels Row -->
+      <div class="summary-grid">
+        <div class="summary-panel">
+          <div class="panel-header">
+            <span><i class="fas fa-history"></i> Recent Searches</span>
+            <a href="#history" class="panel-link" onclick="showSection('history', document.querySelector('[data-section=history]'))">View All →</a>
+          </div>
+          <div id="recentSearches" class="panel-content">
+            <div class="loading-mini"><i class="fas fa-spinner fa-spin"></i></div>
+          </div>
+        </div>
+
+        <div class="summary-panel">
+          <div class="panel-header">
+            <span><i class="fas fa-pills"></i> Active Medications</span>
+          </div>
+          <div id="activeMeds" class="panel-content">
+            <div class="loading-mini"><i class="fas fa-spinner fa-spin"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reminders -->
+      <div class="summary-panel" style="margin-top:20px;">
+        <div class="panel-header">
+          <span><i class="fas fa-bell"></i> Medication Reminders</span>
+          <button class="btn-sm-primary" onclick="openAddReminder()">
+            <i class="fas fa-plus"></i> Add Reminder
+          </button>
+        </div>
+        <div id="remindersArea" class="panel-content reminders-list"></div>
+      </div>
+    </section>
+
+    <!-- ===== SEARCH DISEASE ===== -->
+    <section id="section-search" class="content-section hidden">
+      <div class="section-header">
+        <div>
+          <h2><i class="fas fa-microscope"></i> Disease & Symptom Search</h2>
+          <p>Enter a disease name or symptoms to get personalised recommendations</p>
+        </div>
+      </div>
+
+      <div class="search-card">
+        <div class="search-form">
+          <div class="search-row">
+            <div class="form-group flex-3">
+              <label><i class="fas fa-virus"></i> Disease / Symptoms</label>
+              <div class="search-input-wrap">
+                <input type="text" id="diseaseInput" placeholder="e.g. fever, diabetes, cold, malaria..." autocomplete="off" onkeydown="if(event.key==='Enter') searchDisease()"/>
+                <div class="search-suggestions" id="searchSuggestions"></div>
+              </div>
+            </div>
+          </div>
+          <div class="search-row three-col">
+            <div class="form-group">
+              <label><i class="fas fa-birthday-cake"></i> Age</label>
+              <input type="number" id="patientAge" placeholder="Years" min="0" max="120"/>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-weight"></i> Weight (kg) <small>optional</small></label>
+              <input type="number" id="patientWeight" placeholder="kg" min="1" max="300"/>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-venus-mars"></i> Gender</label>
+              <select id="patientGender">
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn-primary search-btn" onclick="searchDisease()">
+            <i class="fas fa-search-plus"></i> Get Recommendations
+          </button>
+        </div>
+      </div>
+
+      <div class="loading-wrap hidden" id="searchLoading">
+        <div class="dna-loader"><div class="strand"></div><div class="strand"></div><div class="strand"></div></div>
+        <p>Analyzing medical data...</p>
+      </div>
+
+      <div id="resultsArea" class="results-area"></div>
+    </section>
+
+    <!-- ===== AI DOCTOR CHAT ===== -->
+    <section id="section-chat" class="content-section hidden">
+      <div class="section-header">
+        <div>
+          <h2><i class="fas fa-robot"></i> AI Doctor Chat</h2>
+          <p>Describe your symptoms and get AI-powered triage guidance</p>
+        </div>
+      </div>
+
+      <div class="chat-disclaimer">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span>This AI provides general health information only — it is <strong>NOT</strong> a substitute for professional medical advice. For emergencies, call <strong>108</strong>.</span>
+      </div>
+
+      <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-msg ai-msg">
+            <div class="chat-avatar"><i class="fas fa-robot"></i></div>
+            <div class="chat-bubble">
+              Hello! I'm <strong>MediRec AI</strong> — your personal health assistant. 👋<br><br>
+              Tell me your symptoms and I'll help assess what might be going on and guide you on next steps. What are you experiencing today?
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input-area">
+          <div class="chat-chips">
+            <button class="chat-chip" onclick="sendQuick('I have fever and severe headache')">🌡️ Fever & Headache</button>
+            <button class="chat-chip" onclick="sendQuick('I have chest pain and shortness of breath')">❤️ Chest Pain</button>
+            <button class="chat-chip" onclick="sendQuick('I have stomach pain and vomiting')">🤢 Stomach Pain</button>
+            <button class="chat-chip" onclick="sendQuick('I have cough, cold and runny nose')">🤧 Cough & Cold</button>
+            <button class="chat-chip" onclick="sendQuick('I feel very tired and weak all the time')">😴 Fatigue</button>
+            <button class="chat-chip" onclick="sendQuick('I have joint pain and swelling')">🦴 Joint Pain</button>
+          </div>
+          <div class="chat-input-row">
+            <textarea id="chatInput" placeholder="Describe your symptoms in detail..." rows="2" onkeydown="handleChatKey(event)"></textarea>
+            <button class="chat-send-btn" onclick="sendChatMessage()" id="chatSendBtn">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MY HISTORY ===== -->
+    <section id="section-history" class="content-section hidden">
+      <div class="section-header">
+        <div>
+          <h2><i class="fas fa-file-medical-alt"></i> My Medical History</h2>
+          <p>All your previous searches and doctor recommendations</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn-outline" onclick="exportToPDF()">
+            <i class="fas fa-file-pdf"></i> Export PDF
+          </button>
+          <button class="btn-outline" onclick="loadHistory()">
+            <i class="fas fa-sync"></i> Refresh
+          </button>
+        </div>
+      </div>
+
+      <div class="loading-wrap hidden" id="historyLoading">
+        <div class="dna-loader"><div class="strand"></div><div class="strand"></div><div class="strand"></div></div>
+        <p>Loading history...</p>
+      </div>
+      <div id="historyArea" class="history-grid"></div>
+    </section>
+
+    <!-- ===== DOSAGE CALCULATOR ===== -->
+    <section id="section-calculator" class="content-section hidden">
+      <div class="section-header">
+        <div>
+          <h2><i class="fas fa-calculator"></i> Dosage Calculator</h2>
+          <p>Calculate precise medication dosages based on age and weight</p>
+        </div>
+      </div>
+
+      <div class="calc-card">
+        <div class="calc-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label><i class="fas fa-pills"></i> Medicine Name</label>
+              <input type="text" id="calcMedicine" placeholder="e.g. Paracetamol"/>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-flask"></i> mg per kg body weight</label>
+              <input type="number" id="calcMgPerKg" placeholder="e.g. 12.5" step="0.1"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label><i class="fas fa-weight"></i> Patient Weight (kg)</label>
+              <input type="number" id="calcWeight" placeholder="e.g. 60"/>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-birthday-cake"></i> Patient Age</label>
+              <input type="number" id="calcAge" placeholder="Years"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label><i class="fas fa-tablets"></i> Max Adult Dose (mg)</label>
+              <input type="number" id="calcMaxAdult" placeholder="e.g. 1000"/>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-clock"></i> Frequency</label>
+              <select id="calcFrequency">
+                <option value="once">Once daily</option>
+                <option value="twice">Twice daily</option>
+                <option value="thrice">3 times daily</option>
+                <option value="four">4 times daily</option>
+                <option value="every6">Every 6 hours</option>
+                <option value="every8">Every 8 hours</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="calculateDosage()">
+            <i class="fas fa-calculator"></i> Calculate Dosage
+          </button>
+        </div>
+        <div class="calc-result hidden" id="calcResult"></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Reminder Modal -->
+<div class="modal-overlay hidden" id="reminderModal">
+  <div class="modal-card" style="max-width:440px;">
+    <div class="modal-header">
+      <h3><i class="fas fa-bell" style="color:var(--primary);"></i> Add Medication Reminder</h3>
+      <button class="modal-close" onclick="closeReminderModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" style="padding:24px;">
+      <div class="form-group" style="margin-bottom:16px;">
+        <label style="display:block;margin-bottom:6px;font-size:0.85rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Reminder Text</label>
+        <input type="text" id="reminderText" placeholder="e.g. Take Metformin 500mg with breakfast" style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;font-family:var(--font);font-size:0.9rem;color:var(--text);outline:none;"/>
+      </div>
+      <div class="form-group">
+        <label style="display:block;margin-bottom:6px;font-size:0.85rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Time</label>
+        <input type="time" id="reminderTime" style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;font-family:var(--font);font-size:0.9rem;color:var(--text);outline:none;"/>
+      </div>
+    </div>
+    <div style="padding:16px 24px;display:flex;gap:10px;justify-content:flex-end;border-top:1px solid var(--border);">
+      <button class="btn-outline" onclick="closeReminderModal()">Cancel</button>
+      <button class="btn-primary" onclick="saveReminder()"><i class="fas fa-bell"></i> Save Reminder</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/patient.js"></script>
+</body>
+</html>

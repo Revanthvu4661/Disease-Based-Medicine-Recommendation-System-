@@ -1,0 +1,382 @@
+[
+  {
+    "disease": "Common Cold",
+    "keywords": ["cold", "runny nose", "sneezing", "cough", "sore throat", "nasal congestion"],
+    "symptoms": ["runny nose", "sneezing", "sore throat", "mild cough", "nasal congestion", "mild fever"],
+    "description": "A common viral infection of the upper respiratory tract caused mainly by rhinoviruses. Usually mild and resolves within 7-10 days.",
+    "severity": "mild",
+    "precautions": ["Rest adequately and stay hydrated", "Wash hands frequently to prevent spreading", "Avoid close contact with others", "Use tissues and dispose immediately", "Maintain warm temperature"],
+    "medicines": [
+      { "name": "Paracetamol (Acetaminophen)", "type": "Antipyretic/Analgesic", "adultDose": "500-1000mg every 4-6 hours", "childDose": "10-15 mg/kg every 4-6 hours", "mgPerKg": 12.5, "maxAdultDose": "4000mg/day", "frequency": "Every 4-6 hours", "duration": "3-5 days" },
+      { "name": "Cetirizine (Antihistamine)", "type": "Antihistamine", "adultDose": "10mg once daily", "childDose": "5mg once daily (6-12 yrs)", "mgPerKg": 0.25, "frequency": "Once daily", "duration": "5-7 days" },
+      { "name": "Dextromethorphan (Cough Syrup)", "type": "Antitussive", "adultDose": "10-20mg every 4 hours", "childDose": "5-10mg every 6-8 hours", "mgPerKg": 0.5, "frequency": "Every 4-6 hours", "duration": "As needed" }
+    ],
+    "whenToSeeDoctor": "If fever exceeds 39°C (102°F), symptoms last more than 10 days, difficulty breathing, severe headache or sinus pain.",
+    "emergencyAlert": false,
+    "dietAdvice": "Warm fluids, chicken soup, honey with warm water, vitamin C rich foods"
+  },
+  {
+    "disease": "Influenza (Flu)",
+    "keywords": ["flu", "influenza", "high fever", "body aches", "fatigue", "chills"],
+    "symptoms": ["high fever", "body aches", "fatigue", "headache", "chills", "cough", "sore throat"],
+    "description": "A contagious respiratory illness caused by influenza viruses. More severe than the common cold with sudden onset of symptoms.",
+    "severity": "moderate",
+    "precautions": ["Stay home and rest for at least 24 hours after fever breaks", "Drink plenty of fluids", "Avoid contact with vulnerable people", "Get annual flu vaccination", "Cover mouth and nose when coughing or sneezing"],
+    "medicines": [
+      { "name": "Oseltamivir (Tamiflu)", "type": "Antiviral", "adultDose": "75mg twice daily", "childDose": "Based on weight (see prescriber)", "mgPerKg": 2, "frequency": "Twice daily", "duration": "5 days (start within 48 hrs of symptoms)" },
+      { "name": "Paracetamol", "type": "Antipyretic", "adultDose": "500-1000mg every 6 hours", "childDose": "10-15 mg/kg every 6 hours", "mgPerKg": 12.5, "frequency": "Every 6 hours", "duration": "Until fever resolves" },
+      { "name": "Ibuprofen", "type": "NSAID", "adultDose": "400mg every 6-8 hours", "childDose": "5-10 mg/kg every 6-8 hours", "mgPerKg": 7.5, "frequency": "Every 6-8 hours with food", "duration": "3-5 days" }
+    ],
+    "whenToSeeDoctor": "Difficulty breathing, chest pain, persistent vomiting, confusion, severe or persistent vomiting, symptoms improve then return with fever.",
+    "emergencyAlert": false,
+    "dietAdvice": "Clear broths, electrolyte drinks, soft easily digestible foods"
+  },
+  {
+    "disease": "Hypertension (High Blood Pressure)",
+    "keywords": ["hypertension", "high blood pressure", "headache", "dizziness", "BP high"],
+    "symptoms": ["headache", "dizziness", "blurred vision", "shortness of breath", "chest pain", "nosebleeds"],
+    "description": "A chronic condition where blood pressure in the arteries is persistently elevated. Often called the 'silent killer' as it may have no symptoms.",
+    "severity": "moderate",
+    "precautions": ["Monitor blood pressure regularly", "Reduce salt intake to less than 5g per day", "Exercise regularly (30 min/day, 5 days/week)", "Avoid smoking and limit alcohol", "Manage stress through meditation or yoga", "Maintain healthy body weight"],
+    "medicines": [
+      { "name": "Amlodipine", "type": "Calcium Channel Blocker", "adultDose": "5-10mg once daily", "childDose": "Consult physician", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term (as prescribed)" },
+      { "name": "Losartan", "type": "ARB (Angiotensin Receptor Blocker)", "adultDose": "25-100mg once daily", "childDose": "0.7 mg/kg once daily", "mgPerKg": 0.7, "frequency": "Once daily", "duration": "Long-term" },
+      { "name": "Atenolol", "type": "Beta Blocker", "adultDose": "25-100mg once daily", "childDose": "0.5-1 mg/kg once daily", "mgPerKg": 0.75, "frequency": "Once daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "BP consistently above 140/90 mmHg, severe headache, vision problems, chest pain, difficulty breathing, or irregular heartbeat.",
+    "emergencyAlert": false,
+    "dietAdvice": "DASH diet: fruits, vegetables, low-fat dairy, whole grains, lean protein. Avoid high sodium processed foods."
+  },
+  {
+    "disease": "Type 2 Diabetes",
+    "keywords": ["diabetes", "high blood sugar", "frequent urination", "thirst", "blood glucose", "sugar"],
+    "symptoms": ["frequent urination", "excessive thirst", "unexplained weight loss", "fatigue", "blurred vision", "slow healing wounds"],
+    "description": "A metabolic disorder characterized by high blood glucose levels due to insulin resistance or insufficient insulin production.",
+    "severity": "moderate",
+    "precautions": ["Monitor blood glucose levels regularly", "Follow a low glycemic index diet", "Exercise for at least 30 minutes daily", "Take medications as prescribed", "Inspect feet daily for wounds", "Avoid sugary drinks and processed foods", "Regular HbA1c tests every 3 months"],
+    "medicines": [
+      { "name": "Metformin", "type": "Biguanide (First-line)", "adultDose": "500-1000mg twice daily with meals", "childDose": "500mg once daily (10+ yrs)", "mgPerKg": 10, "frequency": "Twice daily with meals", "duration": "Long-term" },
+      { "name": "Glimepiride", "type": "Sulfonylurea", "adultDose": "1-4mg once daily", "childDose": "Consult physician", "mgPerKg": null, "frequency": "Once daily with breakfast", "duration": "Long-term" },
+      { "name": "Sitagliptin (Januvia)", "type": "DPP-4 Inhibitor", "adultDose": "100mg once daily", "childDose": "Not recommended under 18", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "Blood sugar consistently above 250 mg/dL, symptoms of hypoglycemia (shakiness, confusion), foot ulcers, vision changes.",
+    "emergencyAlert": false,
+    "dietAdvice": "Low GI foods, whole grains, leafy vegetables, lean proteins. Avoid refined sugars, white bread, sugary beverages."
+  },
+  {
+    "disease": "Dengue Fever",
+    "keywords": ["dengue", "mosquito bite", "high fever", "bone pain", "rash", "dengue fever"],
+    "symptoms": ["sudden high fever (40°C)", "severe headache", "pain behind eyes", "joint and muscle pain", "skin rash", "nausea", "mild bleeding"],
+    "description": "A mosquito-borne viral infection causing severe flu-like illness. Can develop into severe dengue (hemorrhagic fever) which can be life-threatening.",
+    "severity": "severe",
+    "precautions": ["Use mosquito repellents (DEET-based)", "Wear long-sleeved clothing", "Sleep under mosquito nets", "Eliminate standing water around home", "Monitor platelet count daily", "Rest completely and stay well-hydrated"],
+    "medicines": [
+      { "name": "Paracetamol", "type": "Antipyretic (ONLY fever reducer to use)", "adultDose": "500-1000mg every 6 hours", "childDose": "10-15 mg/kg every 6 hours", "mgPerKg": 12.5, "frequency": "Every 6 hours", "duration": "Until fever resolves", "warning": "DO NOT use Aspirin or Ibuprofen — they increase bleeding risk" },
+      { "name": "ORS (Oral Rehydration Solution)", "type": "Hydration", "adultDose": "2-3 liters daily", "childDose": "Based on weight", "mgPerKg": null, "frequency": "Throughout the day", "duration": "Until recovered" }
+    ],
+    "whenToSeeDoctor": "IMMEDIATELY if platelet count falls below 100,000, bleeding from gums or nose, blood in urine/stool, severe abdominal pain, rapid breathing.",
+    "emergencyAlert": true,
+    "dietAdvice": "Papaya leaf juice (may help platelets), coconut water, fresh fruits, light digestible foods. Stay well hydrated."
+  },
+  {
+    "disease": "Malaria",
+    "keywords": ["malaria", "chills", "fever cycles", "mosquito", "shivering", "plasmodium"],
+    "symptoms": ["cyclical fever (every 48-72 hours)", "chills and rigors", "sweating", "headache", "nausea", "muscle aches", "fatigue"],
+    "description": "A life-threatening disease caused by Plasmodium parasites transmitted through infected mosquito bites. Requires prompt treatment.",
+    "severity": "severe",
+    "precautions": ["Use insecticide-treated bed nets", "Take antimalarial prophylaxis if traveling", "Apply insect repellent", "Wear protective clothing at dawn/dusk", "Seek immediate medical care if symptoms appear"],
+    "medicines": [
+      { "name": "Artemether-Lumefantrine (Coartem)", "type": "Antimalarial (Artemisinin-based)", "adultDose": "4 tablets twice daily for 3 days", "childDose": "Based on weight (5-15kg: 1 tablet, 15-25kg: 2 tablets)", "mgPerKg": 1.7, "frequency": "Twice daily", "duration": "3 days" },
+      { "name": "Chloroquine (for sensitive P. vivax)", "type": "Antimalarial", "adultDose": "600mg then 300mg at 6, 24, 48 hours", "childDose": "10 mg base/kg initially", "mgPerKg": 10, "frequency": "As prescribed", "duration": "3 days" }
+    ],
+    "whenToSeeDoctor": "ALWAYS see a doctor immediately for suspected malaria. Seek emergency care for confusion, seizures, difficulty breathing, or jaundice.",
+    "emergencyAlert": true,
+    "dietAdvice": "Light easily digestible foods, plenty of fluids, avoid fatty foods during fever phases."
+  },
+  {
+    "disease": "Typhoid Fever",
+    "keywords": ["typhoid", "enteric fever", "high fever", "rose spots", "abdominal pain", "salmonella"],
+    "symptoms": ["prolonged high fever (39-40°C)", "abdominal pain", "headache", "weakness", "loss of appetite", "rose-colored spots on chest", "constipation or diarrhea"],
+    "description": "A bacterial infection caused by Salmonella typhi, spread through contaminated food and water. Can be severe without treatment.",
+    "severity": "moderate",
+    "precautions": ["Drink only boiled or bottled water", "Eat thoroughly cooked food", "Wash hands before eating and after toilet", "Get typhoid vaccination", "Avoid raw vegetables and street food", "Practice good food hygiene"],
+    "medicines": [
+      { "name": "Azithromycin", "type": "Antibiotic (First-line)", "adultDose": "500mg once daily", "childDose": "10-20 mg/kg once daily", "mgPerKg": 15, "frequency": "Once daily", "duration": "7 days" },
+      { "name": "Ceftriaxone", "type": "Antibiotic (IV/IM for severe cases)", "adultDose": "1-2g once daily", "childDose": "50-75 mg/kg once daily", "mgPerKg": 60, "frequency": "Once daily", "duration": "7-14 days" },
+      { "name": "Paracetamol", "type": "Antipyretic", "adultDose": "500-1000mg every 6 hours", "childDose": "10-15 mg/kg every 6 hours", "mgPerKg": 12.5, "frequency": "Every 6 hours", "duration": "Until fever resolves" }
+    ],
+    "whenToSeeDoctor": "All suspected typhoid cases need medical attention. Emergency: intestinal perforation symptoms (severe abdominal pain, rigid abdomen), severe bleeding.",
+    "emergencyAlert": false,
+    "dietAdvice": "Soft, easily digestible foods: khichdi, curd rice, banana, boiled vegetables. Avoid spicy, oily, high-fiber foods."
+  },
+  {
+    "disease": "Asthma",
+    "keywords": ["asthma", "wheezing", "breathing difficulty", "breathlessness", "inhaler", "bronchospasm"],
+    "symptoms": ["wheezing", "shortness of breath", "chest tightness", "coughing (especially at night)", "difficulty breathing during exercise"],
+    "description": "A chronic inflammatory disease of the airways causing recurrent episodes of wheezing, breathlessness, and coughing, often triggered by allergens or exercise.",
+    "severity": "moderate",
+    "precautions": ["Always carry rescue inhaler", "Identify and avoid triggers (dust, pollen, smoke)", "Use air purifiers at home", "Take controller medications as prescribed", "Monitor peak flow readings", "Have an asthma action plan"],
+    "medicines": [
+      { "name": "Salbutamol (Albuterol) Inhaler", "type": "Short-acting bronchodilator (Rescue)", "adultDose": "100-200mcg (1-2 puffs) as needed", "childDose": "100mcg (1 puff) as needed", "mgPerKg": null, "frequency": "As needed for acute symptoms", "duration": "As needed (not more than 4 times daily)" },
+      { "name": "Budesonide Inhaler", "type": "Inhaled Corticosteroid (Controller)", "adultDose": "200-400mcg twice daily", "childDose": "100-200mcg twice daily", "mgPerKg": null, "frequency": "Twice daily (even when symptom-free)", "duration": "Long-term as prescribed" },
+      { "name": "Montelukast", "type": "Leukotriene Modifier", "adultDose": "10mg once daily at bedtime", "childDose": "5mg once daily (6-14 yrs)", "mgPerKg": null, "frequency": "Once daily at bedtime", "duration": "Long-term" }
+    ],
+    "whenToSeeDoctor": "Inhaler not helping within minutes, lips turning blue, difficulty speaking, severe breathlessness at rest.",
+    "emergencyAlert": false,
+    "dietAdvice": "Anti-inflammatory diet: fruits, vegetables, nuts. Avoid sulfites (in wine, dried fruits), aspirin if sensitive."
+  },
+  {
+    "disease": "Migraine",
+    "keywords": ["migraine", "severe headache", "throbbing headache", "nausea with headache", "light sensitivity", "aura"],
+    "symptoms": ["severe throbbing headache (often one-sided)", "nausea and vomiting", "sensitivity to light and sound", "visual aura", "dizziness"],
+    "description": "A neurological condition characterized by intense, debilitating headaches often accompanied by sensory disturbances. Can last 4-72 hours.",
+    "severity": "moderate",
+    "precautions": ["Identify and avoid personal triggers (stress, certain foods, bright lights)", "Maintain regular sleep schedule", "Stay hydrated", "Keep a migraine diary", "Rest in dark, quiet room during attack", "Apply cold or warm compress"],
+    "medicines": [
+      { "name": "Sumatriptan (Imigran)", "type": "Triptan (Specific migraine treatment)", "adultDose": "50-100mg at onset", "childDose": "Not recommended under 12", "mgPerKg": null, "frequency": "At onset, may repeat after 2 hours", "duration": "As needed (max 2 doses/24 hours)" },
+      { "name": "Ibuprofen", "type": "NSAID", "adultDose": "400-600mg at onset", "childDose": "5-10 mg/kg", "mgPerKg": 7.5, "frequency": "Every 6-8 hours as needed", "duration": "Max 3 days" },
+      { "name": "Metoclopramide", "type": "Antiemetic (for nausea)", "adultDose": "10mg up to 3 times daily", "childDose": "0.1-0.15 mg/kg", "mgPerKg": 0.12, "frequency": "Up to 3 times daily", "duration": "During migraine attack" }
+    ],
+    "whenToSeeDoctor": "Sudden worst headache of life (thunderclap), headache with fever/stiff neck, headache after head injury, progressive worsening over days.",
+    "emergencyAlert": false,
+    "dietAdvice": "Avoid triggers: aged cheese, red wine, chocolate, caffeine (or ensure consistent intake). Regular meal times important."
+  },
+  {
+    "disease": "Gastroenteritis (Food Poisoning)",
+    "keywords": ["food poisoning", "gastroenteritis", "vomiting", "diarrhea", "stomach infection", "nausea"],
+    "symptoms": ["nausea", "vomiting", "diarrhea", "abdominal cramps", "low-grade fever", "dehydration"],
+    "description": "Inflammation of the stomach and intestines caused by viral, bacterial, or parasitic infections, often from contaminated food or water.",
+    "severity": "mild",
+    "precautions": ["Stay hydrated with ORS", "Rest the gut with light foods", "Avoid dairy, fatty, spicy foods temporarily", "Wash hands thoroughly", "Avoid sharing utensils", "Monitor for dehydration signs"],
+    "medicines": [
+      { "name": "ORS (Oral Rehydration Salts)", "type": "Rehydration", "adultDose": "200-400ml after each loose stool", "childDose": "75ml/kg over 4 hours", "mgPerKg": null, "frequency": "After each vomiting/diarrhea episode", "duration": "Until recovered" },
+      { "name": "Ondansetron", "type": "Antiemetic", "adultDose": "4-8mg every 8 hours", "childDose": "0.15 mg/kg every 8 hours", "mgPerKg": 0.15, "frequency": "Every 8 hours", "duration": "1-2 days" },
+      { "name": "Loperamide (Imodium)", "type": "Antidiarrheal", "adultDose": "4mg initially then 2mg after each loose stool", "childDose": "Not recommended under 12 without prescription", "mgPerKg": null, "frequency": "After each loose stool", "duration": "Max 2 days" }
+    ],
+    "whenToSeeDoctor": "Blood in stool or vomit, severe dehydration (no urination for 8 hours), fever above 39°C, symptoms lasting more than 3 days, diarrhea in infants.",
+    "emergencyAlert": false,
+    "dietAdvice": "BRAT diet: Bananas, Rice, Applesauce, Toast. Gradually return to normal diet. Avoid dairy, caffeine, alcohol."
+  },
+  {
+    "disease": "COVID-19",
+    "keywords": ["covid", "coronavirus", "covid-19", "loss of smell", "loss of taste", "covid symptoms", "corona"],
+    "symptoms": ["fever", "dry cough", "fatigue", "loss of taste or smell", "shortness of breath", "body aches", "sore throat", "headache"],
+    "description": "An infectious disease caused by the SARS-CoV-2 virus. Most people experience mild to moderate illness; severe disease occurs in older adults and those with underlying health conditions.",
+    "severity": "moderate",
+    "precautions": ["Isolate immediately to prevent spread", "Wear N95 mask if around others", "Monitor oxygen levels with pulse oximeter", "Rest and stay well hydrated", "Get vaccinated and boosted", "Ventilate rooms and maintain fresh air"],
+    "medicines": [
+      { "name": "Paracetamol", "type": "Antipyretic/Analgesic", "adultDose": "500-1000mg every 6 hours", "childDose": "10-15 mg/kg every 6 hours", "mgPerKg": 12.5, "frequency": "Every 6 hours", "duration": "Until fever resolves" },
+      { "name": "Cetirizine", "type": "Antihistamine (for symptoms)", "adultDose": "10mg once daily", "childDose": "5mg once daily", "mgPerKg": 0.25, "frequency": "Once daily", "duration": "5-7 days" },
+      { "name": "Vitamin C + Zinc Tablets", "type": "Immune Support", "adultDose": "1000mg Vitamin C + 10mg Zinc daily", "childDose": "250mg Vitamin C daily", "mgPerKg": null, "frequency": "Once daily", "duration": "Until recovery" }
+    ],
+    "whenToSeeDoctor": "Oxygen saturation below 94%, difficulty breathing, persistent chest pain, confusion, bluish lips or face, high fever not responding to medication.",
+    "emergencyAlert": false,
+    "dietAdvice": "High protein foods to aid recovery, vitamin C and zinc rich foods, warm fluids, avoid processed foods. Turmeric milk is beneficial."
+  },
+  {
+    "disease": "Chickenpox (Varicella)",
+    "keywords": ["chickenpox", "varicella", "itchy rash", "blister rash", "pox", "chicken pox"],
+    "symptoms": ["itchy blister-like rash", "fever", "fatigue", "loss of appetite", "headache", "fluid-filled blisters progressing to scabs"],
+    "description": "A highly contagious viral infection caused by varicella-zoster virus, characterized by itchy blister rash. Common in children but can be severe in adults.",
+    "severity": "mild",
+    "precautions": ["Stay home until all blisters have crusted over", "Avoid scratching to prevent scarring and infection", "Cut fingernails short", "Wear loose comfortable clothing", "Avoid contact with pregnant women, newborns, and immunocompromised individuals", "Oatmeal baths for itching relief"],
+    "medicines": [
+      { "name": "Calamine Lotion", "type": "Topical Anti-itch", "adultDose": "Apply to affected areas 3-4 times daily", "childDose": "Same as adult", "mgPerKg": null, "frequency": "3-4 times daily", "duration": "Until rash heals" },
+      { "name": "Cetirizine", "type": "Antihistamine (for itching)", "adultDose": "10mg once daily", "childDose": "5mg once daily (6-12 yrs)", "mgPerKg": 0.25, "frequency": "Once daily at night", "duration": "5-7 days" },
+      { "name": "Acyclovir (for adults/severe cases)", "type": "Antiviral", "adultDose": "800mg 5 times daily", "childDose": "20 mg/kg 4 times daily (max 3200mg/day)", "mgPerKg": 20, "frequency": "5 times daily", "duration": "5-7 days (start within 24 hrs of rash)" }
+    ],
+    "whenToSeeDoctor": "High fever over 39°C, rash spreading to eyes, severe skin infection from scratching, difficulty breathing, confusion, or stiff neck.",
+    "emergencyAlert": false,
+    "dietAdvice": "Soft, non-spicy foods if mouth sores develop. Cold yogurt, ice cream help soothe mouth lesions. Stay well hydrated."
+  },
+  {
+    "disease": "Tuberculosis (TB)",
+    "keywords": ["tuberculosis", "TB", "persistent cough", "blood in cough", "night sweats", "weight loss"],
+    "symptoms": ["persistent cough for 3+ weeks", "coughing up blood", "night sweats", "unexplained weight loss", "fatigue", "fever", "chest pain"],
+    "description": "A bacterial infection caused by Mycobacterium tuberculosis, primarily affecting the lungs. A leading infectious disease killer worldwide but treatable with a full course of antibiotics.",
+    "severity": "severe",
+    "precautions": ["Complete the full 6-month antibiotic course without skipping doses", "Cover mouth when coughing", "Ventilate living spaces well", "All close contacts should be tested", "Avoid public places during infectious period", "Notify household contacts for testing"],
+    "medicines": [
+      { "name": "Isoniazid (INH)", "type": "First-line Antibiotic", "adultDose": "5 mg/kg (max 300mg) once daily", "childDose": "10-15 mg/kg once daily", "mgPerKg": 5, "frequency": "Once daily on empty stomach", "duration": "6 months (intensive phase: 2 months, continuation: 4 months)" },
+      { "name": "Rifampicin", "type": "First-line Antibiotic", "adultDose": "10 mg/kg (max 600mg) once daily", "childDose": "15 mg/kg once daily", "mgPerKg": 10, "frequency": "Once daily on empty stomach", "duration": "6 months" },
+      { "name": "Pyrazinamide", "type": "First-line Antibiotic", "adultDose": "25 mg/kg once daily", "childDose": "35 mg/kg once daily", "mgPerKg": 25, "frequency": "Once daily", "duration": "First 2 months only" }
+    ],
+    "whenToSeeDoctor": "Any suspicion of TB requires immediate doctor consultation. Do not self-medicate. TB is a notifiable disease requiring supervised treatment.",
+    "emergencyAlert": true,
+    "dietAdvice": "High calorie, high protein diet to combat weight loss. Milk, eggs, meat, legumes, nuts. Vitamin B6 supplement recommended with Isoniazid."
+  },
+  {
+    "disease": "Urinary Tract Infection (UTI)",
+    "keywords": ["UTI", "urinary tract infection", "burning urination", "frequent urination", "painful urination", "bladder infection"],
+    "symptoms": ["burning sensation during urination", "frequent urge to urinate", "cloudy or strong-smelling urine", "blood in urine", "pelvic pain", "low-grade fever"],
+    "description": "A bacterial infection in any part of the urinary system. More common in women. Usually affects the bladder (cystitis) but can spread to kidneys if untreated.",
+    "severity": "mild",
+    "precautions": ["Drink 2-3 liters of water daily", "Urinate after sexual intercourse", "Wipe front to back after using toilet", "Avoid holding urine for long periods", "Avoid irritating feminine products", "Cotton underwear recommended"],
+    "medicines": [
+      { "name": "Nitrofurantoin", "type": "Antibiotic (First-line for uncomplicated UTI)", "adultDose": "100mg twice daily with meals", "childDose": "5-7 mg/kg/day in divided doses", "mgPerKg": 5, "frequency": "Twice daily with food", "duration": "5-7 days" },
+      { "name": "Trimethoprim-Sulfamethoxazole (Co-trimoxazole)", "type": "Antibiotic", "adultDose": "160/800mg twice daily", "childDose": "4/20 mg/kg twice daily", "mgPerKg": 4, "frequency": "Twice daily", "duration": "3-7 days" },
+      { "name": "Phenazopyridine (AZO)", "type": "Urinary Analgesic (symptom relief)", "adultDose": "200mg 3 times daily after meals", "childDose": "Not recommended under 12", "mgPerKg": null, "frequency": "3 times daily", "duration": "Max 2 days (only for symptom relief, not cure)", "warning": "Will turn urine orange/red — this is normal" }
+    ],
+    "whenToSeeDoctor": "High fever with chills, back/flank pain, nausea/vomiting (signs of kidney involvement), pregnant women with any UTI symptoms, recurrent UTIs (3+ per year).",
+    "emergencyAlert": false,
+    "dietAdvice": "Drink plenty of water and unsweetened cranberry juice. Avoid caffeine, alcohol, and spicy foods during infection. Probiotics help restore urinary tract flora."
+  },
+  {
+    "disease": "Kidney Stones (Renal Calculi)",
+    "keywords": ["kidney stone", "urolithiasis", "renal calculi", "flank pain", "blood in urine", "severe back pain"],
+    "symptoms": ["severe flank or back pain (colicky)", "blood in urine (pink/red)", "nausea and vomiting", "frequent urination", "painful urination", "fever if infection present"],
+    "description": "Hard deposits of minerals and salts that form inside kidneys. Can cause severe pain as they pass through the urinary tract. Varies from small (pass naturally) to large (requiring intervention).",
+    "severity": "moderate",
+    "precautions": ["Drink at least 3-4 liters of water daily", "Reduce salt and animal protein intake", "Limit oxalate-rich foods (spinach, nuts, chocolate)", "Avoid vitamin C supplements in excess", "Maintain healthy body weight", "Follow up with urologist for recurrent stones"],
+    "medicines": [
+      { "name": "Diclofenac Sodium", "type": "NSAID (for pain relief)", "adultDose": "75mg twice daily with food", "childDose": "1 mg/kg twice daily", "mgPerKg": 1, "frequency": "Twice daily with food", "duration": "3-5 days as needed" },
+      { "name": "Tamsulosin (Flomax)", "type": "Alpha-blocker (aids stone passage)", "adultDose": "0.4mg once daily at bedtime", "childDose": "Consult physician", "mgPerKg": null, "frequency": "Once daily at bedtime", "duration": "Until stone passes or procedure" },
+      { "name": "Ondansetron", "type": "Antiemetic (for nausea)", "adultDose": "4-8mg every 8 hours", "childDose": "0.15 mg/kg every 8 hours", "mgPerKg": 0.15, "frequency": "Every 8 hours as needed", "duration": "1-3 days" }
+    ],
+    "whenToSeeDoctor": "Fever with chills (infection + obstruction), unable to control pain, stone larger than 6mm (unlikely to pass naturally), only one functioning kidney.",
+    "emergencyAlert": false,
+    "dietAdvice": "High water intake is critical. Lemon water helps (citrate prevents calcium stones). Reduce red meat, salt, and oxalate foods."
+  },
+  {
+    "disease": "Rheumatoid Arthritis",
+    "keywords": ["rheumatoid arthritis", "RA", "joint swelling", "morning stiffness", "autoimmune arthritis", "joint inflammation"],
+    "symptoms": ["swollen and tender joints", "morning stiffness lasting over 1 hour", "fatigue", "fever", "rheumatoid nodules", "symmetric joint involvement"],
+    "description": "A chronic autoimmune inflammatory disease that primarily affects joints, causing progressive damage if untreated. Can affect multiple organ systems.",
+    "severity": "moderate",
+    "precautions": ["Take medications consistently as prescribed", "Balance rest with gentle exercise", "Protect joints with assistive devices", "Physical therapy is essential", "Monitor for medication side effects", "Regular blood tests to monitor disease activity"],
+    "medicines": [
+      { "name": "Methotrexate", "type": "DMARD (Disease-modifying antirheumatic)", "adultDose": "7.5-25mg once weekly", "childDose": "10-15 mg/m² once weekly", "mgPerKg": null, "frequency": "Once weekly (NOT daily)", "duration": "Long-term", "warning": "Take folic acid supplement to reduce side effects. Avoid alcohol." },
+      { "name": "Hydroxychloroquine (Plaquenil)", "type": "DMARD (Antimalarial)", "adultDose": "200-400mg once daily", "childDose": "3-5 mg/kg once daily", "mgPerKg": 4, "frequency": "Once daily with food", "duration": "Long-term" },
+      { "name": "Prednisolone", "type": "Corticosteroid (for flares)", "adultDose": "5-10mg once daily", "childDose": "0.5-1 mg/kg once daily", "mgPerKg": 0.75, "frequency": "Once daily in the morning", "duration": "Short-term for flares (taper gradually)" }
+    ],
+    "whenToSeeDoctor": "Newly swollen or painful joints, inability to perform daily activities, signs of infection while on immunosuppressants, severe medication side effects.",
+    "emergencyAlert": false,
+    "dietAdvice": "Anti-inflammatory diet: fatty fish (omega-3), olive oil, leafy greens, berries, turmeric. Minimize processed foods, red meat, and alcohol."
+  },
+  {
+    "disease": "Hypothyroidism",
+    "keywords": ["hypothyroidism", "underactive thyroid", "thyroid", "weight gain", "cold intolerance", "fatigue thyroid"],
+    "symptoms": ["fatigue and weakness", "weight gain", "cold intolerance", "constipation", "dry skin and hair", "depression", "slow heart rate", "puffy face", "heavy periods"],
+    "description": "A condition where the thyroid gland produces insufficient thyroid hormone, slowing down metabolism. Very manageable with daily medication.",
+    "severity": "mild",
+    "precautions": ["Take thyroid medication on empty stomach at same time daily", "Do not skip medication", "Regular TSH blood tests every 6-12 months", "Avoid taking with calcium or iron supplements (2-4 hour gap)", "Inform all doctors about thyroid condition", "Annual physical checkup"],
+    "medicines": [
+      { "name": "Levothyroxine (Eltroxin/Thyronorm)", "type": "Thyroid Hormone Replacement", "adultDose": "25-200mcg once daily (dose individualized)", "childDose": "10-15 mcg/kg once daily (adjusted by TSH)", "mgPerKg": null, "frequency": "Once daily on empty stomach (30-60 min before breakfast)", "duration": "Life-long" },
+      { "name": "Vitamin D3 Supplement", "type": "Supplement (commonly deficient)", "adultDose": "60,000 IU weekly or 2000 IU daily", "childDose": "1000-2000 IU daily", "mgPerKg": null, "frequency": "Once weekly or daily", "duration": "Long-term as needed" }
+    ],
+    "whenToSeeDoctor": "Symptoms not improving on medication, difficulty swallowing, rapid weight changes, palpitations, symptoms of myxedema (severe hypothyroidism).",
+    "emergencyAlert": false,
+    "dietAdvice": "Adequate iodine intake (iodized salt, seafood). Limit goitrogens (raw cabbage, broccoli) in large amounts. Selenium-rich foods like Brazil nuts."
+  },
+  {
+    "disease": "Iron Deficiency Anemia",
+    "keywords": ["anemia", "iron deficiency", "low hemoglobin", "pale skin", "tiredness", "iron deficiency anemia"],
+    "symptoms": ["extreme fatigue", "pale skin and nails", "weakness", "shortness of breath", "headache", "cold hands and feet", "brittle nails", "cravings for ice or dirt (pica)", "fast heartbeat"],
+    "description": "The most common type of anemia, caused by insufficient iron to produce hemoglobin. Very common in women of reproductive age, pregnant women, and vegetarians.",
+    "severity": "mild",
+    "precautions": ["Take iron supplements as prescribed", "Never take iron with tea, coffee, or dairy (reduces absorption)", "Take iron with vitamin C to enhance absorption", "Cook in cast iron pans", "Check for underlying causes (menstrual blood loss, GI bleeding)", "Regular CBC blood tests"],
+    "medicines": [
+      { "name": "Ferrous Sulfate", "type": "Iron Supplement (First-line)", "adultDose": "325mg (65mg elemental iron) 2-3 times daily", "childDose": "3-6 mg/kg/day of elemental iron in divided doses", "mgPerKg": 4, "frequency": "2-3 times daily between meals or with Vitamin C", "duration": "3-6 months (continue 3 months after Hb normalizes)" },
+      { "name": "Ferrous Gluconate", "type": "Iron Supplement (gentler)", "adultDose": "300mg twice daily", "childDose": "3 mg/kg twice daily", "mgPerKg": 3, "frequency": "Twice daily with food", "duration": "3-6 months" },
+      { "name": "Vitamin C (Ascorbic Acid)", "type": "Iron absorption enhancer", "adultDose": "500mg with each iron dose", "childDose": "100-250mg with iron dose", "mgPerKg": null, "frequency": "With each iron supplement dose", "duration": "Throughout iron therapy" }
+    ],
+    "whenToSeeDoctor": "Hemoglobin below 8 g/dL, symptoms not improving after 4 weeks of treatment, suspected GI bleeding, severe fatigue affecting daily life, during pregnancy.",
+    "emergencyAlert": false,
+    "dietAdvice": "Iron-rich foods: red meat, liver, lentils, tofu, spinach, pumpkin seeds. Pair with vitamin C (lemon, orange). Avoid tea/coffee with meals."
+  },
+  {
+    "disease": "Sinusitis",
+    "keywords": ["sinusitis", "sinus infection", "sinus pain", "sinus headache", "blocked nose", "facial pressure"],
+    "symptoms": ["facial pain and pressure", "nasal congestion", "thick yellow/green nasal discharge", "reduced smell and taste", "cough that worsens at night", "bad breath", "dental pain"],
+    "description": "Inflammation of the sinuses, usually caused by viral infection (most cases) or bacteria. Acute sinusitis lasts less than 4 weeks; chronic lasts over 12 weeks.",
+    "severity": "mild",
+    "precautions": ["Nasal saline irrigation (neti pot) twice daily", "Steam inhalation 2-3 times daily", "Stay hydrated", "Use a humidifier", "Elevate head while sleeping", "Avoid nasal irritants (smoke, dust)", "Treat allergies that trigger sinusitis"],
+    "medicines": [
+      { "name": "Amoxicillin-Clavulanate (for bacterial sinusitis)", "type": "Antibiotic", "adultDose": "875/125mg twice daily", "childDose": "45 mg/kg/day in 2 divided doses", "mgPerKg": 22, "frequency": "Twice daily with food", "duration": "10-14 days (only if bacterial infection suspected)" },
+      { "name": "Xylometazoline Nasal Spray (Otrivin)", "type": "Decongestant", "adultDose": "2-3 drops/sprays per nostril twice daily", "childDose": "Paediatric formula: 1-2 drops per nostril", "mgPerKg": null, "frequency": "Twice daily", "duration": "Max 5 days (risk of rebound congestion)", "warning": "Do not use for more than 5 days — causes rebound congestion" },
+      { "name": "Fluticasone Nasal Spray", "type": "Corticosteroid (for chronic/allergic)", "adultDose": "2 sprays per nostril once daily", "childDose": "1 spray per nostril once daily (6+ yrs)", "mgPerKg": null, "frequency": "Once daily", "duration": "Long-term for chronic/allergic sinusitis" }
+    ],
+    "whenToSeeDoctor": "High fever, severe headache, swelling around eyes, vision changes, stiff neck, symptoms lasting more than 10 days or worsening after initial improvement.",
+    "emergencyAlert": false,
+    "dietAdvice": "Spicy foods and horseradish can help open sinuses. Stay very hydrated. Avoid dairy if mucus is a problem. Warm soups and broths are helpful."
+  },
+  {
+    "disease": "Conjunctivitis (Pink Eye)",
+    "keywords": ["pink eye", "conjunctivitis", "red eye", "eye discharge", "eye infection", "itchy eyes"],
+    "symptoms": ["redness in the white of the eye", "itchy and irritated eyes", "discharge (watery or thick)", "crusting of eyelashes", "sensitivity to light", "blurred vision"],
+    "description": "Inflammation of the conjunctiva (clear tissue covering the white of the eye). Can be viral, bacterial, or allergic. Infectious types are highly contagious.",
+    "severity": "mild",
+    "precautions": ["Wash hands frequently", "Do not touch or rub eyes", "Do not share towels, pillowcases, or eye makeup", "Remove contact lenses during infection", "Discard eye makeup used during infection", "Children should stay home from school during infectious period"],
+    "medicines": [
+      { "name": "Chloramphenicol Eye Drops (for bacterial)", "type": "Antibiotic Eye Drops", "adultDose": "1-2 drops every 2 hours (reduce to 4x/day as improves)", "childDose": "Same as adult", "mgPerKg": null, "frequency": "Every 2-4 hours", "duration": "5-7 days" },
+      { "name": "Artificial Tears (Lubricating Eye Drops)", "type": "Lubricant", "adultDose": "1-2 drops every 4-6 hours as needed", "childDose": "Same as adult", "mgPerKg": null, "frequency": "As needed", "duration": "As needed" },
+      { "name": "Olopatadine Eye Drops (for allergic)", "type": "Antihistamine Eye Drops", "adultDose": "1-2 drops twice daily", "childDose": "1 drop twice daily (3+ yrs)", "mgPerKg": null, "frequency": "Twice daily", "duration": "As long as allergen exposure continues" }
+    ],
+    "whenToSeeDoctor": "Severe eye pain, significant change in vision, sensitivity to light, corneal involvement, newborns with eye discharge, symptoms not improving after 5 days.",
+    "emergencyAlert": false,
+    "dietAdvice": "Diet doesn't directly affect conjunctivitis recovery. Vitamin A rich foods (carrots, sweet potato) support general eye health."
+  },
+  {
+    "disease": "GERD (Acid Reflux)",
+    "keywords": ["GERD", "acid reflux", "heartburn", "acidity", "gastroesophageal reflux", "burning chest", "regurgitation"],
+    "symptoms": ["heartburn (burning sensation in chest)", "acid regurgitation", "difficulty swallowing", "chronic cough", "hoarseness", "nausea after eating", "feeling of lump in throat"],
+    "description": "Gastroesophageal reflux disease occurs when stomach acid repeatedly flows back into the food pipe. A very common digestive disorder affecting millions.",
+    "severity": "mild",
+    "precautions": ["Eat smaller, more frequent meals", "Do not eat 3 hours before bedtime", "Elevate head of bed by 6-8 inches", "Avoid trigger foods: citrus, tomatoes, chocolate, coffee, alcohol, fatty foods", "Lose weight if overweight", "Quit smoking", "Wear loose clothing around abdomen"],
+    "medicines": [
+      { "name": "Omeprazole (Prilosec)", "type": "Proton Pump Inhibitor (PPI) — First-line", "adultDose": "20-40mg once daily before breakfast", "childDose": "1 mg/kg once daily (for children 1+ yr)", "mgPerKg": 1, "frequency": "Once daily, 30 min before breakfast", "duration": "4-8 weeks (reassess with doctor)" },
+      { "name": "Pantoprazole", "type": "Proton Pump Inhibitor (PPI)", "adultDose": "40mg once daily", "childDose": "20mg once daily (5+ yrs)", "mgPerKg": null, "frequency": "Once daily before breakfast", "duration": "4-8 weeks" },
+      { "name": "Antacid (Gelusil/Digene)", "type": "Antacid (quick symptom relief)", "adultDose": "10-20ml or 2 tablets after meals and at bedtime", "childDose": "Not recommended in young children", "mgPerKg": null, "frequency": "After meals and at bedtime", "duration": "As needed for immediate relief" }
+    ],
+    "whenToSeeDoctor": "Difficulty swallowing, unexplained weight loss, vomiting blood, black stools, symptoms not responding to medication, symptoms lasting more than 4 weeks.",
+    "emergencyAlert": false,
+    "dietAdvice": "Avoid spicy, oily, acidic foods. Eat slowly and chew well. Alkaline foods: bananas, oatmeal, ginger, green vegetables, melons. Avoid late-night eating."
+  },
+  {
+    "disease": "Insomnia",
+    "keywords": ["insomnia", "sleeplessness", "can't sleep", "sleep disorder", "sleep problems", "trouble sleeping"],
+    "symptoms": ["difficulty falling asleep", "waking frequently during night", "waking too early", "unrefreshing sleep", "daytime fatigue", "irritability", "difficulty concentrating"],
+    "description": "A sleep disorder characterized by persistent difficulty with sleep initiation, maintenance, or quality. Can be short-term (acute) or long-term (chronic). Often secondary to anxiety, depression, or lifestyle factors.",
+    "severity": "mild",
+    "precautions": ["Maintain consistent sleep schedule (same time daily)", "Limit screen time 1 hour before bed", "Keep bedroom cool, dark, and quiet", "Avoid caffeine after 2 PM", "Avoid alcohol (disrupts sleep quality)", "Exercise regularly but not near bedtime", "Relaxation techniques: meditation, deep breathing"],
+    "medicines": [
+      { "name": "Melatonin", "type": "Sleep Hormone Supplement", "adultDose": "0.5-5mg 30 minutes before bed", "childDose": "0.5-1mg 30 minutes before bed", "mgPerKg": null, "frequency": "Once at bedtime", "duration": "Short-term (2-4 weeks for jet lag or adjustment)" },
+      { "name": "Diphenhydramine (Benadryl/Nytol)", "type": "Antihistamine (OTC sleep aid)", "adultDose": "25-50mg at bedtime", "childDose": "Not recommended under 12 for sleep", "mgPerKg": null, "frequency": "Once at bedtime only", "duration": "Max 2 weeks (tolerance develops quickly)", "warning": "Only for short-term use. Can cause daytime grogginess." },
+      { "name": "Zolpidem (Ambien)", "type": "Sedative-Hypnotic (prescription only)", "adultDose": "5-10mg immediately before bed", "childDose": "Not recommended in children", "mgPerKg": null, "frequency": "Once at bedtime only", "duration": "Short-term only (2-4 weeks)", "warning": "Only take when you have 7-8 hours for sleep. Do not drive after taking." }
+    ],
+    "whenToSeeDoctor": "Insomnia lasting more than 3 months, daytime impairment affecting work/safety, associated with depression or anxiety, suspicion of sleep apnea (snoring, gasping).",
+    "emergencyAlert": false,
+    "dietAdvice": "Avoid caffeine after 2 PM, limit alcohol, avoid heavy meals near bedtime. Sleep-promoting foods: warm milk, chamomile tea, banana, almonds, oatmeal."
+  },
+  {
+    "disease": "Lower Back Pain",
+    "keywords": ["back pain", "lower back pain", "lumbar pain", "sciatica", "back ache", "lumbago"],
+    "symptoms": ["aching or stiffness along the spine", "sharp localized pain", "pain radiating down the leg (sciatica)", "reduced flexibility", "difficulty standing up straight", "muscle spasms", "worsening pain with prolonged sitting or standing"],
+    "description": "One of the most common medical problems, affecting 8 in 10 people at some point. Most cases are mechanical (muscle strain, poor posture) and resolve within 4-6 weeks.",
+    "severity": "mild",
+    "precautions": ["Stay active with gentle walking (bed rest worsens outcome)", "Apply heat/ice for 15-20 minutes several times daily", "Maintain good posture while sitting", "Lift objects correctly (bend knees, straight back)", "Ergonomic workspace setup", "Weight loss if overweight", "Core strengthening exercises once acute phase subsides"],
+    "medicines": [
+      { "name": "Ibuprofen", "type": "NSAID (First-line)", "adultDose": "400-600mg every 8 hours with food", "childDose": "5-10 mg/kg every 8 hours", "mgPerKg": 7.5, "frequency": "3 times daily with food", "duration": "5-7 days", "warning": "Take with food. Avoid if history of peptic ulcer or kidney disease." },
+      { "name": "Diclofenac Gel (Topical)", "type": "Topical NSAID", "adultDose": "Apply 2-4g to affected area 3-4 times daily", "childDose": "Not recommended under 14", "mgPerKg": null, "frequency": "3-4 times daily", "duration": "1-2 weeks" },
+      { "name": "Cyclobenzaprine (Muscle Relaxant)", "type": "Muscle Relaxant", "adultDose": "5-10mg three times daily", "childDose": "Not recommended under 15", "mgPerKg": null, "frequency": "Three times daily", "duration": "3-5 days only", "warning": "Causes drowsiness. Do not drive or operate machinery." }
+    ],
+    "whenToSeeDoctor": "Numbness or tingling in legs/feet, bowel or bladder problems, severe pain not improving with medication, pain following an injury, fever with back pain, pain in people over 50.",
+    "emergencyAlert": false,
+    "dietAdvice": "Anti-inflammatory diet: omega-3 fatty acids (fish, flaxseed), turmeric, ginger, cherries. Maintain healthy weight to reduce spinal load. Adequate vitamin D and calcium for bone health."
+  },
+  {
+    "disease": "Vitamin D Deficiency",
+    "keywords": ["vitamin D deficiency", "vitamin D", "bone pain", "muscle weakness vitamin", "rickets", "osteomalacia"],
+    "symptoms": ["bone pain and tenderness", "muscle weakness and cramps", "fatigue", "depression and mood changes", "frequent infections", "hair loss", "back pain", "impaired wound healing"],
+    "description": "A widespread nutritional deficiency caused by insufficient sun exposure, dietary intake, or absorption. Affects bone health, immune function, and mental health.",
+    "severity": "mild",
+    "precautions": ["Get 15-30 minutes of midday sun exposure daily (arms and legs exposed)", "Consume vitamin D rich foods", "Take supplements if recommended by doctor", "Regular vitamin D level tests (25-OH-D blood test)", "Use vitamin D3 (cholecalciferol) form for supplementation", "Pair with vitamin K2 for bone absorption"],
+    "medicines": [
+      { "name": "Cholecalciferol (Vitamin D3)", "type": "Vitamin Supplement (First-line)", "adultDose": "60,000 IU weekly for 8-12 weeks (loading), then 2000 IU daily", "childDose": "1000-2000 IU daily or 60,000 IU monthly", "mgPerKg": null, "frequency": "Weekly loading dose, then daily maintenance", "duration": "Loading: 8-12 weeks; Maintenance: long-term" },
+      { "name": "Calcium Carbonate + D3", "type": "Combined Supplement", "adultDose": "500mg calcium + 250 IU D3 twice daily", "childDose": "250mg calcium + 200 IU D3 daily", "mgPerKg": null, "frequency": "Twice daily with meals", "duration": "Long-term as advised" }
+    ],
+    "whenToSeeDoctor": "Level below 20 ng/mL on blood test, bone fractures with minimal trauma, chronic conditions (kidney/liver disease), malabsorption disorders, children with rickets signs.",
+    "emergencyAlert": false,
+    "dietAdvice": "Vitamin D-rich foods: fatty fish (salmon, sardines), egg yolks, fortified milk, mushrooms (sun-exposed). Most people need supplements to reach optimal levels."
+  }
+]

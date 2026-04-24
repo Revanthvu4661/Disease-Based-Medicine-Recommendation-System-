@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MediRec — Disease Medical Recommendation System</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer onload="onGoogleLibraryLoad()"></script>
+</head>
+<body class="login-page">
+
+<!-- Video Background -->
+<div class="video-bg">
+  <video autoplay muted loop playsinline id="bgVideo">
+    <source src="assets/video/medical-bg.mp4" type="video/mp4">
+  </video>
+  <div class="video-overlay"></div>
+</div>
+
+<!-- Animated particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Medical Disclaimer Popup -->
+<div class="modal-overlay" id="disclaimerModal">
+  <div class="modal-card disclaimer-card">
+    <div class="modal-icon"><i class="fas fa-shield-heart"></i></div>
+    <h2>Medical Disclaimer</h2>
+    <p>This system provides <strong>general health information</strong> and <strong>educational content only</strong>. It is NOT a substitute for professional medical advice, diagnosis, or treatment.</p>
+    <ul>
+      <li>Always consult a qualified healthcare provider</li>
+      <li>Do not delay seeking medical attention</li>
+      <li>In an emergency, call <strong>108</strong> immediately</li>
+      <li>Dosage recommendations are estimates only</li>
+    </ul>
+    <button class="btn-primary" onclick="closeDisclaimer()">
+      <i class="fas fa-check-circle"></i> I Understand & Agree
+    </button>
+  </div>
+</div>
+
+<!-- Main Login Container -->
+<div class="auth-wrapper">
+  <!-- Brand -->
+  <div class="brand-header">
+    <div class="brand-logo"><i class="fas fa-heartbeat"></i></div>
+    <div class="brand-text">
+      <h1>MediRec</h1>
+      <p>Intelligent Medical Guidance</p>
+    </div>
+  </div>
+
+  <!-- Role Tabs -->
+  <div class="role-tabs">
+    <button class="role-tab active" id="tabPatient" onclick="switchRole('patient')">
+      <i class="fas fa-user-injured"></i> Patient
+    </button>
+    <button class="role-tab" id="tabDoctor" onclick="switchRole('doctor')">
+      <i class="fas fa-user-md"></i> Doctor
+    </button>
+  </div>
+
+  <!-- Login Card -->
+  <div class="glass-card" id="loginCard">
+    <div class="card-header">
+      <h2 id="loginTitle">Patient Login</h2>
+      <p id="loginSubtitle">Access your health dashboard</p>
+    </div>
+
+    <form id="loginForm" class="auth-form">
+      <div class="form-group">
+        <label><i class="fas fa-envelope"></i> Email Address</label>
+        <input type="email" id="loginEmail" placeholder="you@example.com" required />
+        <span class="field-error" id="loginEmailErr"></span>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-lock"></i> Password</label>
+        <div class="input-with-icon">
+          <input type="password" id="loginPassword" placeholder="Enter your password" required />
+          <button type="button" class="toggle-pass" onclick="togglePassword('loginPassword', this)">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+        <span class="field-error" id="loginPassErr"></span>
+      </div>
+      <div class="form-error" id="loginError"></div>
+      <button type="submit" class="btn-primary full-width" id="loginBtn">
+        <span class="btn-text"><i class="fas fa-sign-in-alt"></i> Sign In</span>
+        <span class="btn-loader hidden"><i class="fas fa-spinner fa-spin"></i> Authenticating...</span>
+      </button>
+    </form>
+
+    <!-- Divider -->
+    <div class="auth-divider"><span>or continue with</span></div>
+
+    <!-- Google Sign-In Button -->
+    <div style="display: flex; justify-content: center; width: 100%;">
+      <div id="googleLoginBtnContainer" class="google-login-widget"></div>
+    </div>
+
+    <!-- Hidden Google One Tap trigger -->
+    <div id="g_id_onload"
+      data-client_id=""
+      data-callback="handleGoogleCredential"
+      data-auto_prompt="false">
+    </div>
+
+    <div class="card-footer">
+      <p>Don't have an account? <a href="#" onclick="showRegister()">Register here</a></p>
+    </div>
+  </div>
+
+  <!-- Register Card -->
+  <div class="glass-card hidden" id="registerCard">
+    <div class="card-header">
+      <h2 id="registerTitle">Create Account</h2>
+      <p id="registerSubtitle">Join MediRec as a Patient</p>
+    </div>
+
+    <form id="registerForm" class="auth-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fas fa-user"></i> Full Name</label>
+          <input type="text" id="regName" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-birthday-cake"></i> Age</label>
+          <input type="number" id="regAge" placeholder="Age" min="1" max="120" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-envelope"></i> Email</label>
+        <input type="email" id="regEmail" placeholder="you@example.com" required />
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-venus-mars"></i> Gender</label>
+        <select id="regGender">
+          <option value="">Select gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div id="doctorFields" class="hidden">
+        <div class="form-group">
+          <label><i class="fas fa-stethoscope"></i> Specialization</label>
+          <input type="text" id="regSpecialization" placeholder="e.g. General Physician" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-lock"></i> Password</label>
+        <div class="input-with-icon">
+          <input type="password" id="regPassword" placeholder="Min 6 characters" required minlength="6" />
+          <button type="button" class="toggle-pass" onclick="togglePassword('regPassword', this)">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-lock"></i> Confirm Password</label>
+        <input type="password" id="regConfirm" placeholder="Repeat password" required />
+      </div>
+      <div class="form-error" id="registerError"></div>
+      <button type="submit" class="btn-primary full-width" id="registerBtn">
+        <span class="btn-text"><i class="fas fa-user-plus"></i> Create Account</span>
+        <span class="btn-loader hidden"><i class="fas fa-spinner fa-spin"></i> Creating...</span>
+      </button>
+    </form>
+
+    <!-- Divider -->
+    <div class="auth-divider"><span>or register with</span></div>
+
+    <!-- Google Register Button -->
+    <div style="display: flex; justify-content: center; width: 100%;">
+      <div id="googleRegisterBtnContainer" class="google-login-widget"></div>
+    </div>
+
+    <div class="card-footer">
+      <p>Already have an account? <a href="#" onclick="showLogin()">Sign in</a></p>
+    </div>
+  </div>
+
+  <!-- Theme toggle -->
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark/light mode">
+    <i class="fas fa-moon" id="themeIcon"></i>
+  </button>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/particles.js"></script>
+</body>
+</html>
