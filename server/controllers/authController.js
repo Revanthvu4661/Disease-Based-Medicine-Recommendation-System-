@@ -133,3 +133,12 @@ exports.googleAuth = async (req, res) => {
     res.status(401).json({ message: 'Google sign-in failed: ' + err.message });
   }
 };
+
+exports.getDoctors = async (req, res) => {
+  try {
+    const doctors = await User.find({ role: 'doctor' }).select('name email specialization');
+    res.json(doctors);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

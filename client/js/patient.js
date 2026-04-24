@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadDiseaseList();
   loadHealthSummary();
   loadReminders();
+  loadDoctorsForDropdown();
 });
 
 // ===== SECTION NAVIGATION =====
@@ -553,6 +554,19 @@ async function deleteHistoryRecord() {
 }
 
 // ===== APPOINTMENTS =====
+async function loadDoctorsForDropdown() {
+  try {
+    const doctors = await api.get('/auth/doctors');
+    const select = document.getElementById('appointmentDoctor');
+    if (select) {
+      select.innerHTML = '<option value="">Select a doctor...</option>' +
+        doctors.map(d => `<option value="${d._id}">${d.name}${d.specialization ? ' - ' + d.specialization : ''}</option>`).join('');
+    }
+  } catch (err) {
+    console.error('Error loading doctors:', err);
+  }
+}
+
 async function loadDoctors() {
   try {
     const doctors = await api.get('/auth/doctors');
