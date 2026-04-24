@@ -28,4 +28,11 @@ const recordSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
+// Indexes for query performance
+recordSchema.index({ patientId: 1, date: -1 });
+recordSchema.index({ deleted: 1, reviewed: 1 });
+recordSchema.index({ severity: 1 });
+recordSchema.index({ date: 1 });
+recordSchema.index({ disease: 'text', patientName: 'text' });
+
 module.exports = mongoose.model('Record', recordSchema);

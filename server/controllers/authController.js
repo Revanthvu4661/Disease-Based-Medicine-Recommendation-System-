@@ -48,6 +48,22 @@ exports.getMe = async (req, res) => {
   res.json(req.user);
 };
 
+exports.updateMe = async (req, res) => {
+  try {
+    const { name, age, gender, specialization } = req.body;
+    const updates = {};
+    if (name) updates.name = name;
+    if (age) updates.age = age;
+    if (gender) updates.gender = gender;
+    if (specialization) updates.specialization = specialization;
+
+    const user = await User.findByIdAndUpdate(req.user._id, updates, { new: true }).select('-password');
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 // ===== GOOGLE OAUTH =====
 // Flow: frontend gets a Google ID token via Google Sign-In button,
 // sends it here. We verify it with google-auth-library, then find/create the user.

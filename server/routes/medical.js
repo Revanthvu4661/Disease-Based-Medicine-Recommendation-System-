@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const { protect } = require('../middleware/auth');
-const { searchDisease, getDiseaseByName, getAllDiseases } = require('../controllers/medicalController');
+const { searchDisease, getDiseaseByName, getAllDiseases, getSymptoms } = require('../controllers/medicalController');
 
 router.use(protect);
 router.get('/search', searchDisease);
+router.get('/symptoms', getSymptoms);
 router.get('/all', getAllDiseases);
 router.get('/:name', getDiseaseByName);
 
