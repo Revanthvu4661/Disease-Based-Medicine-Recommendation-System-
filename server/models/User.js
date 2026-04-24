@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema({
     loginTime: { type: Date, default: Date.now },
     method: { type: String, enum: ['local', 'google'] }
   }],
+  allergies: [String],
   createdAt: { type: Date, default: Date.now }
 });
 

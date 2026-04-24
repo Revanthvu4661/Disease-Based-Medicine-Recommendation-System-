@@ -1,15 +1,23 @@
 const express = require('express');
+const http = require('http');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const { Server } = require('socket.io');
 const { generalLimiter, authLimiter } = require('./middleware/rateLimiter');
 const { initializeEmailService } = require('./services/emailService');
 const { setupSwagger } = require('./swagger');
+const { startReminderService } = require('./services/reminderService');
+const { initSocketService } = require('./services/socketService');
 require('dotenv').config();
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: { origin: '*', methods: ['GET', 'POST'] }
+});
 
 // Security middleware
 app.use(helmet());
@@ -39,6 +47,8 @@ app.use('/api/records', require('./routes/records'));
 app.use('/api/medical', require('./routes/medical'));
 app.use('/api/notifications', require('./routes/notifications'));
 app.use('/api/appointments', require('./routes/appointments'));
+app.use('/api/ratings', require('./routes/ratings'));
+app.use('/api/messages', require('./routes/messages'));
 
 // Serve client for all non-API routes
 app.get('*', (req, res) => {
@@ -52,7 +62,9 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/MediCare')
   .then(() => {
     console.log('✅ MongoDB Connected');
     initializeEmailService();
-    const server = app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+    initSocketService(io);
+    startReminderService();
+    server.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
     server.on('error', (err) => {
       if (err && err.code === 'EADDRINUSE') {
         console.error(`❌ Port ${PORT} is already in use. Close the other process or change PORT in .env.`);
@@ -69,7 +81,8 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/MediCare')
     const allow = String(process.env.ALLOW_DB_DISCONNECTED || '').toLowerCase() === 'true';
     if (allow) {
       console.log('⚠️ Starting anyway because ALLOW_DB_DISCONNECTED=true');
-      const server = app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT} (DB disconnected)`));
+      initSocketService(io);
+      server.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT} (DB disconnected)`));
       server.on('error', (err) => {
         if (err && err.code === 'EADDRINUSE') {
           console.error(`❌ Port ${PORT} is already in use. Close the other process or change PORT in .env.`);

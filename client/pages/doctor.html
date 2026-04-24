@@ -72,6 +72,9 @@
         <i class="fas fa-trash-alt"></i> <span>Deleted Records</span>
         <span class="badge badge-red" id="deletedBadge">0</span>
       </a>
+      <a href="#" class="sidebar-link" data-section="analytics" onclick="showSection('analytics', this); loadAnalytics()">
+        <i class="fas fa-chart-pie"></i> <span>Analytics</span>
+      </a>
     </div>
   </aside>
 
@@ -164,6 +167,11 @@
         <i class="fas fa-folder-open"></i>
         <p>No patient records found</p>
       </div>
+      <div class="pagination-controls" id="paginationControls" style="display:none;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:12px;">
+        <button class="btn-outline" id="prevBtn" onclick="loadAllRecords(currentPage - 1)">← Previous</button>
+        <span id="pageInfo" style="font-size:0.9rem;color:var(--text-muted);">Page 1 of 1</span>
+        <button class="btn-outline" id="nextBtn" onclick="loadAllRecords(currentPage + 1)">Next →</button>
+      </div>
     </section>
 
     <!-- Pending Section -->
@@ -202,6 +210,27 @@
       <div id="deletedArea" class="records-grid"></div>
     </section>
 
+    <section id="section-analytics" class="content-section hidden">
+      <div class="section-header">
+        <h2><i class="fas fa-chart-pie"></i> Analytics Dashboard</h2>
+        <p>Visual insights into your medical records and patient data</p>
+      </div>
+      <div class="analytics-grid">
+        <div class="chart-card">
+          <h3>Records by Severity</h3>
+          <canvas id="severityChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Monthly Trend</h3>
+          <canvas id="monthlyChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Top 10 Diseases</h3>
+          <canvas id="diseaseChart"></canvas>
+        </div>
+      </div>
+    </section>
+
   </main>
 </div>
 
@@ -228,6 +257,8 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 <script src="../js/api.js"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/doctor.js"></script>

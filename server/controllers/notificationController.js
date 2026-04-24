@@ -1,8 +1,9 @@
 const Notification = require('../models/Notification');
+const { notifyUser } = require('../services/socketService');
 
 exports.createNotification = async (userId, type, title, message, recordId = null, appointmentId = null) => {
   try {
-    return await Notification.create({
+    const notif = await Notification.create({
       userId,
       type,
       title,
@@ -10,6 +11,8 @@ exports.createNotification = async (userId, type, title, message, recordId = nul
       recordId,
       appointmentId
     });
+    notifyUser(userId, 'notification', { title, message, type });
+    return notif;
   } catch (err) {
     console.error('Notification creation error:', err.message);
   }

@@ -178,6 +178,26 @@ exports.getStats = async (req, res) => {
       { $sort: { count: -1 } },
       { $limit: 10 }
     ]);
+
+    const monthlyTrend = await Record.aggregate([
+      { $match: base },
+      {
+        $group: {
+          _id: { $dateToString: { format: '%Y-%m', date: '$date' } },
+          count: { $sum: 1 }
+        }
+      },
+      { $sort: { _id: -1 } },
+      { $limit: 6 }
+    ]);
+
+    const avgAgeResult = await Record.aggregate([
+      { $match: base },
+      { $group: { _id: null, avgAge: { $avg: '$age' } } }
+    ]);
+
+    const avgAge = avgAgeResult.length > 0 ? Math.round(avgAgeResult[0].avgAge) : 0;
+
     res.json({
       total,
       reviewed,
@@ -185,7 +205,9 @@ exports.getStats = async (req, res) => {
       pending: total - reviewed,
       deleted: deletedCount,
       bySeverity: severityMap,
-      byDisease
+      byDisease,
+      monthlyTrend: monthlyTrend.reverse(),
+      avgAge
     });
   } catch (err) {
     res.status(500).json({ message: err.message });

@@ -4,6 +4,10 @@ if (!requireAuth('doctor')) { /* redirected */ }
 const user = getUser();
 let allRecords = [];
 let currentRecordId = null;
+let currentPage = 1;
+let totalPages = 1;
+let totalRecords = 0;
+const recordsPerPage = 10;
 
 document.addEventListener('DOMContentLoaded', () => {
   if (user) {
@@ -63,12 +67,17 @@ async function loadStats() {
 }
 
 // ===== ALL RECORDS =====
-async function loadAllRecords() {
+async function loadAllRecords(page = 1) {
   document.getElementById('patientsLoading').classList.remove('hidden');
   document.getElementById('patientsTableWrap').style.display = 'none';
   try {
-    allRecords = await api.get('/records');
+    const result = await api.get(`/records?page=${page}&limit=${recordsPerPage}`);
+    allRecords = result.records || [];
+    currentPage = result.page || 1;
+    totalPages = result.pages || 1;
+    totalRecords = result.total || 0;
     renderTable(allRecords);
+    updatePagination();
   } catch (err) {
     allRecords = [];
     document.getElementById('patientsTableBody').innerHTML = `<tr><td colspan="8" style="text-align:center;color:var(--danger);">Failed to load records: ${err.message}</td></tr>`;
@@ -76,6 +85,22 @@ async function loadAllRecords() {
   } finally {
     document.getElementById('patientsLoading').classList.add('hidden');
     document.getElementById('patientsTableWrap').style.display = '';
+  }
+}
+
+function updatePagination() {
+  const paginationDiv = document.getElementById('paginationControls');
+  const pageInfo = document.getElementById('pageInfo');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  if (totalPages > 1) {
+    paginationDiv.style.display = 'flex';
+    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+    prevBtn.disabled = currentPage <= 1;
+    nextBtn.disabled = currentPage >= totalPages;
+  } else {
+    paginationDiv.style.display = 'none';
   }
 }
 
@@ -462,11 +487,109 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Start notification polling on page load
+// Initialize WebSocket and notifications
+let socket = null;
 document.addEventListener('DOMContentLoaded', () => {
   loadUnreadCount();
-  notifInterval = setInterval(loadUnreadCount, 30000); // Poll every 30 seconds
+  initializeSocket();
 });
+
+function initializeSocket() {
+  socket = io();
+  const user = getUser();
+  if (user) {
+    socket.emit('register', user._id);
+  }
+  socket.on('notification', (data) => {
+    loadUnreadCount();
+    loadNotifications();
+    showToast(data.title, 'info');
+  });
+}
+
+// ===== ANALYTICS =====
+let charts = {};
+
+async function loadAnalytics() {
+  try {
+    const stats = await api.get('/records/stats');
+    renderSeverityChart(stats.bySeverity);
+    renderMonthlyChart(stats.monthlyTrend);
+    renderDiseaseChart(stats.byDisease);
+  } catch (err) {
+    console.error('Analytics error:', err);
+    showToast('Error loading analytics', 'error');
+  }
+}
+
+function renderSeverityChart(bySeverity) {
+  const ctx = document.getElementById('severityChart');
+  if (charts.severity) charts.severity.destroy();
+  charts.severity = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(bySeverity),
+      datasets: [{
+        data: Object.values(bySeverity),
+        backgroundColor: ['#ef4444', '#f59e0b', '#10b981', '#0ea5e9'],
+        borderColor: 'var(--bg-surface)',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { position: 'bottom' } }
+    }
+  });
+}
+
+function renderMonthlyChart(monthlyTrend) {
+  const ctx = document.getElementById('monthlyChart');
+  if (charts.monthly) charts.monthly.destroy();
+  charts.monthly = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: monthlyTrend.map(m => m._id),
+      datasets: [{
+        label: 'Records',
+        data: monthlyTrend.map(m => m.count),
+        backgroundColor: 'var(--primary)',
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true } }
+    }
+  });
+}
+
+function renderDiseaseChart(byDisease) {
+  const ctx = document.getElementById('diseaseChart');
+  if (charts.disease) charts.disease.destroy();
+  charts.disease = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: byDisease.map(d => d._id).slice(0, 10),
+      datasets: [{
+        label: 'Count',
+        data: byDisease.map(d => d.count).slice(0, 10),
+        backgroundColor: 'var(--secondary)',
+        borderRadius: 6
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true } }
+    }
+  });
+}
 
 // ===== CSV EXPORT =====
 function exportRecordsCSV() {

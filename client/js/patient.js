@@ -832,11 +832,25 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Start notification polling on page load
+// Initialize WebSocket and notifications
+let socket = null;
 document.addEventListener('DOMContentLoaded', () => {
   loadUnreadCount();
-  notifInterval = setInterval(loadUnreadCount, 30000); // Poll every 30 seconds
+  initializeSocket();
 });
+
+function initializeSocket() {
+  socket = io();
+  const user = getUser();
+  if (user) {
+    socket.emit('register', user._id);
+  }
+  socket.on('notification', (data) => {
+    loadUnreadCount();
+    loadNotifications();
+    showToast(data.title, 'info');
+  });
+}
 
 // ===== CSV EXPORT =====
 function exportHistoryCSV() {
