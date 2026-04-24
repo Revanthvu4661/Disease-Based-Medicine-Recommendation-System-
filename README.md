@@ -90,7 +90,7 @@ Disease-Medical-Recommendation-System/
 │   ├── middleware/
 │   │   └── auth.js           # JWT protection middleware
 │   └── data/
-│       └── medicalDataset.json  # 185 disease entries with comprehensive data
+│       └── medicalDataset.json  # 155 disease entries with comprehensive data
 ├── client/
 │   ├── index.html            # Login / Register page
 │   ├── pages/
@@ -187,7 +187,7 @@ Disease-Medical-Recommendation-System/
 
 ## 💊 Medical Dataset
 
-Includes **185 comprehensive diseases** with complete medical data:
+Includes **155 comprehensive diseases** with complete medical data:
 
 ### Infectious Diseases (12)
 Common Cold, Influenza, Dengue Fever, Malaria, Typhoid Fever, COVID-19, Chickenpox, Tuberculosis, Pneumonia, Bronchitis, Meningitis, Hepatitis B
