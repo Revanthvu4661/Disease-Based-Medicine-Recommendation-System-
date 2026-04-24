@@ -568,34 +568,56 @@ async function deleteHistoryRecord() {
 // ===== APPOINTMENTS =====
 async function loadDoctorsForDropdown() {
   try {
-    const doctors = await api.get('/auth/doctors');
+    console.log('Loading doctors from API...');
+    const response = await fetch('/api/auth/doctors');
+
+    if (!response.ok) {
+      throw new Error(`API returned ${response.status}`);
+    }
+
+    const doctors = await response.json();
+    console.log('Doctors received:', doctors);
+
     const select = document.getElementById('appointmentDoctor');
     const noDoctorsMsg = document.getElementById('noDoctorsMessage');
 
-    if (select) {
-      if (!doctors || doctors.length === 0) {
-        select.innerHTML = '<option value="">No doctors available</option>';
-        if (noDoctorsMsg) noDoctorsMsg.style.display = 'block';
-        console.warn('No doctors found in database');
-        return;
-      }
-
-      if (noDoctorsMsg) noDoctorsMsg.style.display = 'none';
-      select.innerHTML = '<option value="">Select a doctor...</option>' +
-        doctors.map(d => `<option value="${d._id}">${d.name}${d.specialization ? ' - ' + d.specialization : ''}</option>`).join('');
-      console.log(`Loaded ${doctors.length} doctors into dropdown`);
-    } else {
+    if (!select) {
       console.warn('Doctor dropdown select element not found');
+      return;
     }
+
+    if (!doctors || doctors.length === 0) {
+      select.innerHTML = '<option value="">No doctors registered</option>';
+      select.disabled = true;
+      if (noDoctorsMsg) noDoctorsMsg.style.display = 'block';
+      console.warn('No doctors found in database');
+      return;
+    }
+
+    if (noDoctorsMsg) noDoctorsMsg.style.display = 'none';
+    select.disabled = false;
+    select.innerHTML = '<option value="">Select a doctor...</option>' +
+      doctors.map(d => `<option value="${d._id}">${d.name}${d.specialization ? ' - ' + d.specialization : ''}</option>`).join('');
+    console.log(`✓ Loaded ${doctors.length} doctors into dropdown`);
   } catch (err) {
     console.error('Error loading doctors:', err);
     const select = document.getElementById('appointmentDoctor');
     const noDoctorsMsg = document.getElementById('noDoctorsMessage');
+
     if (select) {
-      select.innerHTML = '<option value="">Error loading doctors</option>';
+      select.innerHTML = '<option value="">Error - Check console</option>';
+      select.disabled = true;
     }
-    if (noDoctorsMsg) noDoctorsMsg.style.display = 'block';
+    if (noDoctorsMsg) {
+      noDoctorsMsg.style.display = 'block';
+      noDoctorsMsg.innerHTML = '<i class="fas fa-exclamation-triangle"></i> <strong>Error loading doctors!</strong> Check browser console (F12) for details.';
+    }
   }
+}
+
+function reloadDoctors() {
+  console.log('Reloading doctors...');
+  loadDoctorsForDropdown();
 }
 
 async function loadDoctors() {
@@ -611,12 +633,19 @@ async function loadDoctors() {
 
 async function loadAppointmentsPatient() {
   try {
+    // Load doctors with proper error handling
     await loadDoctorsForDropdown();
-    const appointments = await api.get('/appointments');
-    renderPatientAppointments(appointments);
+
+    // Load appointments if user has permission
+    try {
+      const appointments = await api.get('/appointments');
+      renderPatientAppointments(appointments);
+    } catch (err) {
+      console.warn('Could not load appointments:', err);
+      // Don't fail - let user still request appointments
+    }
   } catch (err) {
     console.error('Appointments error:', err);
-    showToast('Error loading appointments', 'error');
   }
 }
 
