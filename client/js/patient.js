@@ -13,8 +13,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadDiseaseList();
   loadHealthSummary();
   loadReminders();
-  loadDoctorsForDropdown();
+  setTimeout(() => loadDoctorsForDropdown(), 500);
 });
+
+// Debug function - can be called from browser console
+window.debugDoctors = async () => {
+  try {
+    const res = await fetch('/api/auth/doctors');
+    const doctors = await res.json();
+    console.log('Doctors from API:', doctors);
+    return doctors;
+  } catch (err) {
+    console.error('Error fetching doctors:', err);
+  }
+};
 
 // ===== SECTION NAVIGATION =====
 function showSection(name, el) {
@@ -558,12 +570,31 @@ async function loadDoctorsForDropdown() {
   try {
     const doctors = await api.get('/auth/doctors');
     const select = document.getElementById('appointmentDoctor');
+    const noDoctorsMsg = document.getElementById('noDoctorsMessage');
+
     if (select) {
+      if (!doctors || doctors.length === 0) {
+        select.innerHTML = '<option value="">No doctors available</option>';
+        if (noDoctorsMsg) noDoctorsMsg.style.display = 'block';
+        console.warn('No doctors found in database');
+        return;
+      }
+
+      if (noDoctorsMsg) noDoctorsMsg.style.display = 'none';
       select.innerHTML = '<option value="">Select a doctor...</option>' +
         doctors.map(d => `<option value="${d._id}">${d.name}${d.specialization ? ' - ' + d.specialization : ''}</option>`).join('');
+      console.log(`Loaded ${doctors.length} doctors into dropdown`);
+    } else {
+      console.warn('Doctor dropdown select element not found');
     }
   } catch (err) {
     console.error('Error loading doctors:', err);
+    const select = document.getElementById('appointmentDoctor');
+    const noDoctorsMsg = document.getElementById('noDoctorsMessage');
+    if (select) {
+      select.innerHTML = '<option value="">Error loading doctors</option>';
+    }
+    if (noDoctorsMsg) noDoctorsMsg.style.display = 'block';
   }
 }
 
@@ -580,11 +611,12 @@ async function loadDoctors() {
 
 async function loadAppointmentsPatient() {
   try {
-    loadDoctors();
+    await loadDoctorsForDropdown();
     const appointments = await api.get('/appointments');
     renderPatientAppointments(appointments);
   } catch (err) {
     console.error('Appointments error:', err);
+    showToast('Error loading appointments', 'error');
   }
 }
 
