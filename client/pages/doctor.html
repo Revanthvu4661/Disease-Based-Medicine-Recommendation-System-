@@ -36,6 +36,11 @@
         <div id="notifList" class="notif-list"></div>
       </div>
     </div>
+    <select id="languageSelector" onchange="setLanguage(this.value)" style="background:var(--bg-input);border:1px solid var(--border);padding:6px 8px;border-radius:6px;font-size:0.85rem;color:var(--text);cursor:pointer;font-family:var(--font);">
+      <option value="en">English</option>
+      <option value="hi">हिंदी</option>
+      <option value="es">Español</option>
+    </select>
     <button class="theme-toggle-sm" onclick="toggleTheme()" title="Toggle theme">
       <i class="fas fa-moon" id="themeIcon"></i>
     </button>
@@ -74,6 +79,13 @@
       </a>
       <a href="#" class="sidebar-link" data-section="analytics" onclick="showSection('analytics', this); loadAnalytics()">
         <i class="fas fa-chart-pie"></i> <span>Analytics</span>
+      </a>
+      <a href="#" class="sidebar-link" data-section="appointments" onclick="showSection('appointments', this); loadAppointments()">
+        <i class="fas fa-calendar-check"></i> <span>Appointments</span>
+        <span class="badge" id="appointmentsBadge">0</span>
+      </a>
+      <a href="#" class="sidebar-link" data-section="calendar" onclick="showSection('calendar', this); loadCalendarView()">
+        <i class="fas fa-calendar"></i> <span>Calendar</span>
       </a>
     </div>
   </aside>
@@ -123,18 +135,21 @@
       <div class="filter-bar">
         <div class="search-wrap">
           <i class="fas fa-search"></i>
-          <input type="text" id="patientSearch" placeholder="Search by name or disease..." oninput="filterRecords()"/>
+          <input type="text" id="patientSearch" placeholder="Search by name..." oninput="filterRecords()"/>
         </div>
         <div class="filter-wrap">
-          <i class="fas fa-filter"></i>
-          <input type="text" id="diseaseFilter" placeholder="Filter by disease..." oninput="filterRecords()"/>
+          <i class="fas fa-disease"></i>
+          <input type="text" id="diseaseFilter" placeholder="Disease..." oninput="filterRecords()"/>
         </div>
-        <select id="statusFilter" onchange="filterRecords()">
-          <option value="">All Status</option>
-          <option value="pending">Pending</option>
-          <option value="reviewed">Reviewed</option>
+        <select id="severityFilter" onchange="filterRecords()">
+          <option value="">All Severity</option>
+          <option value="mild">Mild</option>
+          <option value="moderate">Moderate</option>
+          <option value="severe">Severe</option>
         </select>
-        <button class="btn-outline" onclick="loadAllRecords()">
+        <input type="date" id="dateFromFilter" onchange="filterRecords()" title="From Date"/>
+        <input type="date" id="dateToFilter" onchange="filterRecords()" title="To Date"/>
+        <button class="btn-outline" onclick="loadAllRecords(1)">
           <i class="fas fa-sync"></i> Refresh
         </button>
       </div>
@@ -210,6 +225,25 @@
       <div id="deletedArea" class="records-grid"></div>
     </section>
 
+    <section id="section-appointments" class="content-section hidden">
+      <div class="section-header">
+        <h2><i class="fas fa-calendar-check"></i> Appointment Requests</h2>
+        <p>Manage patient appointment requests</p>
+      </div>
+      <div class="appointments-grid" id="appointmentsGrid"></div>
+    </section>
+
+    <section id="section-calendar" class="content-section hidden">
+      <div class="section-header">
+        <h2><i class="fas fa-calendar"></i> Appointment Calendar</h2>
+        <p>View appointments scheduled on specific dates</p>
+      </div>
+      <div id="calendarContainer" style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px;">
+        <div id="miniCalendar" class="mini-calendar"></div>
+        <div id="calendarDetails" class="calendar-details"></div>
+      </div>
+    </section>
+
     <section id="section-analytics" class="content-section hidden">
       <div class="section-header">
         <h2><i class="fas fa-chart-pie"></i> Analytics Dashboard</h2>
@@ -261,6 +295,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="../js/api.js"></script>
 <script src="../js/theme.js"></script>
+<script src="../js/i18n.js"></script>
 <script src="../js/doctor.js"></script>
 </body>
 </html>

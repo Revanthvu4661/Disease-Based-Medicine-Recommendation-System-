@@ -591,6 +591,227 @@ function renderDiseaseChart(byDisease) {
   });
 }
 
+// ===== FILTERS =====
+async function filterRecords() {
+  const disease = document.getElementById('diseaseFilter').value;
+  const severity = document.getElementById('severityFilter').value;
+  const dateFrom = document.getElementById('dateFromFilter').value;
+  const dateTo = document.getElementById('dateToFilter').value;
+
+  document.getElementById('patientsLoading').classList.remove('hidden');
+  document.getElementById('patientsTableWrap').style.display = 'none';
+  try {
+    const params = new URLSearchParams();
+    if (disease) params.append('disease', disease);
+    if (severity) params.append('severity', severity);
+    if (dateFrom) params.append('dateFrom', dateFrom);
+    if (dateTo) params.append('dateTo', dateTo);
+    params.append('page', '1');
+    params.append('limit', recordsPerPage);
+
+    const result = await api.get(`/records?${params}`);
+    allRecords = result.records || [];
+    currentPage = 1;
+    totalPages = result.pages || 1;
+    totalRecords = result.total || 0;
+    renderTable(allRecords);
+    updatePagination();
+  } catch (err) {
+    console.error('Filter error:', err);
+    showToast('Error filtering records', 'error');
+  } finally {
+    document.getElementById('patientsLoading').classList.add('hidden');
+    document.getElementById('patientsTableWrap').style.display = '';
+  }
+}
+
+// ===== APPOINTMENTS =====
+async function loadAppointments() {
+  try {
+    const appointments = await api.get('/appointments');
+    renderAppointments(appointments);
+    updateAppointmentsBadge(appointments);
+  } catch (err) {
+    console.error('Appointments error:', err);
+    showToast('Error loading appointments', 'error');
+  }
+}
+
+function renderAppointments(appointments) {
+  const grid = document.getElementById('appointmentsGrid');
+
+  if (!appointments || appointments.length === 0) {
+    grid.innerHTML = '<div class="no-data" style="grid-column: 1 / -1;"><i class="fas fa-inbox"></i><p>No appointment requests</p></div>';
+    return;
+  }
+
+  grid.innerHTML = appointments.map(apt => `
+    <div class="appointment-card">
+      <div class="appointment-header">
+        <div>
+          <div class="appointment-patient">${apt.patientName}</div>
+          <span class="appointment-status ${apt.status.toLowerCase()}">${apt.status}</span>
+        </div>
+      </div>
+      <div class="appointment-details">
+        <div><i class="fas fa-stethoscope"></i> <span>${apt.reason || 'General consultation'}</span></div>
+        <div><i class="fas fa-calendar"></i> <span>${new Date(apt.requestedDate).toLocaleDateString()}</span></div>
+        <div><i class="fas fa-clock"></i> <span>${apt.timeSlot || 'Not specified'}</span></div>
+        <div><i class="fas fa-envelope"></i> <span>${apt.patientEmail}</span></div>
+      </div>
+      ${apt.status === 'pending' ? `
+        <div class="appointment-actions">
+          <button class="btn-approve" onclick="approveAppointment('${apt._id}')"><i class="fas fa-check"></i> Approve</button>
+          <button class="btn-decline" onclick="declineAppointment('${apt._id}')"><i class="fas fa-times"></i> Decline</button>
+        </div>
+      ` : ''}
+    </div>
+  `).join('');
+}
+
+async function approveAppointment(appointmentId) {
+  try {
+    await api.patch(`/appointments/${appointmentId}`, { status: 'approved' });
+    showToast('Appointment approved', 'success');
+    loadAppointments();
+  } catch (err) {
+    showToast('Error approving appointment', 'error');
+  }
+}
+
+async function declineAppointment(appointmentId) {
+  try {
+    await api.patch(`/appointments/${appointmentId}`, { status: 'declined' });
+    showToast('Appointment declined', 'success');
+    loadAppointments();
+  } catch (err) {
+    showToast('Error declining appointment', 'error');
+  }
+}
+
+function updateAppointmentsBadge(appointments) {
+  const pending = appointments.filter(a => a.status === 'pending').length;
+  const badge = document.getElementById('appointmentsBadge');
+  if (pending > 0) {
+    badge.textContent = pending;
+  } else {
+    badge.textContent = '';
+  }
+}
+
+// ===== CALENDAR =====
+let calendarAppointments = [];
+let selectedCalendarDate = null;
+
+async function loadCalendarView() {
+  try {
+    calendarAppointments = await api.get('/appointments');
+    renderMiniCalendar();
+    showCalendarDetails(new Date());
+  } catch (err) {
+    console.error('Calendar error:', err);
+  }
+}
+
+function renderMiniCalendar() {
+  const miniCal = document.getElementById('miniCalendar');
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const prevLastDay = new Date(year, month, 0).getDate();
+  const nextDays = 7 - lastDay.getDay() - 1;
+
+  let html = `
+    <div class="mini-calendar-header">
+      <button onclick="previousMonth()">← Prev</button>
+      <span>${firstDay.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
+      <button onclick="nextMonth()">Next →</button>
+    </div>
+    <div class="mini-calendar-weekdays">
+      <div class="mini-calendar-weekday">Sun</div>
+      <div class="mini-calendar-weekday">Mon</div>
+      <div class="mini-calendar-weekday">Tue</div>
+      <div class="mini-calendar-weekday">Wed</div>
+      <div class="mini-calendar-weekday">Thu</div>
+      <div class="mini-calendar-weekday">Fri</div>
+      <div class="mini-calendar-weekday">Sat</div>
+    </div>
+    <div class="mini-calendar-days">
+  `;
+
+  for (let i = prevLastDay - firstDay.getDay() + 1; i <= prevLastDay; i++) {
+    html += `<div class="mini-calendar-day other-month">${i}</div>`;
+  }
+
+  for (let i = 1; i <= lastDay.getDate(); i++) {
+    const date = new Date(year, month, i);
+    const hasEvents = calendarAppointments.some(apt =>
+      new Date(apt.requestedDate).toDateString() === date.toDateString()
+    );
+    const isToday = date.toDateString() === today.toDateString();
+    html += `<div class="mini-calendar-day ${hasEvents ? 'has-events' : ''} ${isToday ? 'selected' : ''}" onclick="showCalendarDetails(new Date(${year}, ${month}, ${i}))">${i}</div>`;
+  }
+
+  for (let i = 1; i <= nextDays; i++) {
+    html += `<div class="mini-calendar-day other-month">${i}</div>`;
+  }
+
+  html += '</div>';
+  miniCal.innerHTML = html;
+}
+
+function previousMonth() {
+  // Simple implementation - in production, track current month
+  console.log('Previous month');
+}
+
+function nextMonth() {
+  console.log('Next month');
+}
+
+function showCalendarDetails(date) {
+  selectedCalendarDate = date;
+  const details = document.getElementById('calendarDetails');
+  const dayAppointments = calendarAppointments.filter(apt =>
+    new Date(apt.requestedDate).toDateString() === date.toDateString()
+  );
+
+  const header = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+  if (dayAppointments.length === 0) {
+    details.innerHTML = `
+      <div>
+        <div class="calendar-details-header">${header}</div>
+        <div class="calendar-details-empty">
+          <i class="fas fa-calendar-times" style="font-size: 2rem; color: var(--text-muted);"></i>
+          <p>No appointments on this date</p>
+        </div>
+      </div>
+    `;
+  } else {
+    details.innerHTML = `
+      <div>
+        <div class="calendar-details-header">${header}</div>
+        <div class="calendar-details-list">
+          ${dayAppointments.map(apt => `
+            <div class="calendar-appointment-item">
+              <div class="calendar-appointment-time">${apt.timeSlot || 'Time TBD'}</div>
+              <div class="calendar-appointment-patient"><strong>${apt.patientName}</strong></div>
+              <div class="calendar-appointment-reason">${apt.reason || 'General Consultation'}</div>
+              <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted);">
+                Status: <span style="color: ${apt.status === 'approved' ? '#10b981' : apt.status === 'declined' ? '#ef4444' : '#f59e0b'};">${apt.status}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+}
+
 // ===== CSV EXPORT =====
 function exportRecordsCSV() {
   if (!allRecords || allRecords.length === 0) {

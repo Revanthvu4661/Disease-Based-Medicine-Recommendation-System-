@@ -37,8 +37,16 @@
         <div id="notifList" class="notif-list"></div>
       </div>
     </div>
+    <select id="languageSelector" onchange="setLanguage(this.value)" style="background:var(--bg-input);border:1px solid var(--border);padding:6px 8px;border-radius:6px;font-size:0.85rem;color:var(--text);cursor:pointer;font-family:var(--font);">
+      <option value="en">English</option>
+      <option value="hi">हिंदी</option>
+      <option value="es">Español</option>
+    </select>
     <button class="theme-toggle-sm" onclick="toggleTheme()" title="Toggle theme">
       <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+    <button class="btn-outline" onclick="openProfileModal()" title="Edit Profile">
+      <i class="fas fa-user-cog"></i>
     </button>
     <button class="btn-logout" onclick="logout()">
       <i class="fas fa-sign-out-alt"></i> Logout
@@ -64,6 +72,9 @@
       </a>
       <a href="#history" class="sidebar-link" data-section="history" onclick="showSection('history', this)">
         <i class="fas fa-history"></i> <span>My History</span>
+      </a>
+      <a href="#appointments" class="sidebar-link" data-section="appointments" onclick="showSection('appointments', this); loadAppointmentsPatient()">
+        <i class="fas fa-calendar-alt"></i> <span>Appointments</span>
       </a>
       <a href="#calculator" class="sidebar-link" data-section="calculator" onclick="showSection('calculator', this)">
         <i class="fas fa-calculator"></i> <span>Dosage Calculator</span>
@@ -260,8 +271,8 @@
           <p>All your previous searches and doctor recommendations</p>
         </div>
         <div class="header-actions">
-          <button class="btn-outline" onclick="exportToPDF()">
-            <i class="fas fa-file-pdf"></i> Export PDF
+          <button class="btn-outline" onclick="exportHistoryCSV()">
+            <i class="fas fa-download"></i> Export CSV
           </button>
           <button class="btn-outline" onclick="loadHistory()">
             <i class="fas fa-sync"></i> Refresh
@@ -269,11 +280,57 @@
         </div>
       </div>
 
+      <!-- Filters -->
+      <div class="filter-bar">
+        <div class="filter-wrap">
+          <i class="fas fa-disease"></i>
+          <input type="text" id="historyDiseaseFilter" placeholder="Filter by disease..." oninput="filterHistory()"/>
+        </div>
+        <select id="historySeverityFilter" onchange="filterHistory()">
+          <option value="">All Severity</option>
+          <option value="mild">Mild</option>
+          <option value="moderate">Moderate</option>
+          <option value="severe">Severe</option>
+        </select>
+        <input type="date" id="historyDateFromFilter" onchange="filterHistory()" title="From Date"/>
+        <input type="date" id="historyDateToFilter" onchange="filterHistory()" title="To Date"/>
+      </div>
+
       <div class="loading-wrap hidden" id="historyLoading">
         <div class="dna-loader"><div class="strand"></div><div class="strand"></div><div class="strand"></div></div>
         <p>Loading history...</p>
       </div>
       <div id="historyArea" class="history-grid"></div>
+    </section>
+
+    <!-- Appointments Section -->
+    <section id="section-appointments" class="content-section hidden">
+      <div class="section-header">
+        <h2><i class="fas fa-calendar-alt"></i> My Appointments</h2>
+        <p>View and request appointments with doctors</p>
+      </div>
+
+      <!-- Request Appointment -->
+      <div class="appointment-form-card">
+        <h3><i class="fas fa-calendar-plus"></i> Request New Appointment</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;">
+          <select id="appointmentDoctor" style="background:var(--bg-input);border:1px solid var(--border);padding:10px;border-radius:var(--radius-sm);font-family:var(--font);color:var(--text);">
+            <option value="">Select a doctor...</option>
+          </select>
+          <input type="date" id="appointmentDate" style="background:var(--bg-input);border:1px solid var(--border);padding:10px;border-radius:var(--radius-sm);font-family:var(--font);color:var(--text);"/>
+          <input type="time" id="appointmentTime" style="background:var(--bg-input);border:1px solid var(--border);padding:10px;border-radius:var(--radius-sm);font-family:var(--font);color:var(--text);"/>
+          <input type="text" id="appointmentReason" placeholder="Reason for appointment" style="background:var(--bg-input);border:1px solid var(--border);padding:10px;border-radius:var(--radius-sm);font-family:var(--font);color:var(--text);"/>
+        </div>
+        <button class="btn-primary" onclick="requestAppointment()" style="margin-top: 12px; width: 100%;">
+          <i class="fas fa-calendar-check"></i> Request Appointment
+        </button>
+      </div>
+
+      <!-- My Appointments List -->
+      <div style="margin-top: 24px;">
+        <h3 style="margin-bottom: 16px; color: var(--text);"><i class="fas fa-list"></i> My Appointments</h3>
+        <div id="appointmentsArea" class="appointments-grid"></div>
+      </div>
     </section>
 
     <!-- ===== DOSAGE CALCULATOR ===== -->
@@ -359,9 +416,62 @@
   </div>
 </div>
 
+<!-- Profile Edit Modal -->
+<div class="modal-overlay hidden" id="profileModal">
+  <div class="modal-card" style="max-width:500px;">
+    <div class="modal-header">
+      <h3><i class="fas fa-user-cog"></i> Edit Profile</h3>
+      <button class="modal-close" onclick="closeModal('profileModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" style="padding:24px;display:flex;flex-direction:column;gap:16px;">
+      <div>
+        <label style="display:block;margin-bottom:6px;font-size:0.85rem;color:var(--text-muted);font-weight:600;">Full Name</label>
+        <input type="text" id="profileName" style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-family:var(--font);color:var(--text);outline:none;"/>
+      </div>
+      <div>
+        <label style="display:block;margin-bottom:6px;font-size:0.85rem;color:var(--text-muted);font-weight:600;">Age</label>
+        <input type="number" id="profileAge" style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-family:var(--font);color:var(--text);outline:none;"/>
+      </div>
+      <div>
+        <label style="display:block;margin-bottom:6px;font-size:0.85rem;color:var(--text-muted);font-weight:600;">Gender</label>
+        <select id="profileGender" style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-family:var(--font);color:var(--text);outline:none;">
+          <option value="">Not specified</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div>
+        <label style="display:block;margin-bottom:6px;font-size:0.85rem;color:var(--text-muted);font-weight:600;">Known Allergies (comma-separated)</label>
+        <textarea id="profileAllergies" placeholder="e.g. Penicillin, Shellfish" style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-family:var(--font);color:var(--text);outline:none;resize:vertical;min-height:60px;"></textarea>
+      </div>
+    </div>
+    <div style="padding:16px 24px;display:flex;gap:10px;justify-content:flex-end;border-top:1px solid var(--border);">
+      <button class="btn-outline" onclick="closeModal('profileModal')">Cancel</button>
+      <button class="btn-primary" onclick="saveProfile()"><i class="fas fa-save"></i> Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- History Detail Modal -->
+<div class="modal-overlay hidden" id="historyDetailModal">
+  <div class="modal-card" style="max-width:600px;">
+    <div class="modal-header">
+      <h3 id="detailModalTitle"><i class="fas fa-file-medical"></i> Record Details</h3>
+      <button class="modal-close" onclick="closeModal('historyDetailModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="detailModalBody" style="padding:24px;"></div>
+    <div style="padding:16px 24px;display:flex;gap:10px;justify-content:flex-end;border-top:1px solid var(--border);">
+      <button class="btn-outline" onclick="closeModal('historyDetailModal')">Close</button>
+      <button class="btn-danger" onclick="deleteHistoryRecord()"><i class="fas fa-trash"></i> Delete Record</button>
+    </div>
+  </div>
+</div>
+
 <script src="/socket.io/socket.io.js"></script>
 <script src="../js/api.js"></script>
 <script src="../js/theme.js"></script>
+<script src="../js/i18n.js"></script>
 <script src="../js/patient.js"></script>
 </body>
 </html>

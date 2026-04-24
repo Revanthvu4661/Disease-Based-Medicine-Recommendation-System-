@@ -426,7 +426,7 @@ async function loadHistory() {
       return;
     }
     area.innerHTML = records.map(r => `
-      <div class="history-card">
+      <div class="history-card" onclick="showHistoryDetail('${r._id}')">
         <div class="history-card-header">
           <div>
             <div class="history-disease">${r.disease}</div>
@@ -448,6 +448,217 @@ async function loadHistory() {
     area.innerHTML = `<div class="no-data"><i class="fas fa-exclamation-circle"></i><p>Could not load history: ${err.message}</p></div>`;
   } finally {
     document.getElementById('historyLoading').classList.add('hidden');
+  }
+}
+
+// ===== HISTORY FILTERS =====
+let filteredHistory = [];
+let selectedRecordId = null;
+
+async function filterHistory() {
+  const disease = document.getElementById('historyDiseaseFilter').value.toLowerCase();
+  const severity = document.getElementById('historySeverityFilter').value.toLowerCase();
+  const dateFrom = document.getElementById('historyDateFromFilter').value;
+  const dateTo = document.getElementById('historyDateToFilter').value;
+
+  try {
+    const params = new URLSearchParams();
+    if (disease) params.append('disease', disease);
+    if (severity) params.append('severity', severity);
+    if (dateFrom) params.append('dateFrom', dateFrom);
+    if (dateTo) params.append('dateTo', dateTo);
+
+    const records = await api.get(`/records/mine?${params}`);
+    cachedRecords = records;
+    filteredHistory = records;
+
+    const area = document.getElementById('historyArea');
+    if (!records.length) {
+      area.innerHTML = `<div class="no-data" style="grid-column:1/-1;"><i class="fas fa-search"></i><p>No records match your filters</p></div>`;
+      return;
+    }
+
+    area.innerHTML = records.map(r => `
+      <div class="history-card" onclick="showHistoryDetail('${r._id}')">
+        <div class="history-card-header">
+          <div>
+            <div class="history-disease">${r.disease}</div>
+            <div class="history-date"><i class="fas fa-calendar"></i> ${new Date(r.date).toLocaleDateString()}</div>
+          </div>
+          <span class="severity-badge severity-${r.severity}">${r.severity}</span>
+        </div>
+        <div class="history-medicines">
+          <i class="fas fa-pills"></i> ${r.medicines.slice(0, 2).map(m => m.name).join(', ')}${r.medicines.length > 2 ? ` +${r.medicines.length - 2}` : ''}
+        </div>
+      </div>
+    `).join('');
+  } catch (err) {
+    showToast('Error filtering history', 'error');
+  }
+}
+
+async function showHistoryDetail(recordId) {
+  try {
+    const record = await api.get(`/records/${recordId}`);
+    selectedRecordId = recordId;
+
+    const title = document.getElementById('detailModalTitle');
+    const body = document.getElementById('detailModalBody');
+
+    title.textContent = record.disease;
+    body.innerHTML = `
+      <div style="display: grid; gap: 16px;">
+        <div>
+          <label style="font-size:0.78rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;">Severity</label>
+          <div style="color:var(--text);margin-top:4px;"><span class="severity-badge severity-${record.severity}">${record.severity}</span></div>
+        </div>
+        <div>
+          <label style="font-size:0.78rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;">Symptoms</label>
+          <div style="color:var(--text);margin-top:4px;">${record.symptoms ? record.symptoms.join(', ') : 'Not specified'}</div>
+        </div>
+        <div>
+          <label style="font-size:0.78rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;">Prescribed Medicines</label>
+          <div style="margin-top:8px; display: flex; flex-direction: column; gap: 8px;">
+            ${record.medicines.map(m => `<div style="background:var(--bg-input);padding:10px;border-radius:6px;font-size:0.9rem;"><strong>${m.name}</strong> - ${m.dosage}, ${m.frequency}</div>`).join('')}
+          </div>
+        </div>
+        <div>
+          <label style="font-size:0.78rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;">Precautions</label>
+          <div style="color:var(--text);margin-top:4px;"><ul style="margin:0;padding-left:20px;">${record.precautions ? record.precautions.map(p => `<li>${p}</li>`).join('') : '<li>None specified</li>'}</ul></div>
+        </div>
+        <div>
+          <label style="font-size:0.78rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;">Date</label>
+          <div style="color:var(--text);margin-top:4px;">${new Date(record.date).toLocaleDateString()}</div>
+        </div>
+      </div>
+    `;
+    openModal('historyDetailModal');
+  } catch (err) {
+    showToast('Error loading record details', 'error');
+  }
+}
+
+async function deleteHistoryRecord() {
+  if (!selectedRecordId) return;
+  if (!confirm('Are you sure you want to delete this record?')) return;
+
+  try {
+    await api.delete(`/records/${selectedRecordId}`);
+    closeModal('historyDetailModal');
+    showToast('Record deleted successfully', 'success');
+    loadHistory();
+  } catch (err) {
+    showToast('Error deleting record', 'error');
+  }
+}
+
+// ===== APPOINTMENTS =====
+async function loadDoctors() {
+  try {
+    const doctors = await api.get('/auth/doctors');
+    const select = document.getElementById('appointmentDoctor');
+    select.innerHTML = '<option value="">Select a doctor...</option>' +
+      doctors.map(d => `<option value="${d._id}">${d.name}${d.specialization ? ' - ' + d.specialization : ''}</option>`).join('');
+  } catch (err) {
+    console.error('Error loading doctors:', err);
+  }
+}
+
+async function loadAppointmentsPatient() {
+  try {
+    loadDoctors();
+    const appointments = await api.get('/appointments');
+    renderPatientAppointments(appointments);
+  } catch (err) {
+    console.error('Appointments error:', err);
+  }
+}
+
+function renderPatientAppointments(appointments) {
+  const area = document.getElementById('appointmentsArea');
+  if (!appointments || appointments.length === 0) {
+    area.innerHTML = '<div class="no-data" style="grid-column:1/-1;"><i class="fas fa-calendar-times"></i><p>No appointments yet</p></div>';
+    return;
+  }
+
+  area.innerHTML = appointments.map(apt => `
+    <div class="appointment-card">
+      <div class="appointment-header">
+        <div>
+          <div class="appointment-patient">${apt.doctorName}</div>
+          <span class="appointment-status ${apt.status.toLowerCase()}">${apt.status}</span>
+        </div>
+      </div>
+      <div class="appointment-details">
+        <div><i class="fas fa-stethoscope"></i> ${apt.reason || 'General'}</div>
+        <div><i class="fas fa-calendar"></i> ${new Date(apt.requestedDate).toLocaleDateString()}</div>
+        <div><i class="fas fa-clock"></i> ${apt.timeSlot || 'Not set'}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function requestAppointment() {
+  const doctorId = document.getElementById('appointmentDoctor').value;
+  const date = document.getElementById('appointmentDate').value;
+  const time = document.getElementById('appointmentTime').value;
+  const reason = document.getElementById('appointmentReason').value;
+
+  if (!doctorId || !date || !time) {
+    showToast('Please fill all required fields', 'error');
+    return;
+  }
+
+  try {
+    await api.post('/appointments', {
+      doctorId,
+      requestedDate: new Date(date).toISOString(),
+      timeSlot: time,
+      reason
+    });
+    showToast('Appointment requested successfully', 'success');
+    document.getElementById('appointmentDoctor').value = '';
+    document.getElementById('appointmentDate').value = '';
+    document.getElementById('appointmentTime').value = '';
+    document.getElementById('appointmentReason').value = '';
+    loadAppointmentsPatient();
+  } catch (err) {
+    showToast('Error requesting appointment', 'error');
+  }
+}
+
+// ===== PROFILE =====
+function openProfileModal() {
+  const user = getUser();
+  if (user) {
+    document.getElementById('profileName').value = user.name || '';
+    document.getElementById('profileAge').value = user.age || '';
+    document.getElementById('profileGender').value = user.gender || '';
+    document.getElementById('profileAllergies').value = (user.allergies || []).join(', ');
+  }
+  openModal('profileModal');
+}
+
+async function saveProfile() {
+  const name = document.getElementById('profileName').value;
+  const age = parseInt(document.getElementById('profileAge').value) || null;
+  const gender = document.getElementById('profileGender').value;
+  const allergies = document.getElementById('profileAllergies').value
+    .split(',').map(a => a.trim()).filter(a => a);
+
+  try {
+    await api.patch('/auth/me', { name, age, gender, allergies });
+    const user = getUser();
+    user.name = name;
+    user.age = age;
+    user.gender = gender;
+    user.allergies = allergies;
+    localStorage.setItem('user', JSON.stringify(user));
+    closeModal('profileModal');
+    showToast('Profile updated successfully', 'success');
+    document.getElementById('navUserName').textContent = name;
+  } catch (err) {
+    showToast('Error updating profile', 'error');
   }
 }
 

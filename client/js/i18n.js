@@ -1,0 +1,211 @@
+const translations = {
+  en: {
+    'app-title': 'MediRec',
+    'doctor-dashboard': 'Doctor Dashboard',
+    'patient-dashboard': 'Patient Dashboard',
+    'logout': 'Logout',
+    'overview': 'Overview',
+    'patient-records': 'Patient Records',
+    'pending-review': 'Pending Review',
+    'severe-cases': 'Severe Cases',
+    'reviewed-records': 'Reviewed Records',
+    'deleted-records': 'Deleted Records',
+    'analytics': 'Analytics',
+    'appointments': 'Appointments',
+    'search': 'Search by name...',
+    'disease': 'Disease',
+    'severity': 'Severity',
+    'from-date': 'From Date',
+    'to-date': 'To Date',
+    'refresh': 'Refresh',
+    'all-severity': 'All Severity',
+    'mild': 'Mild',
+    'moderate': 'Moderate',
+    'severe': 'Severe',
+    'my-history': 'My History',
+    'dosage-calculator': 'Dosage Calculator',
+    'ai-doctor': 'AI Doctor Chat',
+    'edit-profile': 'Edit Profile',
+    'my-appointments': 'My Appointments',
+    'request-appointment': 'Request New Appointment',
+    'select-doctor': 'Select a doctor...',
+    'appointment-date': 'Date',
+    'appointment-time': 'Time',
+    'appointment-reason': 'Reason',
+    'request': 'Request Appointment',
+    'full-name': 'Full Name',
+    'age': 'Age',
+    'gender': 'Gender',
+    'allergies': 'Known Allergies',
+    'save-changes': 'Save Changes',
+    'cancel': 'Cancel',
+    'delete': 'Delete',
+    'close': 'Close',
+    'no-records': 'No records found',
+    'loading': 'Loading...',
+    'error': 'Error',
+    'success': 'Success',
+    'approve': 'Approve',
+    'decline': 'Decline',
+    'export': 'Export',
+    'records': 'Records',
+    'medicines': 'Medicines',
+    'precautions': 'Precautions',
+    'symptoms': 'Symptoms',
+    'status': 'Status',
+    'pending': 'Pending',
+    'approved': 'Approved',
+    'declined': 'Declined',
+    'reviewed': 'Reviewed'
+  },
+  hi: {
+    'app-title': 'मेडीरेक',
+    'doctor-dashboard': 'डॉक्टर डैशबोर्ड',
+    'patient-dashboard': 'रोगी डैशबोर्ड',
+    'logout': 'लॉगआउट',
+    'overview': 'अवलोकन',
+    'patient-records': 'रोगी रिकॉर्ड',
+    'pending-review': 'समीक्षा के लिए प्रतीक्षारत',
+    'severe-cases': 'गंभीर मामले',
+    'reviewed-records': 'समीक्षा की गई रिकॉर्ड',
+    'deleted-records': 'हटाई गई रिकॉर्ड',
+    'analytics': 'विश्लेषण',
+    'appointments': 'नियुक्तियाँ',
+    'search': 'नाम से खोजें...',
+    'disease': 'रोग',
+    'severity': 'गंभीरता',
+    'from-date': 'तारीख से',
+    'to-date': 'तारीख तक',
+    'refresh': 'ताज़ा करें',
+    'all-severity': 'सभी गंभीरता',
+    'mild': 'हल्का',
+    'moderate': 'मध्यम',
+    'severe': 'गंभीर',
+    'my-history': 'मेरा इतिहास',
+    'dosage-calculator': 'खुराक कैलकुलेटर',
+    'ai-doctor': 'AI डॉक्टर चैट',
+    'edit-profile': 'प्रोफाइल संपादित करें',
+    'my-appointments': 'मेरी नियुक्तियाँ',
+    'request-appointment': 'नई नियुक्ति का अनुरोध करें',
+    'select-doctor': 'एक डॉक्टर चुनें...',
+    'appointment-date': 'तारीख',
+    'appointment-time': 'समय',
+    'appointment-reason': 'कारण',
+    'request': 'नियुक्ति का अनुरोध करें',
+    'full-name': 'पूरा नाम',
+    'age': 'आयु',
+    'gender': 'लिंग',
+    'allergies': 'ज्ञात एलर्जी',
+    'save-changes': 'परिवर्तन सहेजें',
+    'cancel': 'रद्द करें',
+    'delete': 'हटाएं',
+    'close': 'बंद करें',
+    'no-records': 'कोई रिकॉर्ड नहीं मिला',
+    'loading': 'लोड हो रहा है...',
+    'error': 'त्रुटि',
+    'success': 'सफल',
+    'approve': 'अनुमोदन',
+    'decline': 'अस्वीकार करें',
+    'export': 'निर्यात करें',
+    'records': 'रिकॉर्ड',
+    'medicines': 'दवाएं',
+    'precautions': 'सावधानियां',
+    'symptoms': 'लक्षण',
+    'status': 'स्थिति',
+    'pending': 'प्रतीक्षारत',
+    'approved': 'अनुमोदित',
+    'declined': 'अस्वीकृत',
+    'reviewed': 'समीक्षा की गई'
+  },
+  es: {
+    'app-title': 'MediRec',
+    'doctor-dashboard': 'Panel de Control del Médico',
+    'patient-dashboard': 'Panel de Control del Paciente',
+    'logout': 'Cerrar sesión',
+    'overview': 'Descripción general',
+    'patient-records': 'Registros de Pacientes',
+    'pending-review': 'Pendiente de Revisión',
+    'severe-cases': 'Casos Graves',
+    'reviewed-records': 'Registros Revisados',
+    'deleted-records': 'Registros Eliminados',
+    'analytics': 'Análisis',
+    'appointments': 'Citas',
+    'search': 'Buscar por nombre...',
+    'disease': 'Enfermedad',
+    'severity': 'Gravedad',
+    'from-date': 'Desde la fecha',
+    'to-date': 'Hasta la fecha',
+    'refresh': 'Actualizar',
+    'all-severity': 'Toda la Gravedad',
+    'mild': 'Leve',
+    'moderate': 'Moderado',
+    'severe': 'Grave',
+    'my-history': 'Mi Historial',
+    'dosage-calculator': 'Calculadora de Dosificación',
+    'ai-doctor': 'Chat del Doctor IA',
+    'edit-profile': 'Editar Perfil',
+    'my-appointments': 'Mis Citas',
+    'request-appointment': 'Solicitar Nueva Cita',
+    'select-doctor': 'Seleccionar un médico...',
+    'appointment-date': 'Fecha',
+    'appointment-time': 'Hora',
+    'appointment-reason': 'Motivo',
+    'request': 'Solicitar Cita',
+    'full-name': 'Nombre Completo',
+    'age': 'Edad',
+    'gender': 'Género',
+    'allergies': 'Alergias Conocidas',
+    'save-changes': 'Guardar Cambios',
+    'cancel': 'Cancelar',
+    'delete': 'Eliminar',
+    'close': 'Cerrar',
+    'no-records': 'No se encontraron registros',
+    'loading': 'Cargando...',
+    'error': 'Error',
+    'success': 'Éxito',
+    'approve': 'Aprobar',
+    'decline': 'Rechazar',
+    'export': 'Exportar',
+    'records': 'Registros',
+    'medicines': 'Medicinas',
+    'precautions': 'Precauciones',
+    'symptoms': 'Síntomas',
+    'status': 'Estado',
+    'pending': 'Pendiente',
+    'approved': 'Aprobado',
+    'declined': 'Rechazado',
+    'reviewed': 'Revisado'
+  }
+};
+
+let currentLanguage = localStorage.getItem('medirec_lang') || 'en';
+
+function t(key) {
+  return translations[currentLanguage][key] || translations.en[key] || key;
+}
+
+function setLanguage(lang) {
+  if (translations[lang]) {
+    currentLanguage = lang;
+    localStorage.setItem('medirec_lang', lang);
+    applyTranslations();
+  }
+}
+
+function getLanguage() {
+  return currentLanguage;
+}
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const isPlaceholder = el.hasAttribute('data-i18n-placeholder');
+    if (isPlaceholder) {
+      el.placeholder = t(key);
+    } else {
+      el.textContent = t(key);
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', applyTranslations);
