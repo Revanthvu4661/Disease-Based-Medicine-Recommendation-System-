@@ -90,7 +90,7 @@ Disease-Medical-Recommendation-System/
 │   ├── middleware/
 │   │   └── auth.js           # JWT protection middleware
 │   └── data/
-│       └── medicalDataset.json  # 10 disease entries with full data
+│       └── medicalDataset.json  # 85 disease entries with full data
 ├── client/
 │   ├── index.html            # Login / Register page
 │   ├── pages/
@@ -187,19 +187,45 @@ Disease-Medical-Recommendation-System/
 
 ## 💊 Medical Dataset
 
-Includes 10 diseases with complete data:
-1. Common Cold
-2. Influenza (Flu)
-3. Hypertension
-4. Type 2 Diabetes
-5. Dengue Fever
-6. Malaria
-7. Typhoid Fever
-8. Asthma
-9. Migraine
-10. Gastroenteritis
+Includes **85 comprehensive diseases** with complete medical data:
 
-Each entry includes: description, symptoms, keywords, medicines (with adult/child dosage, mg/kg), precautions, diet advice, when-to-see-doctor, emergency flag.
+### Infectious Diseases (12)
+Common Cold, Influenza, Dengue Fever, Malaria, Typhoid Fever, COVID-19, Chickenpox, Tuberculosis, Pneumonia, Bronchitis, Meningitis, Hepatitis B
+
+### Cardiovascular (3)
+Hypertension, Acute Myocardial Infarction (Heart Attack), Stroke
+
+### Endocrine & Metabolic (7)
+Type 2 Diabetes, Hypothyroidism, Grave's Disease, Hashimoto's Thyroiditis, Vitamin D Deficiency, Metabolic Syndrome, Prostate Enlargement (BPH)
+
+### Respiratory (2)
+Asthma, COPD
+
+### Gastrointestinal (9)
+Gastroenteritis, GERD, Peptic Ulcer Disease, Cholecystitis, Inflammatory Bowel Disease (Crohn's), Celiac Disease, Lactose Intolerance, Sinusitis, Lower Back Pain
+
+### Neurological (11)
+Migraine, Migraine with Aura, Parkinson's Disease, Alzheimer's Disease, Multiple Sclerosis, Epilepsy, Meningitis
+
+### Mental Health (9)
+Anxiety Disorder, Depression, Bipolar Disorder, PTSD, OCD, ADHD, Autism Spectrum Disorder, Schizophrenia
+
+### Autoimmune & Rheumatologic (8)
+Rheumatoid Arthritis, Lupus (SLE), Systemic Sclerosis (Scleroderma), Fibromyalgia
+
+### Musculoskeletal (2)
+Cervical Spondylitis, Osteoporosis
+
+### Renal & Urological (3)
+Urinary Tract Infection (UTI), Kidney Stones, Chronic Kidney Disease
+
+### Dermatological & Ophthalmic (3)
+Acne (Severe), Conjunctivitis (Pink Eye), Allergic Rhinitis
+
+### Other (8)
+Iron Deficiency Anemia, Insomnia, Kidney Stones
+
+Each entry includes: detailed description, 6+ symptoms, keywords for search, medicines with adult/child dosage & mg/kg calculations, precautions, diet advice, when-to-see-doctor guidance, and emergency alert flags.
 
 ---
 
