@@ -2,9 +2,19 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const helmet = require('helmet');
+const { generalLimiter, authLimiter } = require('./middleware/rateLimiter');
 require('dotenv').config();
 
 const app = express();
+
+// Security middleware
+app.use(helmet());
+
+// Rate limiting
+app.use('/api/', generalLimiter);
+app.use('/api/auth/login', authLimiter);
+app.use('/api/auth/register', authLimiter);
 
 // Middleware
 app.use(cors());
